@@ -1,0 +1,28 @@
+build:
+  stage: build
+
+  image: trion/ng-cli
+
+  before_script:
+    - npm ci
+
+  script:
+    - ng build
+
+  artifacts:
+    expire_in: 1 day
+
+    paths:
+      - dist/
+
+  tags:
+    - dind
+# test:karma:
+#   stage: test
+#   image: trion/ng-cli-karma
+#   allow_failure: false
+#   script:
+#     - npm i
+#     - ng test --progress false --watch false
+#   tags:
+#     - dind

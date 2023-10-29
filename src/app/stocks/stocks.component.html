@@ -1,0 +1,24 @@
+<div class="mainContainer">
+  <div class="left">
+    <router-outlet></router-outlet>
+    <div class="navRouter">
+      <div [class]="route()=='addFournisseur'?'choosed':''" routerLink="addFournisseur">Ajouter un fournisseur</div>
+      <div [class]="route()=='addReappro'?'choosed':''" routerLink="addReappro">Réapprovisionnement</div>
+      <div [class]="route()=='inventory'?'choosed':''" routerLink="inventory">Consulter l'inventaire</div>
+    </div>
+  </div>
+  <div class="right">
+    <ul>
+      <li class="header">
+        <div class="date">Date</div>
+        <div class="fournisseur">Fournisseur</div>
+        <div class="produit">Produit</div>
+        <div class="etat">Etat</div>
+        <div class="annuler">Annuler</div>
+
+      </li>
+      <app-reappro *ngFor="let reappro of this.listReappro" [reappro]="reappro"></app-reappro>
+
+    </ul>
+  </div>
+</div>

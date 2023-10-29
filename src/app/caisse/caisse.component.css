@@ -1,0 +1,545 @@
+.left {
+  width: 21%;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  align-items: center;
+}
+
+.mainContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+.middle {
+  width: 73%;
+  height: 75vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.middleLeft {
+  flex: 1;
+  /* width: 40%; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.incidentMainContainer {
+  display: flex;
+  gap: 1em;
+  /* margin: 1em 0; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* width: 15vw; */
+  /* padding-right: 1em; */
+  justify-content: space-evenly;
+}
+
+form {
+  width: 90%;
+  height: fit-content;
+  gap: 10px;
+}
+form button {
+  font-size: 1.2em;
+}
+.formGroup {
+  height: 8vh;
+  font-size: 0.7em;
+}
+
+#vert ~ .checkmark {
+  background-color: green;
+}
+#orange ~ .checkmark {
+  background-color: orange;
+}
+#rouge ~ .checkmark {
+  background-color: red;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+/* Hide the default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 2.3em;
+  width: 2.3em;
+  /* background-color: #ccc; */
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.checkmark:hover {
+  box-shadow: inset 17px 17px 16px #b3b3b331, inset -17px -17px 16px #ffffff56;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  box-shadow: none;
+  background-color: limegreen;
+  transform: rotateX(360deg);
+}
+
+.container input:checked ~ .checkmark:hover {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 0.96em;
+  top: 0.7em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  box-shadow: 0.1em 0.1em 0em 0 rgba(0, 0, 0, 0.3);
+  transform: rotate(45deg);
+}
+
+.middleRight {
+  flex: 3;
+  /* width: 80%; */
+  height: 95%;
+  gap: 1em;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+/* Pavé numérique*/
+.padNumeric {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* width: 100%; */
+  height: 100%;
+  gap: 1em;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 0.5em 1em;
+  /* margin-bottom: 5%; */
+}
+.pad {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1em;
+  height: 20%;
+}
+.padNumeric .row button {
+  width: 100%;
+  height: 100%;
+  font-size: 1.5em;
+  border-radius: 10px;
+  border: none;
+  background-color: #c7c7c7;
+  transition: all ease 0.2s;
+  align-items: center;
+  /* border: 1px dotted rgba(0, 0, 0, 0.1); */
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+}
+.padNumeric .row button:hover,
+.padNumeric .row button:focus {
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px !important;
+  filter: brightness(1.1);
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+
+.padNumeric .row button:hover {
+  transform: translateY(-1px);
+}
+
+.padNumeric .row button:active {
+  filter: brightness(1.15);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+.padNumeric .row button:hover {
+  box-shadow: inset 17px 17px 16px #b3b3b331, inset -17px -17px 16px #ffffff56;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.padNumeric input {
+  background: #ebebeb;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  height: 10%;
+  border: none;
+  font-size: 1.3em;
+  width: 100%;
+  padding: 0.5em 1em;
+}
+.padNumeric > button {
+  background-color: var(--green512);
+  font-size: 1.5em;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+}
+
+.listProduct {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  /* width: 100%; */
+  height: 100%;
+  gap: 1em;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.padAndList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+  gap: 1em;
+}
+
+.headers {
+  height: 10%;
+  /* width: 100%; */
+  font-weight: 600;
+}
+
+.headers,
+.product {
+  display: flex;
+  width: 100%;
+}
+
+.idProduct,
+.nameProduct {
+  flex: 2;
+}
+
+.priceProduct,
+.quantityProduct {
+  flex: 1;
+}
+
+.productsContainer {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+
+.totalAmount {
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: space-between;
+}
+.totalAmount button {
+  background-color: var(--grey512);
+  color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 1em 1em;
+  border: none;
+}
+.rightBottom {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 1em;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 1em;
+}
+.top {
+  font-size: 1.6em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.top button,
+.bottom button {
+  background-color: var(--green512);
+  color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-style: italic;
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border: none;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+.bottom button {
+  font-size: 1.2em;
+}
+.top button img {
+  width: 50%;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ticket {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.buttons:last-of-type {
+  background-color: #c7c7c7;
+}
+
+#popup {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containerPopupLoading,
+.containerPopupValidate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3em;
+  width: 30%;
+  height: 30%;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+.containerLoader {
+  position: relative;
+  top: 20%;
+  left: 8%;
+  border-radius: 50%;
+  height: 96px;
+  width: 96px;
+  animation: rotate_3922 1.2s linear infinite;
+  background-color: #0c816b;
+  background-image: linear-gradient(#29dbbb, #189c84, #0c816b);
+}
+
+.containerLoader span {
+  position: absolute;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  background-color: #0c816b;
+  background-image: linear-gradient(#29dbbb, #189c84, #0c816b);
+}
+
+.containerLoader span:nth-of-type(1) {
+  filter: blur(5px);
+}
+
+.containerLoader span:nth-of-type(2) {
+  filter: blur(10px);
+}
+
+.containerLoader span:nth-of-type(3) {
+  filter: blur(25px);
+}
+
+.containerLoader span:nth-of-type(4) {
+  filter: blur(50px);
+}
+
+.containerLoader::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background-color: #fff;
+  border: solid 5px #ffffff;
+  border-radius: 50%;
+}
+
+@keyframes rotate_3922 {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.waiting {
+  font-size: 2em;
+}
+
+.animation-ctn {
+  text-align: center;
+}
+
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 100px;
+  }
+
+  100% {
+    stroke-dashoffset: 0px;
+  }
+}
+
+@keyframes checkmark-circle {
+  0% {
+    stroke-dashoffset: 480px;
+  }
+
+  100% {
+    stroke-dashoffset: 960px;
+  }
+}
+
+@keyframes colored-circle {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+/* other styles */
+/* .svg svg {
+    display: none
+}
+ */
+.inlinesvg .svg svg {
+  display: inline;
+}
+
+/* .svg img {
+    display: none
+} */
+
+.icon--order-success svg polyline {
+  -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
+  animation: checkmark 0.25s ease-in-out 0.7s backwards;
+}
+
+.icon--order-success svg circle {
+  -webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
+  animation: checkmark-circle 0.6s ease-in-out backwards;
+}
+.icon--order-success svg circle#colored {
+  -webkit-animation: colored-circle 0.6s ease-in-out 0.7s backwards;
+  animation: colored-circle 0.6s ease-in-out 0.7s backwards;
+}
+
+button#redBg {
+  background-color: #f83f3f;
+}
+
+button:disabled {
+  background-color: var(--grey512) !important;
+}

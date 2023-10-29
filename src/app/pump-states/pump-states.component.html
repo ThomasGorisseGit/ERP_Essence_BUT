@@ -1,0 +1,30 @@
+<div class="listPumpContainer">
+  <div class="headerPumps">
+    <div class="pumpTitle">Pompe n°</div>
+    <div class="pumpState">État</div>
+    <div class="duration">Durée d'occupation</div>
+  </div>
+  <div class="listPump" *ngFor="let pump of listPumps">
+    <div class="pump">
+      <div class="pumpTitle">{{ pump.id }}</div>
+
+      <div class="pumpState" *ngIf="pump.state == 'OOS'">
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10.5" r="10" fill="#FF3D00" />
+        </svg>En Panne
+      </div>
+      <div class="pumpState" *ngIf="pump.state == 'Free'">
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10.5" r="10" fill="#00E676" />
+        </svg>Libre
+      </div>
+      <div class="pumpState" *ngIf="pump.state == 'Filling'">
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10.5" r="10" fill="#FFC700" />
+        </svg>Remplissage
+      </div>
+
+      <div class="duration">{{pump.durationOccupied}}s</div>
+    </div>
+  </div>
+</div>

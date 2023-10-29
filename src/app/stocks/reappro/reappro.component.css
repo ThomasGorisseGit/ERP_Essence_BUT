@@ -1,0 +1,30 @@
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 49px;
+  font-size: 1.5em;
+}
+
+.date {
+  flex: 1;
+}
+.fournisseur,
+.produit,
+.etat {
+  flex: 2;
+}
+.pumpState {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2em;
+}
+.annuler {
+  background: #ff3d00;
+  border-radius: 10px;
+  padding: 0.25em 0.5em;
+}
+.grey {
+  opacity: 0.2;
+}

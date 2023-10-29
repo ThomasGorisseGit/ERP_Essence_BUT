@@ -1,0 +1,84 @@
+.mainContainer {
+  display: flex;
+  width: 100%;
+  height: 75vh;
+  justify-content: space-around;
+}
+
+.right,
+.left {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.left {
+  flex-direction: row;
+}
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 49px;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-bottom: 1em;
+  border-bottom: 2px solid #e5e5e5;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 0em 1em;
+  justify-content: space-around;
+}
+
+.date {
+  flex: 1;
+}
+.fournisseur,
+.produit,
+.etat {
+  flex: 2;
+}
+.annuler {
+  background: #ff3d00;
+  border-radius: 10px;
+  padding: 0.25em 0.5em;
+  visibility: hidden;
+}
+
+.navRouter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 20%;
+}
+.navRouter div {
+  width: max-content;
+  font-size: 1.5em;
+  padding: 1em;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.navRouter div:hover {
+  transform: translateX(5%);
+}
+.navRouter div.choosed:hover {
+  transform: none;
+}
+.choosed {
+  background-color: white;
+  color: var(--green512);
+  font-weight: bold;
+  border-radius: 0 10px 10px 0;
+}

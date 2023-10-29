@@ -1,0 +1,28 @@
+<form>
+  <h3>Nouveau Réapprovisionnement</h3>
+  <div class="formGroup">
+    <mat-form-field appearance="fill">
+      <mat-label>Produit demandé</mat-label>
+      <mat-select [formControl]="productProposed">
+        <mat-option *ngFor="let product of productProposedList" [value]="product">{{product}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="formGroup">
+    <mat-form-field appearance="fill">
+      <mat-label>Fournisseur</mat-label>
+      <mat-select [formControl]="productProposed">
+        <mat-option *ngFor="let fournisseur of fournisseurList" [value]="fournisseur">{{fournisseur}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="formGroup">
+    <label for="quantity">Quantité</label>
+    <input type="number" name="quantity" id="quantity">
+  </div>
+  <div class="formGroup">
+    <label for="amount">Montant</label>
+    <input type="number" name="amount" id="amount">
+  </div>
+  <button>Valider</button>
+</form>

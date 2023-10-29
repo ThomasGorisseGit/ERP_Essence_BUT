@@ -1,0 +1,174 @@
+<div class="mainContainer">
+  <div class="left">
+    <app-pump-states></app-pump-states>
+    <app-tank-states></app-tank-states>
+  </div>
+  <div class="middle">
+    <div class="middleLeft">
+      <div class="incidentMainContainer">
+        <app-incidents *ngFor="let incident of listIncidents" [incident]="incident"></app-incidents>
+      </div>
+      <form>
+        <div class="formGroup">
+          <label for="dateIncident">Date/Heure de l'incident*</label>
+          <input type="datetime-local" name="dateIncident" id="dateIncident">
+        </div>
+        <div class="formGroup">
+          <label for="titreIncident">Titre de l'incident*</label>
+          <input type="text" name="titreIncident" id="titreIncident">
+        </div>
+        <div class="formGroup">
+          <label for="employeconcerned">Employé concerné</label>
+          <select name="employeconcerned" id="employeconcerned">
+            <option value="Cédric">Cédric</option>
+            <option value="Gauthier">Gauthier</option>
+            <option value="Jérémy">Jérémy</option>
+            <option value="Julien">Julien</option>
+            <option value="Léo">Léo</option>
+            <option value="Léonard">Léonard</option>
+
+          </select>
+        </div>
+        <div>Selectionner un niveau d'urgence
+          <div class="checkboxes">
+            <label class="container" (click)="checkboxClicked($event)">
+              <input checked="true" name="checkbox" id="vert" type="checkbox">
+              <div class="checkmark"></div>
+            </label>
+            <label class="container" (click)="checkboxClicked($event)">
+              <input id="orange" name="checkbox" type="checkbox">
+              <div class="checkmark"></div>
+            </label>
+            <label class="container" (click)="checkboxClicked($event)">
+              <input id="rouge" name="checkbox" type="checkbox">
+              <div class="checkmark"></div>
+            </label>
+          </div>
+        </div>
+        <button>Ajouter l'incident</button>
+      </form>
+    </div>
+    <div class="middleRight">
+      <div class="padAndList">
+        <div class="padNumeric">
+          <input type="number" name="id" id="id" [(ngModel)]="inputValue">
+          <div class="pad">
+            <div class="row">
+              <button (click)="onButtonClicked('1')">1</button>
+              <button (click)="onButtonClicked('2')">2</button>
+              <button (click)="onButtonClicked('3')">3</button>
+            </div>
+            <div class="row">
+              <button (click)="onButtonClicked('4')">4</button>
+              <button (click)="onButtonClicked('5')">5</button>
+              <button (click)="onButtonClicked('6')">6</button>
+            </div>
+            <div class="row">
+              <button (click)="onButtonClicked('7')">7</button>
+              <button (click)="onButtonClicked('8')">8</button>
+              <button (click)="onButtonClicked('9')">9</button>
+            </div>
+            <div class="row">
+              <button (click)="onButtonClicked('.')">.</button>
+              <button (click)="onButtonClicked('0')">0</button>
+              <button (click)="onButtonClicked('')"><svg width="26" height="20" viewBox="0 0 26 20" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M19.9355 5.36574C20.1698 5.60015 20.3015 5.91804 20.3015 6.24949C20.3015 6.58095 20.1698 6.89883 19.9355 7.13324L17.0692 9.99949L19.9355 12.8657C20.1632 13.1015 20.2892 13.4172 20.2863 13.745C20.2835 14.0727 20.152 14.3863 19.9203 14.618C19.6885 14.8498 19.375 14.9812 19.0472 14.9841C18.7195 14.9869 18.4037 14.8609 18.168 14.6332L15.3017 11.767L12.4355 14.6332C12.1997 14.8609 11.884 14.9869 11.5562 14.9841C11.2285 14.9812 10.915 14.8498 10.6832 14.618C10.4515 14.3863 10.32 14.0727 10.3171 13.745C10.3143 13.4172 10.4403 13.1015 10.668 12.8657L13.5342 9.99949L10.668 7.13324C10.5486 7.01793 10.4534 6.88 10.3879 6.7275C10.3223 6.57499 10.2879 6.41097 10.2864 6.24499C10.285 6.07902 10.3166 5.91442 10.3795 5.7608C10.4423 5.60718 10.5351 5.46761 10.6525 5.35025C10.7699 5.23288 10.9094 5.14007 11.063 5.07721C11.2167 5.01436 11.3813 4.98274 11.5472 4.98418C11.7132 4.98562 11.8772 5.0201 12.0297 5.08561C12.1822 5.15113 12.3202 5.24635 12.4355 5.36574L15.3017 8.23199L18.168 5.36574C18.4024 5.1314 18.7203 4.99976 19.0517 4.99976C19.3832 4.99976 19.7011 5.1314 19.9355 5.36574Z"
+                    fill="#0D0D0D" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M25.3018 1.25C25.3018 0.91848 25.1701 0.600537 24.9357 0.366117C24.7013 0.131697 24.3833 2.22839e-07 24.0518 2.22839e-07H9.6268C9.2661 -0.000152061 8.90964 0.0777485 8.58189 0.228354C8.25414 0.378959 7.96286 0.598703 7.72805 0.8725L1.30055 8.3725C0.911892 8.82568 0.698242 9.40299 0.698242 10C0.698242 10.597 0.911892 11.1743 1.30055 11.6275L7.72805 19.1275C7.96286 19.4013 8.25414 19.621 8.58189 19.7716C8.90964 19.9223 9.2661 20.0002 9.6268 20H24.0518C24.3833 20 24.7013 19.8683 24.9357 19.6339C25.1701 19.3995 25.3018 19.0815 25.3018 18.75V1.25ZM22.8018 17.5H9.6268L3.19805 10L9.6268 2.5H22.8018V17.5Z"
+                    fill="#0D0D0D" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <button (click)="validateProduit()">Valider</button>
+        </div>
+        <div class="listProduct">
+          <div class="headers">
+            <div class="idProduct">Identifiant</div>
+            <div class="nameProduct">Nom</div>
+            <div class="priceProduct">Prix</div>
+            <div class="quantityProduct">Quantité</div>
+            <div style="opacity:0;width:45px">
+            </div>
+          </div>
+          <div class="productsContainer">
+            <div class="product" *ngFor="let item of cart.listProduct">
+              <div class="idProduct">{{item.produit.idProduit}}</div>
+              <div class="nameProduct">{{item.produit.nom}}</div>
+              <div class="priceProduct">{{item.produit.prix}}€</div>
+              <div class="quantityProduct">{{item.quantity}}</div>
+              <div (click)="deleteProduct(item.produit.idProduit)"><svg width="29" height="32" viewBox="0 0 29 32"
+                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M27.9716 5.91422C25.5792 5.67647 23.1867 5.49815 20.7794 5.36441V5.34955L20.4525 3.41777C20.2296 2.05066 19.9027 0 16.4255 0H12.5322C9.06982 0 8.74291 1.9615 8.50515 3.40291L8.19309 5.30497C6.81112 5.39413 5.42916 5.48329 4.04719 5.61703L1.01578 5.91422C0.391669 5.97366 -0.0541262 6.52348 0.00531317 7.13273C0.0647526 7.74199 0.599707 8.18778 1.22382 8.12834L4.25523 7.83115C12.0418 7.05843 19.8878 7.35563 27.7636 8.1432H27.8824C28.4471 8.1432 28.9375 7.71227 28.9969 7.13273C29.0415 6.52348 28.5957 5.97366 27.9716 5.91422Z"
+                    fill="#292D32" />
+                  <path
+                    d="M25.2372 10.2415C24.8806 9.86996 24.3902 9.66193 23.885 9.66193H5.10218C4.59694 9.66193 4.09171 9.86996 3.74993 10.2415C3.40815 10.613 3.21497 11.1182 3.24469 11.6383L4.166 26.8845C4.32946 29.1432 4.5375 31.9666 9.72359 31.9666H19.2635C24.4496 31.9666 24.6578 29.158 24.8211 26.8845L25.7424 11.6531C25.7722 11.1182 25.579 10.613 25.2372 10.2415ZM16.9603 24.5218H12.0119C11.4028 24.5218 10.8975 24.0165 10.8975 23.4073C10.8975 22.798 11.4028 22.2928 12.0119 22.2928H16.9603C17.5695 22.2928 18.0748 22.798 18.0748 23.4073C18.0748 24.0165 17.5695 24.5218 16.9603 24.5218ZM18.2085 18.5778H10.7786C10.1694 18.5778 9.66415 18.0726 9.66415 17.4633C9.66415 16.8541 10.1694 16.3489 10.7786 16.3489H18.2085C18.8177 16.3489 19.323 16.8541 19.323 17.4633C19.323 18.0726 18.8177 18.5778 18.2085 18.5778Z"
+                    fill="#292D32" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="totalAmount">Montant Total {{this.cart.total}}€ <button (click)="viderPanier()"
+              [disabled]="this.cart.total==0" [id]="this.cart.total!=0?'redBg':''">Abandonner</button></div>
+        </div>
+      </div>
+      <div class="rightBottom">
+        <div class="top">
+          <div>Paiement</div>
+          <button (click)="validatePaiement()">Espèces <img src="../../assets/cash.png" alt="cash"></button>
+          <button (click)="validatePaiement()">Carte paiement<img src="../../assets/cb.png"
+              alt="Carte Paiement"></button>
+          <button [disabled]="!this.essenceInCart()" (click)="validatePaiement()">Énergie <img
+              src="../../assets/nrj.png" alt="Éngergie"></button>
+        </div>
+        <div class="bottom">
+          <button>Scanner la carte membre</button>
+          <div class="ticket">
+            <div>Ticket de caisse</div>
+            <div class="buttons">Email</div>
+            <div class="buttons">Papier</div>
+            <div class="buttons">Non</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div *ngIf="loading||validate" id="popup">
+    <div *ngIf="loading" class="containerPopupLoading">
+      <div class="containerLoader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </div>
+      <div class="waiting"> En attente de paiement</div>
+
+    </div>
+
+    <div *ngIf="validate" (click)="this.validate=!this.validate" class="containerPopupValidate">
+      <div class="containerValidate">
+
+        <div class="animation-ctn">
+          <div class="icon icon--order-success svg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">
+              <g fill="none" stroke="#22AE73" stroke-width="2">
+                <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;">
+                </circle>
+                <circle id="colored" fill="#22AE73" cx="77" cy="77" r="72"
+                  style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+                <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8 63.7,97.9 112.2,49.4 "
+                  style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;" />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="waiting">Paiement accepté !</div>
+      </div>
+    </div>
+  </div>

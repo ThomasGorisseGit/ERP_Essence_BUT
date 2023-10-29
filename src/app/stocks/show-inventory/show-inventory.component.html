@@ -1,0 +1,14 @@
+<ul>
+  <li class="headers">
+    <div>Libellé</div>
+    <div>Quantité</div>
+    <div>Prix d'achat</div>
+    <div>Prix de vente</div>
+  </li>
+  <li *ngFor="let product of listProduct">
+    <input type="text" value="{{product.nom}}">
+    <div>{{product.quantite}}</div>
+    <div>{{product.prix}}</div>
+    <div>{{product.prixVente}}</div>
+  </li>
+</ul>

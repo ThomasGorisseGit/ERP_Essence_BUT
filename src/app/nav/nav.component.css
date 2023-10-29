@@ -1,0 +1,22 @@
+nav {
+  width: 80%;
+  height: 5vh;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1% auto;
+  z-index: 9;
+  gap: 5%;
+  position: relative;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: unset;
+  color: var(--green512);
+  cursor: pointer;
+}
