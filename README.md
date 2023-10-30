@@ -1,27 +1,53 @@
-# ErpApp
+# ERP_ESSENCE
+## English : 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+## Introduction 
+ERP_ESSENCE is a project that I completed during my Computer Science degree.
 
-## Development server
+The project required us to develop a project management software similar to an ERP system to manage a chain of gas stations. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+As a team of 8, we had to manage the project, create mockups, and distribute tasks using Agile methodology. 
 
-## Code scaffolding
+The project was divided into sprints, and two members of the group were responsible for the implementation of the first sprint (@Firelods and myself, @ThomasGorisseGit).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+We decided to develop the application as a website using the Angular framework. To interact with certain data, we used a small PHP API backend.
 
-## Build
+The project was very interesting and I decided to product a final version.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Project Development
 
-## Running unit tests
+In this repository, my goal is to continue the development of this ERP system.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+It will still use the Angular framework, but its backend will be developed using a SpringBoot application. The SpringBoot application (Java) will interact with a SQL database.
 
-## Running end-to-end tests
+The purpose of this project is to gain experience and understand how data exchanges work between SpringBoot and SQL.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Français
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Introduction 
+ERP_ESSENCE est un projet réalisé lors de mon BUT Informatique.
+
+Le sujet demandait de réaliser la gestion de projet d'un logiciel type ERP afin d'administrer une chaîne de station service.
+
+Il a fallu en équipe de 8, réaliser la gestion de projet, le maquettage et la distribution des tâches grâce à l'application de la méthodologie Agile. 
+
+Le projet a donc été décomposé sous forme de sprint et 2 personnes du groupe ont du réaliser le premier Sprint. 
+(@Firelods et moi @ThomasGorisseGit)
+
+Nous avons donc décidés d'éffectuer l'application sous forme de site internet en utilisant le Framework Angular.
+Afin d'intéragir avec certaines données, nous avons utilisés un petit Backend en PHP (API).
+
+Le project étant très intéréssant j'ai décidé de le terminer.
+
+## La réalisation du projet
+
+Dans ce repository, j'ai pour objectif de reprendre le développement de cet ERP.
+
+Celui ci utilisera toujous le Framework Angular, mais son backend sera fait grâce à une application SpringBoot.
+L'application SpringBoot (Java) intérogerra une base de donnée SQL.
+
+Ce projet a pour but de me faire gagner en expérience et de comprendre le fonctionnement les échanges de données entre SpringBoot et SQL.
+
+
+
