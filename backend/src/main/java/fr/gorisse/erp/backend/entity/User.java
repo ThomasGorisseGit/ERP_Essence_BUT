@@ -1,6 +1,7 @@
 package fr.gorisse.erp.backend.entity;
 
 import fr.gorisse.erp.backend.entity.valueObject.Login;
+import fr.gorisse.erp.backend.entity.valueObject.converter.LoginConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +15,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
 
-    private String login;
+    @Convert(converter = LoginConverter.class)
+    private Login login;
 
 
 }

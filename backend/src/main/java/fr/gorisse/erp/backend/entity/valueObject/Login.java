@@ -1,11 +1,13 @@
 package fr.gorisse.erp.backend.entity.valueObject;
 
 
+import org.antlr.v4.runtime.misc.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 public class Login {
-    private String login;
+    private final String login;
 
     private Login(String login){
         this.login = login;
@@ -29,5 +31,8 @@ public class Login {
             return new Login(login);
         }
         throw new RuntimeException("invalid Login");
+    }
+    public String toString(){
+        return this.login;
     }
 }
