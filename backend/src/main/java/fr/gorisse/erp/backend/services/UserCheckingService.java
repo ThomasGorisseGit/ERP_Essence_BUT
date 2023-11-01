@@ -28,8 +28,8 @@ public class UserCheckingService implements UserCheckingServiceInterface {
     }
 
     @Override
-    public User getUserById(int id) {
-        Optional<User> optUser = this.userRepository.findById(id);
+    public User getUserById(int user_id) {
+        Optional<User> optUser = this.userRepository.findById(user_id);
         return optUser.orElseThrow(()->new DataNotFounded("The user id provided does not match with users id stored in the database"));
     }
 

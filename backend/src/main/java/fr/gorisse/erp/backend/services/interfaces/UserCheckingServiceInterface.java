@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface UserCheckingServiceInterface {
     User create (User user);
     ArrayList<User> getUsers();
-    User getUserById(int id);
+    User getUserById(int user_id);
     User getUserByLogin(String login);
     int getNumberOfUsers();
 
