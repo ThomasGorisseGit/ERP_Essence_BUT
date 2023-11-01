@@ -10,5 +10,5 @@ public interface UserCheckingServiceInterface {
     User getUserById(int user_id);
     User getUserByLogin(String login);
     int getNumberOfUsers();
-
+    void deleteUser(User user);
 }

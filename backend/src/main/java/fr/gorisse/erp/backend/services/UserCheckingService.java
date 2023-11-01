@@ -44,5 +44,10 @@ public class UserCheckingService implements UserCheckingServiceInterface {
         return this.userRepository.findAll().size();
     }
 
+    @Override
+    public void deleteUser(User user) {
+        this.userRepository.delete(user);
+    }
+
 
 }
