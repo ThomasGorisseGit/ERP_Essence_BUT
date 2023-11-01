@@ -11,11 +11,9 @@ public class LoginConverter implements AttributeConverter<Login, String> {
     @Override
     public String convertToDatabaseColumn(Login login) {
         return login == null ? null : login.toString();
-
     }
 
     @Override
-
     public Login convertToEntityAttribute(String potentialLogin) {
         return potentialLogin == null ? null : Login.create(potentialLogin);
 

@@ -1,7 +1,9 @@
 package fr.gorisse.erp.backend.entity;
 
 import fr.gorisse.erp.backend.entity.valueObject.Login;
+import fr.gorisse.erp.backend.entity.valueObject.Password;
 import fr.gorisse.erp.backend.entity.valueObject.converter.LoginConverter;
+import fr.gorisse.erp.backend.entity.valueObject.converter.PasswordConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +19,9 @@ public class User {
 
     @Convert(converter = LoginConverter.class)
     private Login login;
+
+    @Convert(converter = PasswordConverter.class)
+    private Password password;
 
 
 }
