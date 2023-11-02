@@ -10,7 +10,7 @@ name: ERP Build CICDflow
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "backend" ]
   pull_request:
     branches: [ "main" ]
 
