@@ -52,6 +52,7 @@ class UserCheckingServiceTest {
         this.userService.create(user);
         Assertions.assertEquals(userService.getNumberOfEntity(), this.numberOfUsers+1);
         User fetchedUser = this.userService.getEntityById(this.user.getId());
+
         assertNotNull(fetchedUser);
         assertEquals(user.getId(),fetchedUser.getId());
     }
