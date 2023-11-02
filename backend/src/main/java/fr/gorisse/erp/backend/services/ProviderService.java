@@ -14,6 +14,7 @@ public class ProviderService extends ServiceMethods<Provider>{
     @Autowired
     private ProviderRepository providerRepository;
 
+
     @Override
     @Autowired
     protected void setRepository() {
