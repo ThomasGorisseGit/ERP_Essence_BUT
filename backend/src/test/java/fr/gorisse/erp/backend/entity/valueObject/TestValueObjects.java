@@ -26,6 +26,13 @@ class TestValueObjects {
         Assertions.assertThrows(InvalidInput.class,()->Password.create("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
 
         password = Password.create("Thomas");
-        Assertions.assertEquals(password.toString(),"Thomas");
+        Assertions.assertNotEquals(password.toString(),"Thomas");
+        Password checkEncryption = Password.create("Thomas");
+        Assertions.assertEquals(password.toString(),checkEncryption.toString());
+
+        Password checkCaps = Password.create("thomas");
+        Assertions.assertNotEquals(password.toString(),checkCaps.toString());
+
+
     }
 }
