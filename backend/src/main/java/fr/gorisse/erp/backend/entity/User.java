@@ -16,7 +16,7 @@ import lombok.*;
 public class User extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int user_id;
+    private int id;
 
     @Convert(converter = LoginConverter.class)
     private Login login;
