@@ -14,9 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserCheckingService implements UserCheckingServiceInterface {
+public class UserCheckingService extends ServiceMethods<User> implements UserCheckingServiceInterface {
     @Autowired
     private UserRepository userRepository;
+
+
 
     @Override
     public User getUserByLogin(String login) {
@@ -24,28 +26,8 @@ public class UserCheckingService implements UserCheckingServiceInterface {
         return optUser.orElseThrow(()->new DataNotFounded("The user login provided does not match with users login stored in the database"));
     }
 
-
-    public User create(User entity) {
-        return this.userRepository.save(entity);
-    }
-
-    public User edit(User entity) {
-        return this.userRepository.save(entity);
-    }
-
-    public void delete(User entity) {
-        this.userRepository.delete(entity);
-    }
-
-    public List<User> getAll() {
-        return this.userRepository.findAll();
-    }
-
-    public User getEntityById(int entity_id) {
-       return this.userRepository.findById(entity_id).orElseThrow(()->new DataNotFounded(""));
-    }
-
-    public int getNumberOfEntity() {
-        return this.userRepository.findAll().size();
+    @Autowired
+    protected void setRepository(){
+        this.repository = userRepository;
     }
 }
