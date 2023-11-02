@@ -9,7 +9,7 @@ public class Password  {
     private final String password;
 
     private Password(String password) {
-        this.password = encryption(password);
+        this.password = password; //TODO Add encryption
     }
 
     public static Password create(String password){

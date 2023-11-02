@@ -42,7 +42,7 @@ class UserCheckingServiceTest {
 
         ArrayList<User> list = this.userService.getUsers();
         Assertions.assertNotNull(list);
-        Assertions.assertEquals(this.user.getUser_id(),list.get(list.size()-1).getUser_id());
+        Assertions.assertEquals(this.user.getId(),list.get(list.size()-1).getId());
 
     }
     @Test
@@ -51,9 +51,9 @@ class UserCheckingServiceTest {
         assertThrows(DataNotFounded.class,()->userService.getUserById(-1));
         this.userService.create(user);
         Assertions.assertEquals(userService.getNumberOfUsers(), this.numberOfUsers+1);
-        User fetchedUser = this.userService.getUserById(this.user.getUser_id());
+        User fetchedUser = this.userService.getUserById(this.user.getId());
         assertNotNull(fetchedUser);
-        assertEquals(user.getUser_id(),fetchedUser.getUser_id());
+        assertEquals(user.getId(),fetchedUser.getId());
     }
     @Test
     void getUserByLogin(){
@@ -66,7 +66,7 @@ class UserCheckingServiceTest {
         Assertions.assertEquals(userService.getNumberOfUsers(), this.numberOfUsers+1);
         User fetchedUser = this.userService.getUserByLogin(this.user.getLogin().toString());
         assertNotNull(fetchedUser);
-        assertEquals(user.getUser_id(),fetchedUser.getUser_id());
+        assertEquals(user.getId(),fetchedUser.getId());
     }
     @AfterEach
     void destroy(){
