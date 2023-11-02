@@ -10,37 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProviderService implements ServiceMethodsInterface<Provider> {
+public class ProviderService extends ServiceMethods<Provider>{
     @Autowired
     private ProviderRepository providerRepository;
 
     @Override
-    public Provider create(Provider entity) {
-        return null;
-    }
-
-    @Override
-    public Provider edit(Provider entity) {
-        return null;
-    }
-
-    @Override
-    public void delete(Provider entity) {
-
-    }
-
-    @Override
-    public List<Provider> getAll() {
-        return null;
-    }
-
-    @Override
-    public Provider getEntityById(int entity_id) {
-        return null;
-    }
-
-    @Override
-    public int getNumberOfEntity() {
-        return 0;
+    @Autowired
+    protected void setRepository() {
+        this.repository = providerRepository;
     }
 }
