@@ -6,7 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -26,12 +26,12 @@ public class UserController {
     }
 
     @GetMapping("/getUsers")
-    public ArrayList<User> getUsers(){
-        return this.userService.getUsers();
+    public List<User> getUsers(){
+        return this.userService.getAll();
     }
     @GetMapping("/getUserById")
     public User getUserById(@RequestBody int user_id){
-        return this.userService.getUserById(user_id);
+        return this.userService.getEntityById(user_id);
     }
     @GetMapping("/getUserByLogin")
     public User getUserByLogin(@RequestBody String login){
@@ -39,7 +39,7 @@ public class UserController {
     }
     @GetMapping("/getNumberOfUsers")
     public int getNumberOfUsers(){
-        return this.userService.getNumberOfUsers();
+        return this.userService.getNumberOfEntity();
     }
 
 }
