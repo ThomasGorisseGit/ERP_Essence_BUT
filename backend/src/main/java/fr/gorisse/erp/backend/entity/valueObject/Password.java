@@ -1,12 +1,14 @@
 package fr.gorisse.erp.backend.entity.valueObject;
 
 import fr.gorisse.erp.backend.exceptions.InvalidInput;
+import lombok.Value;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@Value
 public class Password  {
-    private final String password;
+    String password;
 
     private Password(String password) {
         this.password = password; //TODO Add encryption

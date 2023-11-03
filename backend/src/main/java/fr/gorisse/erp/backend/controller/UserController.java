@@ -17,6 +17,7 @@ public class UserController {
     @PostMapping("/create")
     @Transactional
     public User create(@RequestBody User user){
+        user.setLogin();
         return this.userService.create(user);
     }
     @PostMapping("/edit")

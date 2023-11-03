@@ -1,9 +1,11 @@
 package fr.gorisse.erp.backend.entity.valueObject;
 
 import fr.gorisse.erp.backend.exceptions.InvalidInput;
+import lombok.Value;
 
+@Value
 public class Siret {
-    private final String siret;
+    String siret;
     private Siret(String siren, String nic){
         this.siret = siren + nic;
     }
@@ -42,8 +44,9 @@ public class Siret {
         boolean isValid = true;
         for(int i =0;i<siret.length();i++){
             char currentChar = siret.charAt(i);
-            if(!contains(currentChar)){
-                isValid=false;
+            if (!contains(currentChar)) {
+                isValid = false;
+                break;
             }
         }
         return isValid;

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public abstract class ServiceMethods<T> implements ServiceMethodsInterface<T> {
-    JpaRepository<T,Integer> repository;
+    protected JpaRepository<T,Integer> repository;
 
     @Override
     public T create(T entity) {

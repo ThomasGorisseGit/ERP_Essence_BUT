@@ -29,5 +29,7 @@ public class User extends Person {
         this.login = Login.create(prenom+"@"+nom);
         this.password = Password.create(password);
     }
-
+    public void setLogin(){
+        this.login = Login.create(this.getFirstName() + "@" + this.getLastName());
+    }
 }
