@@ -22,13 +22,16 @@ public class Provider extends Person {
     private int id;
     @OneToMany(mappedBy = "provider")
     List<Product> productList;
+
     @Convert(converter = SiretConverter.class)
     private Siret siret;
+
     public Provider(String siren,String nic){
         this.siret = Siret.create(siren,nic);
     }
     public Provider(String siret){
         this.siret = Siret.create(siret);
     }
+
 
 }

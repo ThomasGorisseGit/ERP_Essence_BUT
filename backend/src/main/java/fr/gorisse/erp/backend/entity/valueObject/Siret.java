@@ -28,7 +28,7 @@ public class Siret {
 
     }
     public static Siret create(String siret){
-        final int siretLength = 15;
+        final int siretLength = 14;
 
         if(siret.length() != siretLength){
             throw new InvalidInput("SIRET length is invalid");
@@ -54,7 +54,7 @@ public class Siret {
     private static boolean contains(char character){
         boolean founded = false;
         int i =0 ;
-        final char[] authorizedChar = "123456789".toCharArray();
+        final char[] authorizedChar = "0123456789".toCharArray();
 
         while (i<authorizedChar.length && !founded){
             if(authorizedChar[i]==character) founded = true;
