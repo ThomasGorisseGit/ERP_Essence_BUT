@@ -1,5 +1,6 @@
 package fr.gorisse.erp.backend.controller;
 
+import fr.gorisse.erp.backend.entity.Product;
 import fr.gorisse.erp.backend.entity.Provider;
 import fr.gorisse.erp.backend.services.ProviderService;
 import jakarta.transaction.Transactional;
@@ -26,6 +27,10 @@ public class ProviderController {
     @GetMapping("/getProviderById")
     public Provider getProviderById(@RequestBody int provider_id){
         return this.providerService.getEntityById(provider_id);
+    }
+    @GetMapping("/getProductList")
+    public List<Product> getProductList(@RequestBody Provider provider){
+        return this.providerService.getProductList(provider);
     }
     @DeleteMapping("/deleteById")
     @Transactional
