@@ -2,8 +2,11 @@ package fr.gorisse.erp.backend.entity.valueObject;
 
 
 import fr.gorisse.erp.backend.exceptions.InvalidInput;
+import lombok.Value;
+
+@Value
 public class Login {
-    private final String login;
+    String login;
 
     private Login(String login){
         this.login = login;
@@ -25,8 +28,9 @@ public class Login {
         boolean isValid = true;
         for(int i =0;i<login.length();i++){
             char currentChar = login.charAt(i);
-            if(!contains(currentChar)){
-                isValid=false;
+            if (!contains(currentChar)) {
+                isValid = false;
+                break;
             }
         }
         return isValid;
