@@ -1,5 +1,6 @@
 package fr.gorisse.erp.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.gorisse.erp.backend.entity.model.Person;
 import fr.gorisse.erp.backend.entity.valueObject.Siret;
 import fr.gorisse.erp.backend.entity.valueObject.converter.SiretConverter;
@@ -21,6 +22,7 @@ public class Provider extends Person {
     @GeneratedValue
     private int id;
     @OneToMany(mappedBy = "provider")
+    @JsonIgnore
     List<Product> productList;
 
     @Convert(converter = SiretConverter.class)
