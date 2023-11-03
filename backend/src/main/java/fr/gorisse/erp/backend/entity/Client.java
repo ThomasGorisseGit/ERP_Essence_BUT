@@ -1,10 +1,11 @@
 package fr.gorisse.erp.backend.entity;
 
 import fr.gorisse.erp.backend.entity.model.Person;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import fr.gorisse.erp.backend.entity.valueObject.EmailAddress;
+import fr.gorisse.erp.backend.entity.valueObject.PhoneNumber;
+import fr.gorisse.erp.backend.entity.valueObject.converter.EmailAddressConverter;
+import fr.gorisse.erp.backend.entity.valueObject.converter.PhoneNumberConverter;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,10 @@ public class Client extends Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Convert(converter = PhoneNumberConverter.class)
+    private PhoneNumber phoneNumber;
 
+    @Convert(converter = EmailAddressConverter.class)
+    private EmailAddress emailAddress;
 
 }
