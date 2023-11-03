@@ -17,7 +17,6 @@ public class UserController {
     @PostMapping("/create")
     @Transactional
     public User create(@RequestBody User user){
-        user.setLogin();
         return this.userService.create(user);
     }
     @PostMapping("/edit")
@@ -25,7 +24,17 @@ public class UserController {
     public User edit(@RequestBody User user){
         return this.userService.create(user);
     }
-
+    @DeleteMapping("/deleteById")
+    @Transactional
+    public User deleteById(@RequestBody int user_id){
+        return this.userService.deleteById(user_id);
+    }
+    @DeleteMapping("/delete")
+    @Transactional
+    public User delete(@RequestBody User user){
+        this.userService.delete(user);
+        return user;
+    }
     @GetMapping("/getUsers")
     public List<User> getUsers(){
         return this.userService.getAll();

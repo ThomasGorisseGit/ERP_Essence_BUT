@@ -18,8 +18,11 @@ public class UserCheckingService extends ServiceMethods<User> implements UserChe
     @Autowired
     private UserRepository userRepository;
 
-
-
+    @Override
+    public User create(User user){
+        user.setLogin();
+        return super.create(user);
+    }
     @Override
     public User getUserByLogin(String login) {
         Optional<User> optUser = this.userRepository.findByLogin(Login.create(login));

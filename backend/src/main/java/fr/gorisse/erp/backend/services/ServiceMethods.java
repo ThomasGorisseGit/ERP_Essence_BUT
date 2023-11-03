@@ -2,6 +2,7 @@ package fr.gorisse.erp.backend.services;
 
 import fr.gorisse.erp.backend.entity.User;
 import fr.gorisse.erp.backend.exceptions.DataNotFounded;
+import fr.gorisse.erp.backend.repository.DefaultRepository;
 import fr.gorisse.erp.backend.services.interfaces.ServiceMethodsInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 public abstract class ServiceMethods<T> implements ServiceMethodsInterface<T> {
-    protected JpaRepository<T,Integer> repository;
+    protected DefaultRepository<T> repository;
 
     @Override
     public T create(T entity) {
@@ -37,7 +38,9 @@ public abstract class ServiceMethods<T> implements ServiceMethodsInterface<T> {
     public T getEntityById(int entity_id) {
         return this.repository.findById(entity_id).orElseThrow(()->new DataNotFounded("Impossible to find data for the following ID : "+entity_id));
     }
-
+    public T deleteById(int id){
+        return this.repository.deleteById(id);
+    }
     @Override
     public int getNumberOfEntity() {
         return this.repository.findAll().size();
