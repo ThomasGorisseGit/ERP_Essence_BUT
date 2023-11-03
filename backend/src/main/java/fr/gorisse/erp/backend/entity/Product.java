@@ -1,5 +1,7 @@
 package fr.gorisse.erp.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +22,7 @@ public class Product {
     private String name;
 
     @ManyToOne(targetEntity = Provider.class)
+    @JsonIgnoreProperties("productList")
     private Provider provider;
 
     public Product (double price, String description,String name){
