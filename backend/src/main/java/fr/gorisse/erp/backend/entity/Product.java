@@ -25,6 +25,9 @@ public class Product {
     @JsonIgnoreProperties("productList")
     private Provider provider;
 
+
+
+
     public Product (double price, String description,String name){
         this.price = price;
         this.description = description;
@@ -35,6 +38,7 @@ public class Product {
         this.name = name;
         this.description = "";
     }
+
 
 
 }
