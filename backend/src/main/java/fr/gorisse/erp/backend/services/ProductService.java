@@ -10,6 +10,7 @@ public class ProductService extends ServiceMethods<Product> {
     @Autowired
     private ProductRepository productRepository;
     @Override
+    @Autowired
     protected void setRepository() {
         super.repository = this.productRepository;
     }

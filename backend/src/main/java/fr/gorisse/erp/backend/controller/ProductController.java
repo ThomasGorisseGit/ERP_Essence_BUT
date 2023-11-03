@@ -20,10 +20,15 @@ public class ProductController {
     public Product addProduct(@RequestBody Product product){
         return this.productService.create(product);
     }
-    @PostMapping("/delete")
+
+    @PostMapping("/edit")
     @Transactional
-    public void deleteProduct(@RequestBody Product product){
+    public Product editProduct(@RequestBody Product product) { return this.productService.edit(product);}
+    @DeleteMapping("/delete")
+    @Transactional
+    public Product deleteProduct(@RequestBody Product product){
         this.productService.delete(product);
+        return product;
     }
 
     @GetMapping("/getProducts")
@@ -31,7 +36,7 @@ public class ProductController {
         return this.productService.getAll();
     }
     @GetMapping("/getProductById")
-    public Product getProduct(int product_id){
+    public Product getProduct(@RequestBody int product_id){
         return this.productService.getEntityById(product_id);
     }
     @GetMapping("/getNumberOfProducts")

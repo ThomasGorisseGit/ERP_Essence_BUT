@@ -15,18 +15,21 @@ public class Product {
     @Id
     @GeneratedValue
     private int id;
-    private long price; // Long -> unsigned int
+    private double price; // Long -> unsigned int
     private String description;
+    private String name;
 
     @ManyToOne(targetEntity = Provider.class)
     private Provider provider;
 
-    public Product (long price, String description){
+    public Product (double price, String description,String name){
         this.price = price;
         this.description = description;
+        this.name = name;
     }
-    public Product (long price){
+    public Product (double price,String name){
         this.price = price;
+        this.name = name;
         this.description = "";
     }
 
