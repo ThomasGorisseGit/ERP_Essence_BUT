@@ -25,7 +25,10 @@ public class Product {
     @JsonIgnoreProperties("productList")
     private Provider provider;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stock_id",referencedColumnName = "id")
+    @JsonIgnoreProperties("product")
+    private Stock stock;
 
 
     public Product (double price, String description,String name){

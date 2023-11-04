@@ -17,9 +17,7 @@ public class Stock {
     @GeneratedValue
     private int id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
-    @JoinColumn(name = "product_id")
+    @OneToOne(mappedBy = "stock")
     private Product product;
 
     private long quantity;
