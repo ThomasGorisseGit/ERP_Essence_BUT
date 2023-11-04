@@ -22,4 +22,21 @@ public class ClientController {
     public List<Client> getClients(){
         return this.clientService.getAll();
     }
+
+    @GetMapping("/getClientById")
+    public Client getClientById(@RequestBody int id){
+        return this.clientService.getEntityById(id);
+    }
+    @GetMapping("/getClientById/{id}")
+    public Client getClientByIdPath(@PathVariable("id") int id){
+        return this.clientService.getEntityById(id);
+    }
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody Client client){
+        this.clientService.delete(client);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deletePath(@PathVariable("id") int client_id){
+        this.clientService.deleteById(client_id);
+    }
 }
