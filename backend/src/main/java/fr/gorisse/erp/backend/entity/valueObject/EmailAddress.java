@@ -12,7 +12,7 @@ public class EmailAddress {
         this.email = email;
     }
     public static EmailAddress create(String email){
-        if(Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$\n\n").matcher(email).matches()){
+        if(Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$").matcher(email).matches()){
             return new EmailAddress(email);
         }
         throw new InvalidInput("Email is not valid");
