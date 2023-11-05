@@ -30,6 +30,9 @@ public class Product {
     @JsonIgnoreProperties("product")
     private Stock stock;
 
+    @OneToOne(mappedBy = "product")
+    @JsonIgnore
+    private Restock restock;
 
     public Product (double price, String description,String name){
         this.price = price;

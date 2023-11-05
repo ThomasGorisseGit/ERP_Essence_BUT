@@ -26,7 +26,7 @@ class TestValueObjects {
         assertThrows(InvalidInput.class,()->Password.create("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
 
         password = Password.create("Thomas");
-        /*
+        /* TODO Add password hash
         assertNotEquals(password.toString(),"Thomas");
         Password checkEncryption = Password.create("Thomas");
         assertEquals(password.toString(),checkEncryption.toString());
