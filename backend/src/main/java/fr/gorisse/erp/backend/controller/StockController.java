@@ -45,10 +45,7 @@ public class StockController {
     }
     @GetMapping("/add/{product_id}/{qte}")
     private Stock addByProductId(@PathVariable("product_id") int product_id,@PathVariable("qte") int qte) {
-        Product product = this.productService.getEntityById(product_id);
-        Stock s = product.getStock();
-        s.setQuantity(qte + s.getQuantity());
-        return this.stockService.edit(s);
+        return this.stockService.addStock(qte, this.productService.getEntityById(product_id));
     }
 
 }

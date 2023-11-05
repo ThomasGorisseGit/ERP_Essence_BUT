@@ -19,6 +19,7 @@ import java.util.HashMap;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@JsonIgnoreProperties({"Product"})
 public class Stock {
     @Id
     @GeneratedValue
@@ -26,6 +27,7 @@ public class Stock {
 
     @OneToOne(mappedBy = "stock")
     @JsonIgnoreProperties("stock")
+    @Transient
     private Product product;
 
     private long quantity;
