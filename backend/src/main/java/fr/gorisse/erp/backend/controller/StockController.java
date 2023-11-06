@@ -21,6 +21,7 @@ public class StockController {
     @PostMapping("/edit")
     @Transactional
     public Stock edit(@RequestBody Stock stock){
+        stock = this.stockService.getEntityById(stock.getId());
         return this.stockService.edit(stock);
     }
 
@@ -44,6 +45,13 @@ public class StockController {
             }
         }
         return numberOfElementsDeleted;
+    }
+    @GetMapping("/add/{product_id}/{qte}")
+    private Stock addByProductId(@PathVariable("product_id") int product_id,@PathVariable("qte") int qte) {
+        Product product = this.productService.getEntityById(product_id);
+        Stock s = product.getStock();
+        s.setQuantity(qte + s.getQuantity());
+        return this.stockService.edit(s);
     }
 
 }

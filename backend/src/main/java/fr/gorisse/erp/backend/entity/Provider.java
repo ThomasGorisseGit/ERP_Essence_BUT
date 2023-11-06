@@ -36,5 +36,4 @@ public class Provider extends Person {
         this.siret = Siret.create(siret);
     }
 
-
 }

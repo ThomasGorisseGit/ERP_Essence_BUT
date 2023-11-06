@@ -30,6 +30,7 @@ public class Product {
     @JsonIgnoreProperties("product")
     private Stock stock;
 
+    
 
     public Product (double price, String description,String name){
         this.price = price;
