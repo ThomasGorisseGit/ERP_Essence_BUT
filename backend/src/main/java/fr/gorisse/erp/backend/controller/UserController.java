@@ -35,6 +35,11 @@ public class UserController {
         this.userService.delete(user);
         return user;
     }
+    @DeleteMapping("/delete/{id}")
+    @Transactional
+    public User delete(@PathVariable("id") int user_id){
+        return this.userService.deleteById(user_id);
+    }
     @GetMapping("/getUsers")
     public List<User> getUsers(){
         return this.userService.getAll();

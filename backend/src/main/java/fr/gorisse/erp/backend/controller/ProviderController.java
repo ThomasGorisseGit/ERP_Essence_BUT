@@ -44,4 +44,10 @@ public class ProviderController {
         this.providerService.delete(provider);
         return provider;
     }
+    @DeleteMapping("/delete/{id}")
+    @Transactional
+    public Provider delete(@PathVariable("id") int provider_id)
+    {
+        return this.providerService.deleteById(provider_id);
+    }
 }
