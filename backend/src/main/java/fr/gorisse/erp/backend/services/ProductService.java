@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class ProductService extends ServiceMethods<Product> {
     @Autowired
     private ProductRepository productRepository;
-    @Override
     @Autowired
+    @Override
     protected void setRepository() {
-        super.repository = this.productRepository;
+        super.repository = productRepository;
     }
 }
