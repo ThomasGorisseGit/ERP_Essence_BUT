@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +32,9 @@ public class Product {
     @JsonIgnoreProperties("product")
     private Stock stock;
 
-    
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private List<OrderList> orderLists;
 
     public Product (double price, String description,String name){
         this.price = price;
