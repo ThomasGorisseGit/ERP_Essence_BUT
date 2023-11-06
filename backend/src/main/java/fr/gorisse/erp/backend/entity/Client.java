@@ -1,5 +1,7 @@
 package fr.gorisse.erp.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fr.gorisse.erp.backend.entity.model.Person;
 import fr.gorisse.erp.backend.entity.valueObject.EmailAddress;
 import fr.gorisse.erp.backend.entity.valueObject.PhoneNumber;
@@ -30,6 +32,8 @@ public class Client extends Person {
     private EmailAddress emailAddress;
 
     @OneToMany(mappedBy = "client")
+    @JsonIgnoreProperties("client")
+    @JsonIgnore
     private List<ClientOrder> clientOrders;
 
 }

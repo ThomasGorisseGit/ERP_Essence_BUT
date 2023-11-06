@@ -57,6 +57,6 @@ public class ClientOrderService extends ServiceMethods<ClientOrder> {
     }
 
     public ClientOrder getClientOrder(int id){
-        return this.orderRepository.findByClient_Id(id).orElseThrow(()->new DataNotFounded("Client doesn't have any orders"));
+        return this.orderRepository.findByClient_IdAndInProgressEquals(id,true).orElseThrow(()->new DataNotFounded("Client doesn't have any orders"));
     }
 }
