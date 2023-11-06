@@ -1,5 +1,6 @@
 package fr.gorisse.erp.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,10 +16,12 @@ import java.util.List;
 @Entity
 public class ClientOrder {
     @Id
+    @GeneratedValue
     private int id;
 
     @OneToMany(mappedBy = "clientOrder")
-    private List<OrderList> orderLists;
+    @JsonIgnoreProperties("clientOrder")
+    private List<OrderList> orderList;
 
     @ManyToOne(targetEntity = Client.class )
     private Client client;

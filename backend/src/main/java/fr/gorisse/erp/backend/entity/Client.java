@@ -11,6 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @ToString
 @NoArgsConstructor
@@ -26,5 +28,8 @@ public class Client extends Person {
 
     @Convert(converter = EmailAddressConverter.class)
     private EmailAddress emailAddress;
+
+    @OneToMany(mappedBy = "client")
+    private List<ClientOrder> clientOrders;
 
 }

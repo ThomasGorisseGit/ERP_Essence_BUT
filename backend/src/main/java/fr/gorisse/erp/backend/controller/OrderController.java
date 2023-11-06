@@ -14,7 +14,7 @@ public class OrderController {
     @Autowired
     private ClientOrderService clientOrderService;
 
-    @PostMapping("/order/add")
+    @PostMapping("/add")
     @Transactional
     public ClientOrder create(@RequestBody ClientOrder clientOrder){
         return this.clientOrderService.create(clientOrder);
@@ -25,11 +25,11 @@ public class OrderController {
         return this.clientOrderService.getAll();
     }
     @GetMapping("/getClientOrder/{id}")
-    public ClientOrder getClientOrder(@PathVariable int order_id){
-        return this.clientOrderService.getEntityById(order_id);
+    public ClientOrder getClientOrder(@PathVariable int id){
+        return this.clientOrderService.getEntityById(id);
     }
     @GetMapping("/getOrderOfClient/{id}")
-    public ClientOrder getOrderOfClient(@PathVariable int client_id){
-        return this.clientOrderService.getClientOrder(client_id);
+    public ClientOrder getOrderOfClient(@PathVariable int id){
+        return this.clientOrderService.getClientOrder(id);
     }
 }

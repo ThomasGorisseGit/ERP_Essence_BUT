@@ -33,7 +33,7 @@ public class Product {
     private Stock stock;
 
     @OneToMany(mappedBy = "product")
-    @JsonIgnore
+    @JsonIgnoreProperties("product")
     private List<OrderList> orderLists;
 
     public Product (double price, String description,String name){
