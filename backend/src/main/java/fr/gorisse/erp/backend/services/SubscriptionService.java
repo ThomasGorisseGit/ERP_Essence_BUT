@@ -5,6 +5,8 @@ import fr.gorisse.erp.backend.repository.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SubscriptionService extends ServiceMethods<Subscription> {
     @Autowired
@@ -13,5 +15,9 @@ public class SubscriptionService extends ServiceMethods<Subscription> {
     @Autowired
     protected void setRepository() {
         super.repository = subscriptionRepository;
+    }
+
+    public List<Subscription> createAll(List<Subscription> list){
+        return this.subscriptionRepository.saveAll(list);
     }
 }
