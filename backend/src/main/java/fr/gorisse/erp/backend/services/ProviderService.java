@@ -25,13 +25,14 @@ public class ProviderService extends ServiceMethods<Provider>{
     }
     @Override
     public Provider create(Provider provider){
-        if(!provider.getProductList().isEmpty()){
+        provider = super.create(provider);
+
+        if(provider.getProductList() != null && !provider.getProductList().isEmpty()){
             for(Product p : provider.getProductList()){
                 p.setProvider(provider);
             }
+            this.productRepository.saveAll(provider.getProductList());
         }
-        provider = super.create(provider);
-        this.productRepository.saveAll(provider.getProductList());
         return provider;
     }
 

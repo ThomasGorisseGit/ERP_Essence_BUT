@@ -32,7 +32,8 @@ public class Provider extends Person {
     public Provider(String siren,String nic){
         this.siret = Siret.create(siren,nic);
     }
-    public Provider(String siret){
+    public Provider(String siret,String firstname,String lastname){
+        super(firstname,lastname);
         this.siret = Siret.create(siret);
     }
 
