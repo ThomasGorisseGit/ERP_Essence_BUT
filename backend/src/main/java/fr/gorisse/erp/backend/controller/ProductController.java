@@ -34,6 +34,12 @@ public class ProductController {
         this.productService.delete(product);
         return product;
     }
+    @DeleteMapping("/delete/{id}")
+    @Transactional
+    public Product deleteProduct(@PathVariable("id") int product_id){
+        return this.productService.deleteById(product_id);
+
+    }
 
     @GetMapping("/getProducts")
     public List<Product> getProducts(){
