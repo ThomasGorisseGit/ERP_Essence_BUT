@@ -36,4 +36,6 @@ public class Client extends Person {
     @JsonIgnore
     private List<ClientOrder> clientOrders;
 
+    @ManyToOne(targetEntity = Subscription.class,cascade = CascadeType.ALL)
+    private Subscription subscription;
 }
