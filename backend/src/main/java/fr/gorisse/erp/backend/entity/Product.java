@@ -29,11 +29,11 @@ public class Product {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stock_id",referencedColumnName = "id")
-    @JsonIgnoreProperties("product")
     private Stock stock;
 
     @OneToMany(mappedBy = "product")
     @JsonIgnoreProperties("product")
+    @JsonIgnore
     private List<OrderList> orderLists;
 
     public Product (double price, String description,String name){

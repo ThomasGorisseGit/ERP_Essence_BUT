@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Insertion implements ApplicationRunner {
-    private SubscriptionService subscriptionService;
+    private final SubscriptionService subscriptionService;
     @Autowired
     public Insertion(SubscriptionService subscriptionService) {
         this.subscriptionService = subscriptionService;

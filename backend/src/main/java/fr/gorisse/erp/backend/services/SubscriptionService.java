@@ -9,12 +9,11 @@ import java.util.List;
 
 @Service
 public class SubscriptionService extends ServiceMethods<Subscription> {
-    @Autowired
     private SubscriptionRepository subscriptionRepository;
-    @Override
     @Autowired
-    protected void setRepository() {
+    protected void setRepository(SubscriptionRepository subscriptionRepository) {
         super.repository = subscriptionRepository;
+        this.subscriptionRepository = subscriptionRepository;
     }
 
     public List<Subscription> createAll(List<Subscription> list){

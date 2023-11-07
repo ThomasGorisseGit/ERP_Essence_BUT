@@ -14,13 +14,12 @@ import java.util.List;
 
 @Service
 public class ProviderService extends ServiceMethods<Provider>{
-    @Autowired
     private ProviderRepository providerRepository;
 
-    @Override
     @Autowired
-    protected void setRepository() {
+    protected void setRepository(ProviderRepository providerRepository) {
         this.repository = providerRepository;
+        this.providerRepository = providerRepository;
     }
     @Override
     public Provider create(Provider provider){
