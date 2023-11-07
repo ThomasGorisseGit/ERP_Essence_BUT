@@ -1,5 +1,7 @@
 package fr.gorisse.erp.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fr.gorisse.erp.backend.entity.model.Person;
 import fr.gorisse.erp.backend.entity.valueObject.EmailAddress;
 import fr.gorisse.erp.backend.entity.valueObject.PhoneNumber;
@@ -10,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
 
 @Data
 @ToString
@@ -27,4 +31,11 @@ public class Client extends Person {
     @Convert(converter = EmailAddressConverter.class)
     private EmailAddress emailAddress;
 
+    @OneToMany(mappedBy = "client")
+    @JsonIgnoreProperties("client")
+    @JsonIgnore
+    private List<ClientOrder> clientOrders;
+
+    @ManyToOne(targetEntity = Subscription.class,cascade = CascadeType.ALL)
+    private Subscription subscription;
 }

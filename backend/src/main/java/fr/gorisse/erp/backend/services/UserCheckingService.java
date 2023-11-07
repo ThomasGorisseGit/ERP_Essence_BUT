@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @Service
 public class UserCheckingService extends ServiceMethods<User> implements UserCheckingServiceInterface {
-    @Autowired
     private UserRepository userRepository;
 
     @Override
@@ -30,7 +29,8 @@ public class UserCheckingService extends ServiceMethods<User> implements UserChe
     }
 
     @Autowired
-    protected void setRepository(){
+    protected void setRepository(UserRepository userRepository){
         this.repository = userRepository;
+        this.userRepository = userRepository;
     }
 }

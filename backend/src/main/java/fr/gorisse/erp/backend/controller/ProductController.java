@@ -45,8 +45,8 @@ public class ProductController {
     public List<Product> getProducts(){
         return this.productService.getAll();
     }
-    @GetMapping("/getProductById")
-    public Product getProduct(@RequestBody int product_id){
+    @GetMapping("/getProductById/{id}")
+    public Product getProduct(@PathVariable("id") int product_id){
         return this.productService.getEntityById(product_id);
     }
     @GetMapping("/getNumberOfProducts")

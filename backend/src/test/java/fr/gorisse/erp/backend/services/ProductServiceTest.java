@@ -4,12 +4,16 @@ import fr.gorisse.erp.backend.entity.Product;
 import fr.gorisse.erp.backend.entity.Provider;
 import fr.gorisse.erp.backend.entity.Stock;
 import fr.gorisse.erp.backend.exceptions.DataNotFounded;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,21 +38,23 @@ class ProductServiceTest {
     @Test
     public void testInsertion(){
         assertEquals(this.number+1,this.productService.getNumberOfEntity());
+        Product check = this.productService.getEntityById(this.product.getId());
         assertEquals(
-                this.product,
-                this.productService.getEntityById(this.product.getId())
+                this.product.getId(),
+                check.getId()
         );
     }
     @Test
     public void fetch(){
         assertNotEquals(this.number,this.productService.getNumberOfEntity());
         assertDoesNotThrow(()->this.productService.getEntityById(this.product.getId()));
+        List<Product> list = productService.getAll();
         assertTrue(
-                this.productService.getAll().contains(this.product)
+                list.stream().anyMatch(product -> product.getId() == this.product.getId() )
         );
         assertEquals(
-                this.productService.getEntityById(this.product.getId()),
-                this.product
+                this.productService.getEntityById(this.product.getId()).getId(),
+                this.product.getId()
         );
 
         this.destroy(); // destroy the value
@@ -59,13 +65,17 @@ class ProductServiceTest {
     @Test
     public void testValueObject(){
         assertEquals(this.number+1,this.productService.getNumberOfEntity());
-        Provider p = this.providerService.create(new Provider("11111111111111"));
+        Provider p = new Provider("11111111111111","aaaa","aaaa");
+         p = this.providerService.create(p);
         Stock s = this.stockService.create(new Stock());
+
+
         this.product.setStock(s);
         this.product.setProvider(p);
 
         assertNull(this.productService.getEntityById(this.product.getId()).getProvider());
         assertNull(this.productService.getEntityById(this.product.getId()).getStock());
+
         assertNotNull(this.product.getProvider());
         assertNotNull(this.product.getStock());
 

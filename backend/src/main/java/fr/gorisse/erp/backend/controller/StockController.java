@@ -15,6 +15,7 @@ import java.util.List;
 public class StockController {
     @Autowired
     private StockService stockService;
+
     @Autowired
     private ProductService productService;
 
@@ -46,12 +47,10 @@ public class StockController {
         }
         return numberOfElementsDeleted;
     }
-    @GetMapping("/add/{product_id}/{qte}")
-    private Stock addByProductId(@PathVariable("product_id") int product_id,@PathVariable("qte") int qte) {
-        Product product = this.productService.getEntityById(product_id);
-        Stock s = product.getStock();
-        s.setQuantity(qte + s.getQuantity());
-        return this.stockService.edit(s);
+    @PostMapping("/add/{product_id}/{qte}")
+    @Transactional
+    public Stock addByProductId(@PathVariable("product_id") int product_id,@PathVariable("qte") int qte) {
+        return this.stockService.addStock(qte, this.productService.getEntityById(product_id));
     }
 
 }

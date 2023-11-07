@@ -25,7 +25,7 @@ public class Stock {
     private int id;
 
     @OneToOne(mappedBy = "stock")
-    @JsonIgnoreProperties("stock")
+    @JsonIgnore
     private Product product;
 
     private long quantity;

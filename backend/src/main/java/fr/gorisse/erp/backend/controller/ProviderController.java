@@ -16,7 +16,9 @@ public class ProviderController {
     private ProviderService providerService;
     @PostMapping("/add")
     @Transactional
-    public Provider create(@RequestBody Provider provider){return this.providerService.create(provider);}
+    public Provider create(@RequestBody Provider provider){
+        return this.providerService.create(provider);
+    }
     @PostMapping("/edit")
     @Transactional
     public Provider edit(@RequestBody Provider provider){return this.providerService.create(provider);}
@@ -31,6 +33,10 @@ public class ProviderController {
     @GetMapping("/getProductList")
     public List<Product> getProductList(@RequestBody Provider provider){
         return this.providerService.getProductList(provider);
+    }
+    @GetMapping("/getProductList/{id}")
+    public List<Product> getProductListById(@PathVariable("id") int provider_id){
+        return this.providerService.getProductListByID(provider_id);
     }
     @DeleteMapping("/deleteById")
     @Transactional
