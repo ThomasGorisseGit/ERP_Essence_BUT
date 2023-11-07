@@ -14,6 +14,7 @@ public class SubscriptionPriceConverter implements AttributeConverter<Subscripti
 
     @Override
     public SubscriptionPrice convertToEntityAttribute(Double aDouble) {
+        if(aDouble==null)return null;
         return SubscriptionPrice.create(aDouble);
     }
 }

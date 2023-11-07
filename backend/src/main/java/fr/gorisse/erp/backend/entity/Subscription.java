@@ -1,6 +1,8 @@
 package fr.gorisse.erp.backend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fr.gorisse.erp.backend.entity.valueObject.Discount;
 import fr.gorisse.erp.backend.entity.valueObject.SubscriptionPrice;
 import fr.gorisse.erp.backend.entity.valueObject.converter.DiscountConverter;
@@ -32,6 +34,8 @@ public class Subscription {
     private String name;
 
     @OneToMany(targetEntity = Client.class,mappedBy = "subscription")
+    @JsonIgnore
+    @JsonIgnoreProperties("subscription")
     private List<Client> clients;
 
 }
