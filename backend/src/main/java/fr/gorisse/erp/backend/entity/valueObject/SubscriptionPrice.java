@@ -15,7 +15,7 @@ public class SubscriptionPrice {
         this.price = price;
     }
     public static SubscriptionPrice create(double price){
-        double[] possibleValues = {29.99, 39.99, 49.99, 54.99 };
+        double[] possibleValues = {0.00,29.99, 39.99, 49.99, 54.99 };
         if(Arrays.stream(possibleValues).anyMatch(x-> x == price)){
             return new SubscriptionPrice(price);
         }

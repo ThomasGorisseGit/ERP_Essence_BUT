@@ -15,7 +15,7 @@ public class Discount {
         this.value = discount;
     }
     public static Discount create(int discount){
-        int[] possibleValues = {10,20,30,50};
+        int[] possibleValues = {0,10,20,30,50};
         if(Arrays.stream(possibleValues).anyMatch(x-> x == discount)){
             return new Discount(discount);
         }

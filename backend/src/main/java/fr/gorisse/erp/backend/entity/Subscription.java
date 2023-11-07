@@ -38,4 +38,9 @@ public class Subscription {
     @JsonIgnoreProperties("subscription")
     private List<Client> clients;
 
+    public Subscription(String name, SubscriptionPrice price, Discount discount){
+        this.name = name;
+        this.price = price;
+        this.discount = discount;
+    }
 }
