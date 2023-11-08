@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/order")
-public class OrderController {
+public class OrderController implements DefaultController<ClientOrder> {
     @Autowired
     private ClientOrderService clientOrderService;
 
@@ -20,12 +20,24 @@ public class OrderController {
         return this.clientOrderService.create(clientOrder);
     }
 
+    @Override
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody ClientOrder entity) {
+        this.clientOrderService.delete(entity);
+    }
+
+    @Override
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteById(@PathVariable("id") int id) {
+        this.clientOrderService.deleteById(id);
+    }
+
     @GetMapping("/getClientOrders")
     public List<ClientOrder> getAll(){
         return this.clientOrderService.getAll();
     }
     @GetMapping("/getClientOrder/{id}")
-    public ClientOrder getClientOrder(@PathVariable int id){
+    public ClientOrder getById(@PathVariable int id){
         return this.clientOrderService.getEntityById(id);
     }
     @GetMapping("/getOrderOfClient/{id}")

@@ -1,6 +1,7 @@
 package fr.gorisse.erp.backend.controller;
 
 import fr.gorisse.erp.backend.entity.Client;
+import fr.gorisse.erp.backend.entity.Fuel;
 import fr.gorisse.erp.backend.entity.Subscription;
 import fr.gorisse.erp.backend.services.ClientService;
 import fr.gorisse.erp.backend.services.SubscriptionService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/client")
-public class ClientController {
+public class ClientController implements DefaultController<Client> {
     @Autowired
     private ClientService clientService;
     @Autowired
@@ -25,12 +26,12 @@ public class ClientController {
     }
 
     @GetMapping("/getClients")
-    public List<Client> getClients(){
+    public List<Client> getAll(){
         return this.clientService.getAll();
     }
 
     @GetMapping("/getClientById")
-    public Client getClientById(@RequestBody int id){
+    public Client getById(@RequestBody int id){
         return this.clientService.getEntityById(id);
     }
     @GetMapping("/getClientById/{id}")
@@ -44,7 +45,7 @@ public class ClientController {
     }
     @DeleteMapping("/delete/{id}")
     @Transactional
-    public void deletePath(@PathVariable("id") int client_id){
+    public void deleteById(@PathVariable("id") int client_id){
         this.clientService.deleteById(client_id);
     }
 

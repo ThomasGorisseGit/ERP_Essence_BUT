@@ -3,6 +3,8 @@ package fr.gorisse.erp.backend.services;
 import fr.gorisse.erp.backend.entity.ClientOrder;
 import fr.gorisse.erp.backend.entity.OrderList;
 import fr.gorisse.erp.backend.exceptions.DataNotFounded;
+import fr.gorisse.erp.backend.repository.ClientRepository;
+import fr.gorisse.erp.backend.repository.DefaultRepository;
 import fr.gorisse.erp.backend.repository.OrderListRepository;
 import fr.gorisse.erp.backend.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import java.util.Optional;
 
 @Service
 public class ClientOrderService extends ServiceMethods<ClientOrder> {
+
     OrderRepository orderRepository;
     private OrderListRepository orderListRepository;
 
@@ -48,6 +51,7 @@ public class ClientOrderService extends ServiceMethods<ClientOrder> {
         entity.setTotal(total);
         return entity;
     }
+
 
 
 

@@ -26,6 +26,10 @@ public class Provider extends Person {
     @JsonIgnoreProperties("provider")
     List<Product> productList;
 
+    @OneToMany(mappedBy = "provider")
+    @JsonIgnoreProperties("provider")
+    List<Product> fuelList;
+
     @Convert(converter = SiretConverter.class)
     private Siret siret;
 

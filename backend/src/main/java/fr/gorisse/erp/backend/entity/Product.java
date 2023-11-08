@@ -19,7 +19,7 @@ public class Product {
     @Id
     @GeneratedValue
     private int id;
-    private double price; // Long -> unsigned int
+    private double price;
     private String description;
     private String name;
 

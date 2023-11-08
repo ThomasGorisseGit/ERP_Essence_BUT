@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(("/provider"))
-public class ProviderController {
+public class ProviderController implements DefaultController<Provider> {
     @Autowired
     private ProviderService providerService;
     @PostMapping("/add")
@@ -24,10 +24,10 @@ public class ProviderController {
     public Provider edit(@RequestBody Provider provider){return this.providerService.create(provider);}
 
     @GetMapping("/getProviders")
-    public List<Provider> create(){return this.providerService.getAll();}
+    public List<Provider> getAll(){return this.providerService.getAll();}
 
     @GetMapping("/getProviderById")
-    public Provider getProviderById(@RequestBody int provider_id){
+    public Provider getById(@RequestBody int provider_id){
         return this.providerService.getEntityById(provider_id);
     }
     @GetMapping("/getProductList")
@@ -40,20 +40,19 @@ public class ProviderController {
     }
     @DeleteMapping("/deleteById")
     @Transactional
-    public Provider deleteById(@RequestBody int provider_id){
-        return this.providerService.deleteById(provider_id);
+    public void deleteByIdProvided(@RequestBody int provider_id){
+       this.providerService.deleteById(provider_id);
     }
     @DeleteMapping("/delete")
     @Transactional
-    public Provider delete(@RequestBody Provider provider)
+    public void delete(@RequestBody Provider provider)
     {
         this.providerService.delete(provider);
-        return provider;
     }
     @DeleteMapping("/delete/{id}")
     @Transactional
-    public Provider delete(@PathVariable("id") int provider_id)
+    public void deleteById(@PathVariable("id") int provider_id)
     {
-        return this.providerService.deleteById(provider_id);
+        this.providerService.deleteById(provider_id);
     }
 }
