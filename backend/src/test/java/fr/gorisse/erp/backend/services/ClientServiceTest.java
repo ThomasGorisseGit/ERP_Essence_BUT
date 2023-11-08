@@ -1,6 +1,7 @@
 package fr.gorisse.erp.backend.services;
 
 import fr.gorisse.erp.backend.entity.Client;
+import fr.gorisse.erp.backend.entity.Subscription;
 import fr.gorisse.erp.backend.exceptions.DataNotFounded;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,9 +45,10 @@ class ClientServiceTest {
     @Test
     public void testSubscription(){
         this.client = this.clientService.create(this.client);
-
-
-
+        Subscription subscription = this.subscriptionService.getAll().get(0);
+        this.client.setSubscription(subscription);
+        assertDoesNotThrow(()->this.clientService.edit(this.client));
+        assertEquals(this.client.getSubscription().getId(),subscription.getId());
 
     }
     @AfterEach
