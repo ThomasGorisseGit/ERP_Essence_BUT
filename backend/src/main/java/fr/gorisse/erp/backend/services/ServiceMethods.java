@@ -1,13 +1,8 @@
 package fr.gorisse.erp.backend.services;
 
-import fr.gorisse.erp.backend.entity.User;
 import fr.gorisse.erp.backend.exceptions.DataNotFounded;
 import fr.gorisse.erp.backend.repository.DefaultRepository;
-import fr.gorisse.erp.backend.repository.OrderRepository;
 import fr.gorisse.erp.backend.services.interfaces.ServiceMethodsInterface;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -3,7 +3,6 @@ package fr.gorisse.erp.backend.services;
 import fr.gorisse.erp.backend.entity.ClientOrder;
 import fr.gorisse.erp.backend.entity.OrderList;
 import fr.gorisse.erp.backend.exceptions.DataNotFounded;
-import fr.gorisse.erp.backend.repository.DefaultRepository;
 import fr.gorisse.erp.backend.repository.OrderListRepository;
 import fr.gorisse.erp.backend.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

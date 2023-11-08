@@ -2,7 +2,6 @@ package fr.gorisse.erp.backend.controller;
 
 import fr.gorisse.erp.backend.entity.Client;
 import fr.gorisse.erp.backend.entity.Subscription;
-import fr.gorisse.erp.backend.repository.SubscriptionRepository;
 import fr.gorisse.erp.backend.services.ClientService;
 import fr.gorisse.erp.backend.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;

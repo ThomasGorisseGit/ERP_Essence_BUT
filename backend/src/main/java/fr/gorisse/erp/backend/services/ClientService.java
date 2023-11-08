@@ -1,7 +1,6 @@
 package fr.gorisse.erp.backend.services;
 
 import fr.gorisse.erp.backend.entity.Client;
-import fr.gorisse.erp.backend.entity.ClientOrder;
 import fr.gorisse.erp.backend.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
