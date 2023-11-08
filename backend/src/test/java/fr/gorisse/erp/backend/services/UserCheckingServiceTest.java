@@ -3,8 +3,10 @@ package fr.gorisse.erp.backend.services;
 import fr.gorisse.erp.backend.entity.User;
 import fr.gorisse.erp.backend.exceptions.DataNotFounded;
 import fr.gorisse.erp.backend.exceptions.InvalidInput;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,12 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserCheckingServiceTest {
     @Autowired
     private UserCheckingService userService;
+    @Autowired
+    private SubscriptionService subscriptionService;
     private User user;
     private int numberOfUsers;
     @BeforeEach
     void init(){
         this.user = new User("Thomas","Gorisse","Pwd");
-
         this.numberOfUsers = this.userService.getNumberOfEntity();
     }
     @Test
@@ -36,14 +39,11 @@ class UserCheckingServiceTest {
     @Test
     void getUsers(){
         Assertions.assertEquals(userService.getNumberOfEntity(),this.numberOfUsers);
-
         this.userService.create(user);
         Assertions.assertEquals(userService.getNumberOfEntity(),this.numberOfUsers+1);
-
         ArrayList<User> list = (ArrayList<User>) this.userService.getAll();
         Assertions.assertNotNull(list);
         Assertions.assertEquals(this.user.getId(),list.get(list.size()-1).getId());
-
     }
     @Test
     void getUserById(){
@@ -68,6 +68,20 @@ class UserCheckingServiceTest {
         User fetchedUser = this.userService.getUserByLogin(this.user.getLogin().toString());
         assertNotNull(fetchedUser);
         assertEquals(user.getId(),fetchedUser.getId());
+    }
+    @Test
+    void insertBasicUser(){
+        User emptyUser = new User();
+        assertNotNull(emptyUser);
+        User emptyUserWithId = this.userService.create(emptyUser);
+
+        assertEquals(emptyUserWithId.getLogin().toString(), emptyUser.getLogin().toString());
+        assertEquals(emptyUserWithId.getId(),emptyUser.getId());
+        assertEquals(emptyUserWithId.getLogin().toString(), "null@null");
+
+        this.userService.delete(emptyUser);
+        this.userService.delete(emptyUserWithId);
+
     }
     @AfterEach
     void destroy(){
