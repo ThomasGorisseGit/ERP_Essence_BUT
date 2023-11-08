@@ -36,7 +36,7 @@ public class ClientOrderService extends ServiceMethods<ClientOrder> {
 
 
 
-        if(!entity.getOrderList().isEmpty()){
+        if(entity.getOrderList() != null && !entity.getOrderList().isEmpty()){
             for(OrderList o : entity.getOrderList()){
                 total += o.getQuantity();
                 o.setClientOrder(entity);
