@@ -4,15 +4,21 @@ import fr.gorisse.erp.backend.entity.User;
 import fr.gorisse.erp.backend.services.UserCheckingService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
 public class UserController implements DefaultController<User> {
     @Autowired
     private UserCheckingService userService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @PostMapping("/create")
     @Transactional
@@ -55,6 +61,17 @@ public class UserController implements DefaultController<User> {
     @GetMapping("/getNumberOfUsers")
     public int getNumberOfUsers(){
         return this.userService.getNumberOfEntity();
+    }
+
+    @PostMapping("/auth")
+    public Map<String, String> connect(@RequestBody User user){
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword())
+        );
+
+        //https://www.youtube.com/watch?v=-k1x1EYqlRI&ab_channel=chillotech time : 25minutes 40 seconds
+        return null;
     }
 
 }
