@@ -24,11 +24,11 @@ public class Provider extends Person {
     private int id;
     @OneToMany(mappedBy = "provider")
     @JsonIgnoreProperties("provider")
-    List<Product> productList;
+    private List<Product> productList;
 
     @OneToMany(mappedBy = "provider")
-    @JsonIgnoreProperties("provider")
-    List<Product> fuelList;
+    @JsonIgnoreProperties(value = {"provider","productList","orderList","clientOrder"})
+    private List<Fuel> fuelList;
 
     @Convert(converter = SiretConverter.class)
     private Siret siret;

@@ -24,7 +24,8 @@ public class Product {
     private String name;
 
     @ManyToOne(targetEntity = Provider.class)
-    @JsonIgnoreProperties("productList")
+    @JsonIgnoreProperties({"productList","product"})
+    @JsonIgnore
     private Provider provider;
 
     @OneToOne(cascade = CascadeType.ALL)
