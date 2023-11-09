@@ -48,6 +48,17 @@ class ClientServiceTest {
         assertEquals(this.client.getSubscription().getId(),subscription.getId());
     }
 
+    @Test
+    public void testDefaultValues(){
+        assertNull(this.client.getSubscription());
+        assertNull(this.client.getFirstName());
+        assertNull(this.client.getLastName());
+        this.client = this.clientService.create(this.client);
+        assertNotNull(this.client.getSubscription());
+        assertNotNull(this.client.getFirstName());
+        assertNotNull(this.client.getLastName());
+
+    }
 
     @AfterEach
     public void destroy(){
