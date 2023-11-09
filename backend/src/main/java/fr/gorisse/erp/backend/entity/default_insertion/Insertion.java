@@ -14,7 +14,7 @@ public class Insertion implements ApplicationRunner {
         this.subscriptionService = subscriptionService;
     }
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         if(this.subscriptionService.getNumberOfEntity()!=5){
             Plans p = new Plans();
             this.subscriptionService.createAll(p);

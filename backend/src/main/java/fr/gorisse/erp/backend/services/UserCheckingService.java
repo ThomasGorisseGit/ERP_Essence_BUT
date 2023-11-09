@@ -2,6 +2,7 @@ package fr.gorisse.erp.backend.services;
 
 import fr.gorisse.erp.backend.entity.User;
 import fr.gorisse.erp.backend.entity.valueObject.Login;
+import fr.gorisse.erp.backend.entity.valueObject.Status;
 import fr.gorisse.erp.backend.exceptions.DataNotFounded;
 import fr.gorisse.erp.backend.repository.UserRepository;
 import fr.gorisse.erp.backend.services.interfaces.UserCheckingServiceInterface;
@@ -17,6 +18,16 @@ public class UserCheckingService extends ServiceMethods<User> implements UserChe
     @Override
     public User create(User user){
         user.setLogin();
+        if(user.getStatus()==null){
+            user.setStatus(Status.create("Employee"));
+            user.setSalary(Status.getSalary("Employee"));
+
+        }
+        if(user.getSalary() == 0){
+            user.setSalary(Status.getSalary(user.getStatus().getUserStatus()));
+        }
+
+
         return super.create(user);
     }
     @Override

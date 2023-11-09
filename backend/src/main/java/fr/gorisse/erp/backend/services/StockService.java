@@ -9,13 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StockService extends ServiceMethods<Stock>{
-    private StockRepository stockRepository;
     private ProductRepository productRepository;
 
     @Autowired
     protected void setRepository(StockRepository stockRepository, ProductRepository productRepository) {
         super.repository = stockRepository;
-        this.stockRepository = stockRepository;
         this.productRepository = productRepository;
     }
 

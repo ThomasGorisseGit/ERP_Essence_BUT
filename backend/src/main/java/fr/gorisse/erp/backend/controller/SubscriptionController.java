@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/subscription")
-public class SubscriptionController {
+public class SubscriptionController implements DefaultController<Subscription> {
     @Autowired
     private SubscriptionService subscriptionService;
 
@@ -20,6 +20,14 @@ public class SubscriptionController {
         System.out.println(subscription);
         return this.subscriptionService.create(subscription);
     }
+
+    @Override
+    @DeleteMapping("/delete")
+    @Transactional
+    public void delete(Subscription entity) {
+        this.subscriptionService.delete(entity);
+    }
+
 
     @GetMapping("/getSubscriptions")
     public List<Subscription> getAll(){
@@ -33,12 +41,13 @@ public class SubscriptionController {
     }
     @DeleteMapping("/delete/{id}")
     @Transactional
-    public void delete(@PathVariable("id") int id){
+    public void deleteById(@PathVariable("id") int id){
         this.subscriptionService.deleteById(id);
     }
 
+    @Override
     @GetMapping("/getSubscriptionById/{id}")
-    public Subscription getSubscriptionById(@PathVariable("id")int id){
+    public Subscription getById(@PathVariable("id")int id){
         System.out.println(id);
         return this.subscriptionService.getEntityById(id);
     }

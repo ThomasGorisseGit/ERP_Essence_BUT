@@ -8,10 +8,7 @@ import fr.gorisse.erp.backend.entity.valueObject.PhoneNumber;
 import fr.gorisse.erp.backend.entity.valueObject.converter.EmailAddressConverter;
 import fr.gorisse.erp.backend.entity.valueObject.converter.PhoneNumberConverter;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -19,6 +16,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Client extends Person {
     @Id
@@ -36,6 +34,6 @@ public class Client extends Person {
     @JsonIgnore
     private List<ClientOrder> clientOrders;
 
-    @ManyToOne(targetEntity = Subscription.class,cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Subscription.class)
     private Subscription subscription;
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/incident")
-public class IncidentController {
+public class IncidentController implements DefaultController<Incident> {
 
     @Autowired
     private IncidentService incidentService;
@@ -27,16 +27,17 @@ public class IncidentController {
 
     @DeleteMapping("/delete/{id}")
     @Transactional
-    public Incident deleteIncidentById(@PathVariable("id")int incident_id){
-        return this.incidentService.deleteById(incident_id);
+    public void deleteById(@PathVariable("id")int incident_id){
+        this.incidentService.deleteById(incident_id);
     }
     @DeleteMapping("/delete")
     @Transactional
-    public void deleteIncident(@RequestBody Incident incident){
+    public void delete(@RequestBody Incident incident){
         this.incidentService.delete(incident);
     }
+    @Override
     @GetMapping("/getIncident/{id}")
-    public Incident getIncidentById(@PathVariable("id") int incident_id){
+    public Incident getById(@PathVariable("id") int incident_id){
         return this.incidentService.getEntityById(incident_id);
     }
 

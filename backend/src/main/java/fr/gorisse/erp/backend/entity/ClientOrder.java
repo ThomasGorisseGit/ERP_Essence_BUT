@@ -29,6 +29,4 @@ public class ClientOrder {
     private long total;
 
     private boolean inProgress;
-
-
 }

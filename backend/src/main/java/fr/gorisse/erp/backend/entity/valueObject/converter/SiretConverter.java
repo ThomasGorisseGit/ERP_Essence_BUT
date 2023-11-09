@@ -2,7 +2,9 @@ package fr.gorisse.erp.backend.entity.valueObject.converter;
 
 import fr.gorisse.erp.backend.entity.valueObject.Siret;
 import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
+@Converter
 public class SiretConverter implements AttributeConverter<Siret,String> {
     @Override
     public String convertToDatabaseColumn(Siret siret) {

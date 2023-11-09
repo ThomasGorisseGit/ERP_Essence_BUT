@@ -19,6 +19,7 @@ public class StockController {
     @Autowired
     private ProductService productService;
 
+
     @PostMapping("/edit")
     @Transactional
     public Stock edit(@RequestBody Stock stock){

@@ -19,12 +19,13 @@ public class Product {
     @Id
     @GeneratedValue
     private int id;
-    private double price; // Long -> unsigned int
+    private double price;
     private String description;
     private String name;
 
     @ManyToOne(targetEntity = Provider.class)
-    @JsonIgnoreProperties("productList")
+    @JsonIgnoreProperties({"productList","product"})
+    @JsonIgnore
     private Provider provider;
 
     @OneToOne(cascade = CascadeType.ALL)

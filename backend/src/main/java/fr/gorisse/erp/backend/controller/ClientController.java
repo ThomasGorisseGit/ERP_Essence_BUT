@@ -3,7 +3,6 @@ package fr.gorisse.erp.backend.controller;
 import fr.gorisse.erp.backend.entity.Client;
 import fr.gorisse.erp.backend.entity.Subscription;
 import fr.gorisse.erp.backend.services.ClientService;
-import fr.gorisse.erp.backend.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/client")
-public class ClientController {
+public class ClientController implements DefaultController<Client> {
     @Autowired
     private ClientService clientService;
-    @Autowired
-    private SubscriptionService subscriptionService;
 
     @PostMapping("/add")
     @Transactional
@@ -25,12 +22,13 @@ public class ClientController {
     }
 
     @GetMapping("/getClients")
-    public List<Client> getClients(){
+    public List<Client> getAll(){
         return this.clientService.getAll();
     }
 
+    @Override
     @GetMapping("/getClientById")
-    public Client getClientById(@RequestBody int id){
+    public Client getById(@RequestBody int id){
         return this.clientService.getEntityById(id);
     }
     @GetMapping("/getClientById/{id}")
@@ -44,17 +42,13 @@ public class ClientController {
     }
     @DeleteMapping("/delete/{id}")
     @Transactional
-    public void deletePath(@PathVariable("id") int client_id){
+    public void deleteById(@PathVariable("id") int client_id){
         this.clientService.deleteById(client_id);
     }
 
     @PostMapping("/setSubscription/{client_id}")
     @Transactional
     public Client setSub(@PathVariable("client_id")int client_id, @RequestBody Subscription subscription) {
-
-         Client cli = this.clientService.getEntityById(client_id);
-         subscription = this.subscriptionService.getEntityById(subscription.getId());
-         cli.setSubscription(subscription);
-         return this.clientService.edit(cli);
+        return this.clientService.setSubscription(client_id, subscription);
     }
 }

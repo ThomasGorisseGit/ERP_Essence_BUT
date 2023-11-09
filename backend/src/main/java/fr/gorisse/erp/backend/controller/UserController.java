@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController implements DefaultController<User> {
     @Autowired
     private UserCheckingService userService;
 
@@ -26,26 +26,26 @@ public class UserController {
     }
     @DeleteMapping("/deleteById")
     @Transactional
-    public User deleteById(@RequestBody int user_id){
-        return this.userService.deleteById(user_id);
+    public void deleteById(@RequestBody int user_id){
+        this.userService.deleteById(user_id);
     }
     @DeleteMapping("/delete")
     @Transactional
-    public User delete(@RequestBody User user){
+    public void delete(@RequestBody User user){
         this.userService.delete(user);
-        return user;
     }
     @DeleteMapping("/delete/{id}")
     @Transactional
-    public User delete(@PathVariable("id") int user_id){
-        return this.userService.deleteById(user_id);
+    public void delete(@PathVariable("id") int user_id){
+        this.userService.deleteById(user_id);
     }
     @GetMapping("/getUsers")
-    public List<User> getUsers(){
+    public List<User> getAll(){
         return this.userService.getAll();
     }
+    @Override
     @GetMapping("/getUserById")
-    public User getUserById(@RequestBody int user_id){
+    public User getById(@RequestBody int user_id){
         return this.userService.getEntityById(user_id);
     }
     @GetMapping("/getUserByLogin")

@@ -10,13 +10,20 @@ import java.util.List;
 @Service
 public class SubscriptionService extends ServiceMethods<Subscription> {
     private SubscriptionRepository subscriptionRepository;
+
     @Autowired
     protected void setRepository(SubscriptionRepository subscriptionRepository) {
         super.repository = subscriptionRepository;
         this.subscriptionRepository = subscriptionRepository;
     }
 
-    public List<Subscription> createAll(List<Subscription> list){
-        return this.subscriptionRepository.saveAll(list);
+    public Subscription getFreePlan(){
+        return this.subscriptionRepository.findByName("Free trial");
     }
+
+    public void createAll(List<Subscription> list){
+        this.subscriptionRepository.saveAll(list);
+    }
+
+
 }

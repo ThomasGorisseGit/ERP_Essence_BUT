@@ -44,4 +44,6 @@ public abstract class ServiceMethods<T> implements ServiceMethodsInterface<T> {
     public int getNumberOfEntity() {
         return this.repository.findAll().size();
     }
+
+
 }

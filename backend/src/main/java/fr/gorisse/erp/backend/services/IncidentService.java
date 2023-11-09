@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class IncidentService extends ServiceMethods<Incident> {
-    private IncidentRepository incidentRepository;
     @Autowired
     protected void setRepository(IncidentRepository incidentRepository) {
         super.repository = incidentRepository;
-        this.incidentRepository = incidentRepository;
     }
 }

@@ -1,36 +1,39 @@
 package fr.gorisse.erp.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Date;
+import java.sql.Date;
+
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Stock {
+public class Fuel {
     @Id
     @GeneratedValue
     private int id;
 
-    @OneToOne(mappedBy = "stock")
-    @JsonIgnore
-    private Product product;
+    private String typeOfFuel;
 
-    private long quantity;
+    private double quantity;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     @UpdateTimestamp
-    private Date date;
+    private Date lastUpdateDate;
+
+    @ManyToOne(targetEntity = Provider.class)
+    @JsonIgnoreProperties("fuelList")
+    private Provider provider;
 
 }

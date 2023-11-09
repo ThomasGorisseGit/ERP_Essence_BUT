@@ -83,6 +83,21 @@ class UserCheckingServiceTest {
         this.userService.delete(emptyUserWithId);
 
     }
+
+    @Test
+    void testDefaultValues(){
+        User newUser = new User();
+        assertNull(newUser.getStatus());
+        assertNull(newUser.getLogin());
+
+        newUser = this.userService.create(newUser);
+
+        assertNotNull(newUser.getLogin());
+        assertNotNull(newUser.getStatus());
+
+        this.userService.delete(newUser);
+
+    }
     @AfterEach
     void destroy(){
         this.userService.delete(this.user);

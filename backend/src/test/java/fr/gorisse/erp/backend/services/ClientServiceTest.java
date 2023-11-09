@@ -17,10 +17,6 @@ class ClientServiceTest {
     private ClientService clientService;
     @Autowired
     private SubscriptionService subscriptionService;
-    @Autowired
-    private ClientOrderService clientOrderService;
-    @Autowired
-    private ProductService productService;
 
     private int numberOfClients;
     private Client client;
@@ -46,12 +42,23 @@ class ClientServiceTest {
     @Test
     public void testSubscription(){
         this.client = this.clientService.create(this.client);
-        Subscription subscription = this.subscriptionService.getAll().get(0);
+        Subscription subscription = this.subscriptionService.getFreePlan();
         this.client.setSubscription(subscription);
         assertDoesNotThrow(()->this.clientService.edit(this.client));
         assertEquals(this.client.getSubscription().getId(),subscription.getId());
     }
 
+    @Test
+    public void testDefaultValues(){
+        assertNull(this.client.getSubscription());
+        assertNull(this.client.getFirstName());
+        assertNull(this.client.getLastName());
+        this.client = this.clientService.create(this.client);
+        assertNotNull(this.client.getSubscription());
+        assertNotNull(this.client.getFirstName());
+        assertNotNull(this.client.getLastName());
+
+    }
 
     @AfterEach
     public void destroy(){
