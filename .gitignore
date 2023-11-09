@@ -36,3 +36,5 @@ build/
 /src/main/ressources/application/properties
 application.properties
 !**/src/main/ressources/application/properties
+env.properties
+/backend/env.properties

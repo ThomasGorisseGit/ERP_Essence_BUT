@@ -35,3 +35,5 @@ build/
 ### Private ###
 application.properties
 !**/src/main/ressources/application/properties
+spring.config
+env.properties
