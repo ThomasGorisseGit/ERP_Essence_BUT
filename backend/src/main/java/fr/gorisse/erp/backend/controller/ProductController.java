@@ -42,6 +42,7 @@ public class ProductController implements DefaultController<Product>{
     public List<Product> getAll(){
         return this.productService.getAll();
     }
+    @Override
     @GetMapping("/getProductById/{id}")
     public Product getById(@PathVariable("id") int product_id){
         return this.productService.getEntityById(product_id);

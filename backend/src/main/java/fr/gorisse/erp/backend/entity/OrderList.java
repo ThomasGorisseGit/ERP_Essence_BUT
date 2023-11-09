@@ -1,16 +1,11 @@
 package fr.gorisse.erp.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -33,11 +28,5 @@ public class OrderList {
     private ClientOrder clientOrder;
 
     private int quantity;
-
-    public OrderList(Product product, ClientOrder clientOrder, int quantity){
-        this.product = product;
-        this.clientOrder = clientOrder;
-        this.quantity = quantity;
-    }
 
 }

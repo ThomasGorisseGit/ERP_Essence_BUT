@@ -10,9 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Check;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.mapping.Constraint;
 
 import java.sql.Date;
 

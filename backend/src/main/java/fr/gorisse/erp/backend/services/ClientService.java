@@ -44,4 +44,17 @@ public class ClientService extends ServiceMethods<Client> {
         if (client.getFirstName() == null) client.setFirstName("");
         if (client.getLastName() == null) client.setLastName("");
     }
+
+    public Client setSubscription(int client_id, Subscription subscription){
+        Client currentClient = super.getEntityById(client_id);
+        if(subscription == null){
+            subscription = this.subscriptionService.getFreePlan();
+        }
+        else{
+            subscription = subscriptionService.getEntityById(subscription.getId());
+        }
+        currentClient.setSubscription(subscription);
+        return currentClient;
+
+    }
 }

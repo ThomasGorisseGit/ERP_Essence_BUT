@@ -1,6 +1,5 @@
 package fr.gorisse.erp.backend.controller;
 
-import fr.gorisse.erp.backend.entity.Client;
 import fr.gorisse.erp.backend.entity.User;
 import fr.gorisse.erp.backend.services.UserCheckingService;
 import jakarta.transaction.Transactional;
@@ -44,6 +43,7 @@ public class UserController implements DefaultController<User> {
     public List<User> getAll(){
         return this.userService.getAll();
     }
+    @Override
     @GetMapping("/getUserById")
     public User getById(@RequestBody int user_id){
         return this.userService.getEntityById(user_id);

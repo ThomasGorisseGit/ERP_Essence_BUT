@@ -14,6 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode(callSuper = true)
 @Entity
 public class User extends Person {
     @Id
@@ -31,9 +32,9 @@ public class User extends Person {
     private double salary;
 
 
-    public User (String prenom, String nom, String password){
-        super(prenom,nom);
-        this.login = Login.create(prenom+"@"+nom);
+    public User (String firstname, String lastname, String password){
+        super(firstname,lastname);
+        this.login = Login.create(firstname+"@"+lastname);
         this.password = Password.create(password);
     }
     public void setLogin(){

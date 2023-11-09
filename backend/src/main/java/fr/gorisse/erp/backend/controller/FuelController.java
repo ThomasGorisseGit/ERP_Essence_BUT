@@ -4,7 +4,6 @@ import fr.gorisse.erp.backend.entity.Fuel;
 import fr.gorisse.erp.backend.services.FuelService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +26,7 @@ public class FuelController implements DefaultController<Fuel> {
         return this.fuelService.getAll();
     }
 
+    @Override
     @GetMapping("/getFuelById/{id}")
     public Fuel getById(@PathVariable("id")int id){
         return this.fuelService.getEntityById(id);

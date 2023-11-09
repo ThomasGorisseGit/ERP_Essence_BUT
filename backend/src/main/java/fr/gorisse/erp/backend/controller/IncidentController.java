@@ -35,6 +35,7 @@ public class IncidentController implements DefaultController<Incident> {
     public void delete(@RequestBody Incident incident){
         this.incidentService.delete(incident);
     }
+    @Override
     @GetMapping("/getIncident/{id}")
     public Incident getById(@PathVariable("id") int incident_id){
         return this.incidentService.getEntityById(incident_id);

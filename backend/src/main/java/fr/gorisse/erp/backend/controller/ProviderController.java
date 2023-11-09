@@ -26,6 +26,7 @@ public class ProviderController implements DefaultController<Provider> {
     @GetMapping("/getProviders")
     public List<Provider> getAll(){return this.providerService.getAll();}
 
+    @Override
     @GetMapping("/getProviderById")
     public Provider getById(@RequestBody int provider_id){
         return this.providerService.getEntityById(provider_id);

@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class SubscriptionService extends ServiceMethods<Subscription> {
     private SubscriptionRepository subscriptionRepository;
+
     @Autowired
     protected void setRepository(SubscriptionRepository subscriptionRepository) {
         super.repository = subscriptionRepository;
@@ -23,4 +24,6 @@ public class SubscriptionService extends ServiceMethods<Subscription> {
     public void createAll(List<Subscription> list){
         this.subscriptionRepository.saveAll(list);
     }
+
+
 }

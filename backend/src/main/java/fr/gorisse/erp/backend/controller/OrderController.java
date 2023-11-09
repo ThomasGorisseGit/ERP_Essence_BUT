@@ -36,6 +36,7 @@ public class OrderController implements DefaultController<ClientOrder> {
     public List<ClientOrder> getAll(){
         return this.clientOrderService.getAll();
     }
+    @Override
     @GetMapping("/getClientOrder/{id}")
     public ClientOrder getById(@PathVariable int id){
         return this.clientOrderService.getEntityById(id);
