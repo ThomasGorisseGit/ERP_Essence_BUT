@@ -20,7 +20,7 @@ public class SubscriptionService extends ServiceMethods<Subscription> {
         return this.subscriptionRepository.findByName("Free trial");
     }
 
-    public List<Subscription> createAll(List<Subscription> list){
-        return this.subscriptionRepository.saveAll(list);
+    public void createAll(List<Subscription> list){
+        this.subscriptionRepository.saveAll(list);
     }
 }
