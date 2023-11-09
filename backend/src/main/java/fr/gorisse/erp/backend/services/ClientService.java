@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClientService extends ServiceMethods<Client>{
-    private ClientRepository clientRepository;
     @Autowired
     protected void setRepository(ClientRepository clientRepository) {
         super.repository = clientRepository;
-        this.clientRepository = clientRepository;
     }
 }

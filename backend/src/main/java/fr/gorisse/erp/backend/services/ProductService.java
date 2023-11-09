@@ -7,11 +7,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService extends ServiceMethods<Product> {
-    private ProductRepository productRepository;
     @Autowired
     protected void setRepository(ProductRepository productRepository) {
         super.repository = productRepository;
-        this.productRepository = productRepository;
     }
 
 
