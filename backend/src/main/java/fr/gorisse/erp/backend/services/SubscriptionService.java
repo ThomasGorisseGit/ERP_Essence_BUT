@@ -16,6 +16,10 @@ public class SubscriptionService extends ServiceMethods<Subscription> {
         this.subscriptionRepository = subscriptionRepository;
     }
 
+    public Subscription getFreePlan(){
+        return this.subscriptionRepository.findByName("Free trial");
+    }
+
     public List<Subscription> createAll(List<Subscription> list){
         return this.subscriptionRepository.saveAll(list);
     }
