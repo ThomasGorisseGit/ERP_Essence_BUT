@@ -29,13 +29,16 @@ public class User extends Person {
 
     @Convert(converter = StatusConverter.class)
     private Status status;
-    private double salary;
+
+    private Double salary;
 
 
     public User (String firstname, String lastname, String password){
         super(firstname,lastname);
         this.login = Login.create(firstname+"@"+lastname);
         this.password = Password.create(password);
+        this.status = Status.create("Employee");
+        this.salary = Status.getSalary("Employee");
     }
     public void setLogin(){
         this.login = Login.create(this.getFirstName() + "@" + this.getLastName());
