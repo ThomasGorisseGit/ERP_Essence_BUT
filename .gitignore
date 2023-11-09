@@ -33,5 +33,6 @@ build/
 .vscode/
 
 ### Private ###
+/src/main/ressources/application/properties
 application.properties
 !**/src/main/ressources/application/properties
