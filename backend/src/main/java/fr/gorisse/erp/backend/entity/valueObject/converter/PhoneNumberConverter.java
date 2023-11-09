@@ -2,7 +2,9 @@ package fr.gorisse.erp.backend.entity.valueObject.converter;
 
 import fr.gorisse.erp.backend.entity.valueObject.PhoneNumber;
 import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
+@Converter
 public class PhoneNumberConverter implements AttributeConverter<PhoneNumber,String> {
     @Override
     public String convertToDatabaseColumn(PhoneNumber phoneNumber) {
