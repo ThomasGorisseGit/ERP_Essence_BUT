@@ -2,6 +2,7 @@ package fr.gorisse.erp.backend.security;
 
 import fr.gorisse.erp.backend.entity.User;
 import fr.gorisse.erp.backend.services.UserCheckingService;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
 import java.util.Map;
+import java.util.function.Function;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -60,5 +62,24 @@ public class JwtService {
         return Map.of("bearer",bearer);
         //https://www.youtube.com/watch?v=-k1x1EYqlRI&ab_channel=chillotech 42:23
     }
+    public String getUsername(String token){
+        return this.getClaim(token, Claims::getSubject);
+    }
 
+    public boolean isTokenExpired(String token) {
+        Date expirationDate = getExpirationDate(token);
+        return expirationDate.before(new Date());
+    }
+
+    private Date getExpirationDate(String token) {
+        return this.getClaim(token, Claims::getExpiration);
+    }
+    private <T> T getClaim(String token, Function<Claims, T> function){
+        final Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return function.apply(claims);
+    }
 }

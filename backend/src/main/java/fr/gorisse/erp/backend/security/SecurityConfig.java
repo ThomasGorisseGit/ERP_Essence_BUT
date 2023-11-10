@@ -10,9 +10,11 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.http.HttpMethod.POST;
 
@@ -20,8 +22,10 @@ import static org.springframework.http.HttpMethod.POST;
 @EnableWebSecurity
 public class SecurityConfig {
    private final UserCheckingService userService;
-   public SecurityConfig(UserCheckingService userService) {
+   private final JwtFilter jwtFilter;
+   public SecurityConfig(UserCheckingService userService,JwtFilter jwtFilter) {
        this.userService = userService;
+         this.jwtFilter = jwtFilter;
 
    }
     @Bean
@@ -36,7 +40,19 @@ public class SecurityConfig {
                                 .requestMatchers(POST,"/user/auth").permitAll() // We will authenticate the user
                                 .requestMatchers(POST,"/user/create").permitAll()
                                 .anyRequest().authenticated() // for any other requests, the user must be authenticated
-                ).build();
+                )
+                .sessionManagement(session->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+                        )
+
+                .addFilterBefore(
+                        this.jwtFilter
+                        ,
+                        UsernamePasswordAuthenticationFilter.class
+                )
+                .build();
+        //https://www.youtube.com/watch?v=-k1x1EYqlRI&ab_channel=chillotech 1:08:30
     }
 
     @Bean
