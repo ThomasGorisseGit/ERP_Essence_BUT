@@ -1,6 +1,7 @@
 package fr.gorisse.erp.backend.controller;
 
 import fr.gorisse.erp.backend.entity.User;
+import fr.gorisse.erp.backend.security.JwtService;
 import fr.gorisse.erp.backend.services.UserCheckingService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class UserController implements DefaultController<User> {
     private UserCheckingService userService;
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtService jwtService;
 
     @PostMapping("/create")
     @Transactional
@@ -69,7 +72,9 @@ public class UserController implements DefaultController<User> {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword())
         );
-
+        if(authentication.isAuthenticated()){
+            return jwtService.generateToken(user.getLogin().getLogin());
+        }
         //https://www.youtube.com/watch?v=-k1x1EYqlRI&ab_channel=chillotech time : 25minutes 40 seconds
         return null;
     }
