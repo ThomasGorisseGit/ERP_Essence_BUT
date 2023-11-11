@@ -45,13 +45,10 @@ public class UserCheckingService extends ServiceMethods<User> implements UserChe
         if(user.getStatus()==null){
             user.setStatus(Status.create("Employee"));
             user.setSalary(Status.getSalary("Employee"));
-
         }
         if(user.getSalary() == 0){
             user.setSalary(Status.getSalary(user.getStatus().getUserStatus()));
         }
-
-
         return super.create(user);
     }
     @Override

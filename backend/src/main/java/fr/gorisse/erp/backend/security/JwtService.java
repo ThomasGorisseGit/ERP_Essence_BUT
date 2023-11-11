@@ -29,7 +29,6 @@ public class JwtService {
 
     @Value("${jwt.secret}")
     private String SECRET;
-    private final long EXPIRATION = 5 * 60 * 60 * 1000;
     public Map<String,String> generateToken(String login){
         User user = this.userService.getUserByLogin(login);
 
@@ -44,6 +43,7 @@ public class JwtService {
     private Map<String, String> generateJwt(User user) {
 
         final long currentTime = System.currentTimeMillis();
+        final long EXPIRATION = 5 * 60 * 60 * 1000 + currentTime;
         final Map<String, Object> claims = Map.of(
                 "firstName", user.getFirstName(),
                 "lastName",user.getLastName(),
@@ -69,6 +69,7 @@ public class JwtService {
 
     public boolean isTokenExpired(String token) {
         Date expirationDate = getExpirationDate(token);
+
         return expirationDate.before(new Date());
     }
 
