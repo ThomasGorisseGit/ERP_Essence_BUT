@@ -33,7 +33,8 @@ build/
 .vscode/
 
 ### Private ###
+/src/main/ressources/application/properties
 application.properties
 !**/src/main/ressources/application/properties
-spring.config
 env.properties
+/backend/env.properties
