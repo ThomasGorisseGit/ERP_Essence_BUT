@@ -24,24 +24,17 @@ import java.util.function.Function;
 public class JwtService {
     @Autowired
     private UserCheckingService userService;
-
-
-
     @Value("${jwt.secret}")
     private String SECRET;
     public Map<String,String> generateToken(String login){
         User user = this.userService.getUserByLogin(login);
-
-
         return this.generateJwt(user);
     }
-
     private Key getKey(){
         final byte[] decoder = Decoders.BASE64.decode(this.SECRET);
         return Keys.hmacShaKeyFor(decoder);
     }
     private Map<String, String> generateJwt(User user) {
-
         final long currentTime = System.currentTimeMillis();
         final long EXPIRATION = 5 * 60 * 60 * 1000 + currentTime;
         final Map<String, Object> claims = Map.of(
@@ -53,13 +46,12 @@ public class JwtService {
                 Claims.EXPIRATION, new Date(EXPIRATION),
                 Claims.SUBJECT, user.getLogin().toString()
                 );
-
         String bearer = Jwts.builder()
                 .setIssuedAt(new Date(currentTime))
                 .setExpiration(new Date(EXPIRATION))
                 .setSubject(user.getLogin().getLogin())
                 .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS512, getKey())
+                .signWith(getKey(),SignatureAlgorithm.HS256)
                 .compact();
         return Map.of("bearer",bearer);
     }
