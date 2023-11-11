@@ -25,7 +25,7 @@ public class SecurityConfig {
    private final JwtFilter jwtFilter;
    public SecurityConfig(UserCheckingService userService,JwtFilter jwtFilter) {
        this.userService = userService;
-         this.jwtFilter = jwtFilter;
+       this.jwtFilter = jwtFilter;
 
    }
     @Bean
@@ -43,16 +43,13 @@ public class SecurityConfig {
                 )
                 .sessionManagement(session->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
                         )
-
                 .addFilterBefore(
                         this.jwtFilter
                         ,
                         UsernamePasswordAuthenticationFilter.class
                 )
                 .build();
-        //https://www.youtube.com/watch?v=-k1x1EYqlRI&ab_channel=chillotech 1:08:30
     }
 
     @Bean

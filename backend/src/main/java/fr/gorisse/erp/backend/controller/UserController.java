@@ -70,12 +70,11 @@ public class UserController implements DefaultController<User> {
     public Map<String, String> connect(@RequestBody User user){
 
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword())
+                new UsernamePasswordAuthenticationToken(user.getLogin().toString(), user.getPassword())
         );
         if(authentication.isAuthenticated()){
             return jwtService.generateToken(user.getLogin().getLogin());
         }
-        //https://www.youtube.com/watch?v=-k1x1EYqlRI&ab_channel=chillotech time : 25minutes 40 seconds
         return null;
     }
 
