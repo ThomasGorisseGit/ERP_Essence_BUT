@@ -47,9 +47,11 @@ public class JwtService {
         final Map<String, Object> claims = Map.of(
                 "firstName", user.getFirstName(),
                 "lastName",user.getLastName(),
-                 "login",user.getLogin().getLogin(),
-                 "status",user.getStatus().getUserStatus(),
-                "salary",user.getSalary().toString()
+                "login",user.getLogin().getLogin(),
+                "status",user.getStatus().getUserStatus(),
+                "salary",user.getSalary().toString(),
+                Claims.EXPIRATION, new Date(EXPIRATION),
+                Claims.SUBJECT, user.getLogin().toString()
                 );
 
         String bearer = Jwts.builder()
@@ -60,7 +62,6 @@ public class JwtService {
                 .signWith(SignatureAlgorithm.HS512, getKey())
                 .compact();
         return Map.of("bearer",bearer);
-        //https://www.youtube.com/watch?v=-k1x1EYqlRI&ab_channel=chillotech 42:23
     }
     public String getUsername(String token){
         return this.getClaim(token, Claims::getSubject);
