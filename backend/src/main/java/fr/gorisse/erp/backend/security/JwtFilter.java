@@ -23,17 +23,20 @@ public class JwtFilter extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain filterChain) throws ServletException, IOException {
-        String token = null;
+        String token;
         String username = null;
         boolean isTokenExpired = true;
 
+
         final String authorization = request.getHeader("Authorization");
-        token = authorization != null ? authorization.substring(7) : null; // We remove the "Bearer " part
-        isTokenExpired = jwtService.isTokenExpired(token);
-        if (token != null) {
+        if(authorization != null && authorization.startsWith("Bearer ")){
+
+            token = authorization.substring(7); // We remove the "Bearer " part
+            isTokenExpired = jwtService.isTokenExpired(token);
             username = jwtService.getUsername(token);
 
         }
+
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null && !isTokenExpired){
             UserDetails user = this.userCheckingService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user,null,user.getAuthorities());
