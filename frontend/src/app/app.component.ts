@@ -13,7 +13,7 @@ export class AppComponent {
 
   ngOnInit() {
   }
-  isLoginPage() {
+  isNotLoginPage() {
     return this.router.url !== '/login';
   }
 }
