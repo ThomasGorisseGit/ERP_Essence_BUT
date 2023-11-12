@@ -15,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static org.springframework.http.HttpMethod.POST;
@@ -37,21 +40,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(
-                        authorize -> authorize
-                                .requestMatchers( POST,"/user/auth").permitAll() // We will authenticate the user
+                .addFilterBefore(
+                        this.jwtFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                )
+                .authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers( POST,"/auth").permitAll() // We will authenticate the user
                                 .requestMatchers(POST,"/user/create").permitAll()
-                                .anyRequest().permitAll() // for any other requests, the user must be authenticated
+                                .anyRequest().authenticated()
                 )
                 .sessionManagement(session->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                        )
-                .addFilterBefore(
-                        this.jwtFilter
-                        ,
-                        UsernamePasswordAuthenticationFilter.class
                 )
+
                 .build();
+
     }
 
     @Bean
@@ -64,5 +67,18 @@ public class SecurityConfig {
         daoAuthenticationProvider.setUserDetailsService(this.userService);
         daoAuthenticationProvider.setPasswordEncoder(this.bCryptPasswordEncoder());
         return daoAuthenticationProvider;
+    }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("http://localhost:4200"); // Ajoutez vos origines autorisées
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
     }
 }
