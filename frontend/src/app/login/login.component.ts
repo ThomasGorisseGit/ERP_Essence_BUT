@@ -10,6 +10,7 @@ import { User } from '../_interfaces/user';
 })
 export class LoginComponent {
 
+
   formGroup :FormGroup = new FormGroup({
     login : new FormControl(""),
     password : new FormControl("")
@@ -26,5 +27,10 @@ export class LoginComponent {
 
     this.connectionService.checkUserInfos(undefined,undefined, user);
 
+  }
+  getUsers() {
+    console.log("in");
+
+    this.connectionService.getUsers();
   }
 }

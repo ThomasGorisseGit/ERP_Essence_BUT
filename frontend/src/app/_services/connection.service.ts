@@ -45,15 +45,25 @@ export class ConnectionService {
   }
   private sendConnection(user:User){
 
-    this.http.post("http://localhost:8080/user/auth",user).subscribe({
+    this.http.post(ApiURL+"/user/auth",user).subscribe({
       next: (data)=>{
         console.log(data);
+        sessionStorage.setItem("token",JSON.stringify(data));
       },
       error: (e)=>{
         console.log(e);
       }
     })
 
+  }
+
+  public getUsers(){
+    const header = {
+      "Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJzYWxhcnkiOiIxNDAwLjAiLCJzdGF0dXMiOiJFbXBsb3llZSIsImxhc3ROYW1lIjoiR29yaXNzZSIsInN1YiI6IlRob21hc0BHb3Jpc3NlIiwiZmlyc3ROYW1lIjoiVGhvbWFzIiwibG9naW4iOiJUaG9tYXNAR29yaXNzZSIsImV4cCI6MTY5OTgzNjAwNH0.0LE4sxdP83IagoNEgEN_FDJI6Lp32AXDZhtWwek7DKY"
+    }
+    this.http.get(ApiURL+"/user/getUsers").subscribe({
+      next: (data)=>console.log(data)
+    })
   }
 
 }
