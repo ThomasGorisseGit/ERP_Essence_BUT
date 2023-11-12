@@ -8,6 +8,7 @@ import { StocksComponent } from './stocks/stocks.component';
 import { AddFournisseurComponent } from './stocks/add-fournisseur/add-fournisseur.component';
 import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.component';
 import { AddReapproComponent } from './stocks/add-reappro/add-reappro.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const routes: Routes = [{
   path: 'login',

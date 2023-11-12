@@ -20,6 +20,7 @@ import { AddReapproComponent } from './stocks/add-reappro/add-reappro.component'
 import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { MatSelectModule } from '@angular/material/select';
     ReapproComponent,
     AddFournisseurComponent,
     AddReapproComponent,
-    ShowInventoryComponent
+    ShowInventoryComponent,
+    HeaderComponent
   ],
   imports: [
     MatSelectModule,
