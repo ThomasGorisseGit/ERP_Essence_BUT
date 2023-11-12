@@ -15,11 +15,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 public class SecurityConfig {
    private final UserCheckingService userService;
    private final JwtFilter jwtFilter;
@@ -37,9 +39,9 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         authorize -> authorize
-                                .requestMatchers(POST,"/user/auth").permitAll() // We will authenticate the user
+                                .requestMatchers( POST,"/user/auth").permitAll() // We will authenticate the user
                                 .requestMatchers(POST,"/user/create").permitAll()
-                                .anyRequest().authenticated() // for any other requests, the user must be authenticated
+                                .anyRequest().permitAll() // for any other requests, the user must be authenticated
                 )
                 .sessionManagement(session->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
