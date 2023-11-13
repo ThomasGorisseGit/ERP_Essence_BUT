@@ -59,9 +59,14 @@ export class ConnectionService {
 
   public getUsers(){
     const header = {
-      "Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJzYWxhcnkiOiIxNDAwLjAiLCJzdGF0dXMiOiJFbXBsb3llZSIsImxhc3ROYW1lIjoiR29yaXNzZSIsInN1YiI6IlRob21hc0BHb3Jpc3NlIiwiZmlyc3ROYW1lIjoiVGhvbWFzIiwibG9naW4iOiJUaG9tYXNAR29yaXNzZSIsImV4cCI6MTY5OTgzNjAwNH0.0LE4sxdP83IagoNEgEN_FDJI6Lp32AXDZhtWwek7DKY"
+      "Authorization" : " Baerer eyJhbGciOiJIUzI1NiJ9.eyJzYWxhcnkiOiIxNDAwLjAiLCJzdGF0dXMiOiJFbXBsb3llZSIsImxhc3ROYW1lIjoiR29yaXNzZSIsInN1YiI6IlRob21hc0BHb3Jpc3NlIiwiZmlyc3ROYW1lIjoiVGhvbWFzIiwibG9naW4iOiJUaG9tYXNAR29yaXNzZSIsImV4cCI6MTY5OTgzNjAwNH0.0LE4sxdP83IagoNEgEN_FDJI6Lp32AXDZhtWwek7DKY",
+      'Content-Type': 'application/json'
     }
-    this.http.get(ApiURL+"/user/getUsers").subscribe({
+    const myheadre = new HttpHeaders();
+    myheadre.set('content-type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*')
+    .set('Authorization', 'Baerer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUaG9tYXNAR29yaXNzZSIsImxhc3ROYW1lIjoiR29yaXNzZSIsInN0YXR1cyI6IkVtcGxveWVlIiwic2FsYXJ5IjoiMTQwMC4wIiwiZXhwIjoxNjk5ODc3NzM5LCJsb2dpbiI6IlRob21hc0BHb3Jpc3NlIiwiZmlyc3ROYW1lIjoiVGhvbWFzIn0.stTiXFnrwC-2Oe-RNlTj4dG3hiFgsalyzx7osZ2MfKE');
+    this.http.get(ApiURL+"/user/getUsers",{headers:myheadre}).subscribe({
       next: (data)=>console.log(data)
     })
   }
