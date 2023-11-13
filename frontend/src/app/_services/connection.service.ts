@@ -1,4 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiURL } from '../_const/const';
 import { User } from '../_interfaces/user';
@@ -40,20 +41,13 @@ export class ConnectionService {
 
     }
 
-    this.sendConnection(userToAdd);
+    return this.sendConnection(userToAdd);
 
   }
-  private sendConnection(user:User){
+  private sendConnection(user:User) :Observable<Object>
+  {
 
-    this.http.post(ApiURL+"/user/auth",user).subscribe({
-      next: (data)=>{
-        console.log(data);
-        sessionStorage.setItem("token",JSON.stringify(data));
-      },
-      error: (e)=>{
-        console.log(e);
-      }
-    })
+    return this.http.post(ApiURL+"/user/auth",user)
 
   }
 

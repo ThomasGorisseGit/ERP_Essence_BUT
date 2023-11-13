@@ -21,6 +21,7 @@ import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { HeaderComponent } from './header/header.component';
+import { DisplayErrorComponent } from './_error/display-error/display-error.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { HeaderComponent } from './header/header.component';
     AddFournisseurComponent,
     AddReapproComponent,
     ShowInventoryComponent,
-    HeaderComponent
+    HeaderComponent,
+    DisplayErrorComponent
   ],
   imports: [
     MatSelectModule,

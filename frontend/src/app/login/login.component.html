@@ -15,3 +15,5 @@
 <button (click)="getUsers()">
   mybutton
 </button>
+
+<app-display-error [error]="ERROR" *ngIf="ERROR != null"></app-display-error>

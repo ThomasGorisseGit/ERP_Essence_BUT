@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ConnectionService } from '../_services/connection.service';
 import { User } from '../_interfaces/user';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { User } from '../_interfaces/user';
 })
 export class LoginComponent {
 
-
+  public ERROR!:string | null;
   formGroup :FormGroup = new FormGroup({
     login : new FormControl(""),
     password : new FormControl("")
@@ -25,7 +26,17 @@ export class LoginComponent {
 
     console.log(user);
 
-    this.connectionService.checkUserInfos(undefined,undefined, user);
+    this.connectionService.checkUserInfos(undefined,undefined, user).subscribe({
+      next: (data)=>{
+        sessionStorage.setItem("token",JSON.stringify(data));
+        this.ERROR=null;
+      },
+      error: (e:HttpErrorResponse)=>{
+        this.ERROR = e.message;
+
+      }
+    })
+
 
   }
   getUsers() {
