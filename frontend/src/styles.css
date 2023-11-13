@@ -12,6 +12,9 @@
   --green512: #0c816b;
   --black512: #2a2f33;
   --grey512: #aab8c1;
+  --defaultBoxShadow : 0px 4.8px 4.8px rgba(0, 0, 0, 0.25);
+  --defaultBorderRadius: 12px;
+  --bigText:2em;
 }
 
 body {

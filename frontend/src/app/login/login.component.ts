@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ConnectionService } from '../_services/connection.service';
 import { User } from '../_interfaces/user';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DisplayErrorComponent } from '../_error/display-error/display-error.component';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent {
 
+  @ViewChild(DisplayErrorComponent) displayError!: DisplayErrorComponent;
+
   public ERROR!:string | null;
   formGroup :FormGroup = new FormGroup({
     login : new FormControl(""),
     password : new FormControl("")
   });
+
 
   constructor(private connectionService:ConnectionService){
 
@@ -32,9 +36,11 @@ export class LoginComponent {
         this.ERROR=null;
       },
       error: (e:HttpErrorResponse)=>{
-        this.ERROR = e.message;
-
+        //display Error pop up
+        this.displayError.error = "Mot de passe ou login incorrect"
       }
+
+
     })
 
 
@@ -44,4 +50,6 @@ export class LoginComponent {
 
     this.connectionService.getUsers();
   }
+
+
 }
