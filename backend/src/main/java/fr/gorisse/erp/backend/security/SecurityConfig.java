@@ -20,6 +20,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
@@ -45,13 +46,17 @@ public class SecurityConfig {
                         UsernamePasswordAuthenticationFilter.class
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers( POST,"/auth").permitAll() // We will authenticate the user
-                                .requestMatchers(POST,"/user/create").permitAll()
-                                .anyRequest().authenticated()
+                        .requestMatchers(POST, "/auth").permitAll() // We will authenticate the user
+                        .requestMatchers(POST,"/user/auth").permitAll()
+                        .requestMatchers(POST, "/user/create").permitAll()
+                        .requestMatchers(GET, "/user").permitAll()
+                        .anyRequest().authenticated()
+                        
                 )
-                .sessionManagement(session->
+                .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+
 
                 .build();
 
