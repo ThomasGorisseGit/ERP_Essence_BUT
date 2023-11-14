@@ -1,22 +1,24 @@
+import { AuthService } from './_services/auth.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpHeaders
+  HttpHeaders,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptorInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private authService : AuthService,private router:Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     var token : {bearer:string} = JSON.parse(sessionStorage.getItem("token") as string) ;
-    console.log(token);
 
     if(token != null){
 
@@ -25,8 +27,14 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${token.bearer}`
         }
       });
+      return next.handle(modifiedReq).pipe(
+        catchError((error:HttpErrorResponse)=>{
+          this.authService.logout();
+          this.router.navigateByUrl("/login");
+          throw Error("Token Expired")
 
-      return next.handle(modifiedReq);
+        })
+      );
     }else{
       return next.handle(request);
     }

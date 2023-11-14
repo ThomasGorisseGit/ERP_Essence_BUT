@@ -1,0 +1,10 @@
+app-header{
+  height: 15vh;
+}
+
+app-nav{
+  height: 5vh;
+}
+router-outlet{
+  height: 80vh;
+}
