@@ -46,8 +46,6 @@ export class LoginComponent {
 
   }
   getUsers() {
-    console.log("in");
-
     this.connectionService.getUsers();
   }
 
