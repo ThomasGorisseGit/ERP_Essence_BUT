@@ -1,5 +1,5 @@
 import { CaisseComponent } from './caisse/caisse.component';
-import { IncidentPageComponent } from './incident-page/incident-page.component';
+import { IncidentPageComponent } from './incidents/incident-page/incident-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule, Injectable, inject } from '@angular/core';

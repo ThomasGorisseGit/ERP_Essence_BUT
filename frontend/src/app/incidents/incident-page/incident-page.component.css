@@ -28,10 +28,11 @@
 .listIncident {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  gap: 1em;
+  gap: 2em;
   width: 30%;
+  height: 100%;
+  overflow: auto;
 }
 
 .separator {
@@ -66,3 +67,14 @@
 .leftTitles div {
   padding: 1em;
 }
+app-incidents{
+  cursor: pointer;
+  transition: 0.3s;
+
+}
+app-incidents.active{
+  transform: translate(30px);
+  transition: 0.3s;
+
+}
+

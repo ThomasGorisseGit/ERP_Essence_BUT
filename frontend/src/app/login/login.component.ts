@@ -29,9 +29,9 @@ export class LoginComponent {
   }
 
   public sendConnection() {
+    console.log(this.formGroup.value)
     var user :User = this.formGroup.value
 
-    console.log(user);
 
     this.connectionService.checkUserInfos(undefined,undefined, user).subscribe({
       next: (data)=>{

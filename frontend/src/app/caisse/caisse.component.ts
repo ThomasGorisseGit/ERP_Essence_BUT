@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Incident } from '../incident';
+import { Incident } from '../_interfaces/incident';
 import { Cart } from '../cart';
 import { ProductService } from '../service/product.service';
 
@@ -21,32 +21,32 @@ export class CaisseComponent {
       title: 'Incident 1',
       description: "Description de l'incident 1",
       date: new Date(),
-      heure: '10:00',
-      type: 'Feu',
+      image:""
+
     });
     this.listIncidents.push({
       id: 2,
       title: 'Incident 2',
       description: "Description de l'incident 2",
       date: new Date(),
-      heure: '10:00',
-      type: 'Basic',
+      image:""
+
     });
     this.listIncidents.push({
       id: 3,
       title: 'Incident 3',
       description: "Description de l'incident 3",
       date: new Date(),
-      heure: '10:00',
-      type: 'Important',
+      image:""
+
     });
     this.listIncidents.push({
       id: 4,
       title: 'Incident 4',
       description: "Description de l'incident 4",
       date: new Date(),
-      heure: '10:00',
-      type: 'Feu',
+      image:""
+
     });
     // shuffle the list of incidents
     for (var i = this.listIncidents.length - 1; i > 0; i--) {

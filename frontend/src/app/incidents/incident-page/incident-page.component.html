@@ -1,0 +1,24 @@
+<div class="mainContainer">
+  <div class="incidentContainer">
+    <div class="leftTitles">
+      <div>FAQ des incidents</div>
+      <div>Reporter un incident</div>
+      <div>Incidents journaliers</div>
+    </div>
+    <div class="rightPart">
+      <div class="listIncident"><app-incidents  *ngFor="let incident of listIncidents"(click)="incidentSelected=incident" [ngClass]="{active:incident===incidentSelected}"
+          [incident]="incident"></app-incidents></div>
+      <div class="separator"></div>
+      <div class="textPart">
+        <img src={{incidentSelected.image}} width="150px" alt="">
+        <div class="incidentTitle">Que faire : {{incidentSelected.title}} ?</div>
+        <div class="incidentDesc" *ngIf="incidentSelected.solution !== undefined">
+          {{incidentSelected.solution}}
+        </div>
+        <div class="incidentDesc" *ngIf="incidentSelected.solution === undefined">
+          Veuillez contacter un supérieur. Il effectuera les démarches à distance. ( numéro d'urgence : 03200 )
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

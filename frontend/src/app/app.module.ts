@@ -12,7 +12,7 @@ import { TankStatesComponent } from './tank-states/tank-states.component';
 import { CaisseComponent } from './caisse/caisse.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
-import { IncidentPageComponent } from './incident-page/incident-page.component';
+import { IncidentPageComponent } from './incidents/incident-page/incident-page.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { ReapproComponent } from './stocks/reappro/reappro.component';
 import { AddFournisseurComponent } from './stocks/add-fournisseur/add-fournisseur.component';
@@ -40,7 +40,7 @@ import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
     AddReapproComponent,
     ShowInventoryComponent,
     HeaderComponent,
-    DisplayErrorComponent
+    DisplayErrorComponent,
   ],
   imports: [
     MatSelectModule,
