@@ -30,7 +30,14 @@ public class Incident {
     @UpdateTimestamp
     private Date date;
 
+    private String image;
 
+    public Incident(String title, String description, Date date,String image){
+        this.date = date;
+        this.title = title;
+        this.description = description;
+        this.image = image;
+    }
 
 
 }
