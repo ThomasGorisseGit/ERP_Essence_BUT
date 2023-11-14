@@ -15,9 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static org.springframework.http.HttpMethod.GET;
@@ -45,11 +42,15 @@ public class SecurityConfig {
                         this.jwtFilter,
                         UsernamePasswordAuthenticationFilter.class
                 )
+
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(POST, "/auth").permitAll() // We will authenticate the user
+                        .requestMatchers(POST, "/auth/connect").permitAll() // We will authenticate the user
+                        .requestMatchers(POST,"http://localhost:4200/user/auth").permitAll()
+                        .requestMatchers(POST,"http://localhost:8080/user/auth").permitAll()
                         .requestMatchers(POST,"/user/auth").permitAll()
-                        .requestMatchers(POST, "/user/create").permitAll()
                         .requestMatchers(GET, "/user").permitAll()
+                        .requestMatchers(POST,"/user/create").permitAll()
+
                         .anyRequest().authenticated()
                         
                 )
@@ -73,17 +74,5 @@ public class SecurityConfig {
         daoAuthenticationProvider.setPasswordEncoder(this.bCryptPasswordEncoder());
         return daoAuthenticationProvider;
     }
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:4200"); // Ajoutez vos origines autorisées
-        configuration.addAllowedMethod("*");
-        configuration.addAllowedHeader("*");
-        configuration.setAllowCredentials(true);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
 }
