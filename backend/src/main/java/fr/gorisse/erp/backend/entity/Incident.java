@@ -1,5 +1,6 @@
 package fr.gorisse.erp.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -7,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -21,5 +25,12 @@ public class Incident {
 
     private String description;
     private String title;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @UpdateTimestamp
+    private Date date;
+
+
+
 
 }
