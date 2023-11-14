@@ -77,4 +77,41 @@ app-incidents.active{
   transition: 0.3s;
 
 }
+.selected{
+  background-color: white;
+  box-shadow: var(--defaultBoxShadow);
+  border-radius: var(--defaultBorderRadius) 0% 0% var(--defaultBorderRadius);
+  transition: 0.3s;
+  transform: translate(10px);
 
+}
+.menuNav:hover{
+  transform: translate(10px);
+
+}
+.menuNav{
+  transition: 0.3s;
+}
+
+label{
+  font-size: 2em;
+}
+.item{
+  width: 60%;
+}
+textarea.default{
+  height: 300px;
+}
+.form{
+  box-shadow: unset;
+}
+.flexcol{
+  width: 75%;
+  height: 95%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 24px;
+  background-color: white;
+}

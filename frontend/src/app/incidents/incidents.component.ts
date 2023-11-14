@@ -7,7 +7,7 @@ import { Incident } from '../_interfaces/incident';
   styleUrls: ['./incidents.component.css']
 })
 export class IncidentsComponent {
-  @Input() incident: Incident = { id: 1, title: 'Incident 1', description: 'Description de l\'incident 1', date: new Date(),image:"" };
+  @Input() incident: Incident = { id: 1, title: 'Incident 1', description: 'Description de l\'incident 1', date: new Date().toISOString().split("T")[0],image:"" };
   constructor() {
 
   }

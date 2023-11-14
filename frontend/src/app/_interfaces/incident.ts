@@ -2,7 +2,7 @@ export interface Incident {
   id: number;
   title: string;
   description?: string;
-  date: string |Date;
+  date: string ;
   image:string;
   solution?:string;
 }
