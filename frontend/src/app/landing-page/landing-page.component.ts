@@ -11,6 +11,9 @@ export class LandingPageComponent {
   constructor() { }
 
   ngOnInit(): void {
+
+
+
     this.listIncidents.push({
       id: 1,
       title: 'Incident 1',

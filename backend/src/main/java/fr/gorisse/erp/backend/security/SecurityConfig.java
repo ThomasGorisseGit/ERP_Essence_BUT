@@ -51,7 +51,7 @@ public class SecurityConfig {
                         .requestMatchers(GET, "/user").permitAll()
                         .requestMatchers(POST,"/user/create").permitAll()
 
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                         
                 )
                 .sessionManagement(session ->

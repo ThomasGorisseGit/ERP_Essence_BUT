@@ -1,9 +1,12 @@
+import { AuthInterceptorInterceptor } from './../auth-interceptor.interceptor';
+import { AuthService } from './../_services/auth.service';
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ConnectionService } from '../_services/connection.service';
 import { User } from '../_interfaces/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DisplayErrorComponent } from '../_error/display-error/display-error.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +24,7 @@ export class LoginComponent {
   });
 
 
-  constructor(private connectionService:ConnectionService){
+  constructor(private connectionService:ConnectionService,private authService: AuthService,private router:Router){
 
   }
 
@@ -32,8 +35,8 @@ export class LoginComponent {
 
     this.connectionService.checkUserInfos(undefined,undefined, user).subscribe({
       next: (data)=>{
-        sessionStorage.setItem("token",JSON.stringify(data));
-        this.ERROR=null;
+        this.authService.login(JSON.stringify(data));
+        this.router.navigateByUrl("/home");
       },
       error: (e:HttpErrorResponse)=>{
         //display Error pop up
@@ -45,9 +48,7 @@ export class LoginComponent {
 
 
   }
-  getUsers() {
-    this.connectionService.getUsers();
-  }
+
 
 
 }
