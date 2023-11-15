@@ -15,11 +15,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 public class SecurityConfig {
    private final UserCheckingService userService;
    private final JwtFilter jwtFilter;
@@ -35,21 +38,29 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(
-                        authorize -> authorize
-                                .requestMatchers(POST,"/user/auth").permitAll() // We will authenticate the user
-                                .requestMatchers(POST,"/user/create").permitAll()
-                                .anyRequest().authenticated() // for any other requests, the user must be authenticated
-                )
-                .sessionManagement(session->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                        )
                 .addFilterBefore(
-                        this.jwtFilter
-                        ,
+                        this.jwtFilter,
                         UsernamePasswordAuthenticationFilter.class
                 )
+
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(POST, "/auth/connect").permitAll() // We will authenticate the user
+                        .requestMatchers(POST,"http://localhost:4200/user/auth").permitAll()
+                        .requestMatchers(POST,"http://localhost:8080/user/auth").permitAll()
+                        .requestMatchers(POST,"/user/auth").permitAll()
+                        .requestMatchers(GET, "/user").permitAll()
+                        .requestMatchers(POST,"/user/create").permitAll()
+
+                        .anyRequest().permitAll()
+                        
+                )
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+
+
                 .build();
+
     }
 
     @Bean
@@ -63,4 +74,5 @@ public class SecurityConfig {
         daoAuthenticationProvider.setPasswordEncoder(this.bCryptPasswordEncoder());
         return daoAuthenticationProvider;
     }
+
 }

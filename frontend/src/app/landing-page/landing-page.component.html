@@ -5,7 +5,11 @@
   <div class="right">
     <div class="topRight">
       <div class="incidentMainContainer">
-        <app-incidents *ngFor="let incident of listIncidents" [incident]="incident"></app-incidents>
+        <app-incidents
+         *ngFor="let incident of listIncidents"
+         [incident]="incident"
+         (click)="gotoIncident(incident)"
+         ></app-incidents>
       </div>
     </div>
     <div class="bottomRight">

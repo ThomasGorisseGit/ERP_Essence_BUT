@@ -1,35 +1,10 @@
 <div class="incident">
-  <svg *ngIf="incident.type == 'Feu'" width="46" height="59" viewBox="0 0 46 59" fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M23.0001 55.8814C33.9798 55.8814 43 47.254 43 36.1805C43 33.462 42.8607 30.5479 41.3409 26.0187C39.8212 21.4897 39.515 20.9051 37.9081 18.1081C37.2216 23.816 33.5482 26.1948 32.615 26.9058C32.615 26.1661 30.3928 17.9864 27.0236 13.0923C23.7161 8.28814 19.218 5.1363 16.5805 3C16.5805 7.05834 15.4293 13.0923 13.7806 16.1667C12.1319 19.2411 11.8223 19.353 9.76298 21.6409C7.70376 23.9289 6.75856 24.6355 5.03655 27.4115C3.31462 30.1876 3 33.8851 3 36.6036C3 47.6771 12.0205 55.8814 23.0001 55.8814Z"
-      fill="#FF3D00" fill-opacity="0.37" stroke="black" stroke-opacity="0.53" stroke-width="6"
-      stroke-linejoin="round" />
-  </svg>
-  <svg *ngIf="incident.type == 'Basic'" width="61" height="60" viewBox="0 0 61 60" fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 0H61V60H1V0Z" fill="white" fill-opacity="0.01" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M29.5 6L2 53.5H57L29.5 6Z" fill="#2F88FF" fill-opacity="0.72"
-      stroke="black" stroke-opacity="0.49" stroke-width="3.19116" stroke-linejoin="round" />
-    <path d="M31 43.7502V45.0002" stroke="white" stroke-width="3.19116" stroke-linecap="round" />
-    <path d="M31 23.7507L31.0104 36.2501" stroke="white" stroke-width="3.19116" stroke-linecap="round" />
-  </svg>
-  <svg *ngIf="incident.type == 'Important'" width="60" height="60" viewBox="0 0 60 60" fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0H60V60H0V0Z" fill="white" fill-opacity="0.01" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M30 3.25L2.5 50.75H57.5L30 3.25Z" fill="#FF3D00"
-      fill-opacity="0.72" stroke="black" stroke-opacity="0.49" stroke-width="3.19116" stroke-linejoin="round" />
-    <path d="M30 43.75V45V43.75Z" fill="#FFC700" fill-opacity="0.63" />
-    <path d="M30 43.75V45" stroke="white" stroke-width="3.19116" stroke-linecap="round" />
-    <path d="M30 23.7505L30.0104 36.2499L30 23.7505Z" fill="#FFC700" fill-opacity="0.63" />
-    <path d="M30 23.7505L30.0104 36.2499" stroke="white" stroke-width="3.19116" stroke-linecap="round" />
-  </svg>
+  <img src={{incident.image}} width="50px" alt="">
 
   <div class="titleIncident">{{ incident.title }}</div>
   <div class="subInfos">
     <div class="dateIncident">
-      {{ incident.date.toLocaleString("fr", { weekday: "long" }) }}
+      {{ incident.date}}
     </div>
-    <div class="heure">{{ incident.heure }}</div>
   </div>
 </div>

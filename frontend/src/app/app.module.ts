@@ -11,8 +11,8 @@ import { PumpStatesComponent } from './pump-states/pump-states.component';
 import { TankStatesComponent } from './tank-states/tank-states.component';
 import { CaisseComponent } from './caisse/caisse.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
-import { IncidentPageComponent } from './incident-page/incident-page.component';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { IncidentPageComponent } from './incidents/incident-page/incident-page.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { ReapproComponent } from './stocks/reappro/reappro.component';
 import { AddFournisseurComponent } from './stocks/add-fournisseur/add-fournisseur.component';
@@ -20,6 +20,9 @@ import { AddReapproComponent } from './stocks/add-reappro/add-reappro.component'
 import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { HeaderComponent } from './header/header.component';
+import { DisplayErrorComponent } from './_error/display-error/display-error.component';
+import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,9 @@ import { MatSelectModule } from '@angular/material/select';
     ReapproComponent,
     AddFournisseurComponent,
     AddReapproComponent,
-    ShowInventoryComponent
+    ShowInventoryComponent,
+    HeaderComponent,
+    DisplayErrorComponent,
   ],
   imports: [
     MatSelectModule,
@@ -46,7 +51,11 @@ import { MatSelectModule } from '@angular/material/select';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [HttpClient],
+  providers: [
+    HttpClient,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

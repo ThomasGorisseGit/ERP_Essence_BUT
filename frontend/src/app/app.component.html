@@ -1,11 +1,3 @@
-<header>
-  <img routerLink="/home" *ngIf="isLoginPage()" src="../assets/512ERP.png" alt="512ERP" />
-  <div class="title">SeinkSansDoozeBank — ERP Admin</div>
-  <button *ngIf="isLoginPage()" class="logout buttonBase">
-    <span>Se connecter</span>
-    <!-- <span>Se déconnecter</span> -->
-  </button>
-</header>
+<app-header></app-header>
 <app-nav></app-nav>
-
 <router-outlet></router-outlet>

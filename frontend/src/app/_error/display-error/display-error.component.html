@@ -1,0 +1,12 @@
+<div *ngIf="error!=null?startTimer():false" class="background">
+  <div (click)="forceErrorStop()" class="popup">
+    <div class="sub-title">
+      512_ERROR
+    </div>
+    <div class="popupContent">
+      <img src="./assets/error.png" alt="error">
+      {{error}}
+    </div>
+  </div>
+
+</div>

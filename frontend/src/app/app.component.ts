@@ -8,12 +8,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'erpApp';
-  constructor(private router: Router) { }
+  constructor() { }
 
 
   ngOnInit() {
   }
-  isLoginPage() {
-    return this.router.url !== '/login';
-  }
+ 
 }

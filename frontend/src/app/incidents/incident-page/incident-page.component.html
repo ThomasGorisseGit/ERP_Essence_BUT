@@ -1,0 +1,77 @@
+<div class="mainContainer">
+  <div class="incidentContainer">
+    <div class="leftTitles">
+      <div class="menuNav" (click)="setSelectedPage('FAQ des incidents')" [ngClass]="{selected:getSelectedPage('FAQ des incidents')}">FAQ des incidents</div>
+      <div class="menuNav" (click)="setSelectedPage('Reporter un incident')" [ngClass]="{selected:getSelectedPage('Reporter un incident')}">Reporter un incident</div>
+      <div class="menuNav" (click)="setSelectedPage('Incidents journaliers')" [ngClass]="{selected:getSelectedPage('Incidents journaliers')}">Incidents journaliers</div>
+    </div>
+    <div class="rightPart" *ngIf="getSelectedPage('FAQ des incidents')">
+      <div class="listIncident"><app-incidents  *ngFor="let incident of listIncidents"(click)="incidentSelected=incident" [ngClass]="{active:incident===incidentSelected}"
+          [incident]="incident"></app-incidents></div>
+      <div class="separator"></div>
+      <div class="textPart">
+        <img src={{incidentSelected.image}} width="150px" alt="">
+        <div class="incidentTitle">Que faire : {{incidentSelected.title}} ?</div>
+        <div class="incidentDesc" *ngIf="incidentSelected.solution !== undefined">
+          {{incidentSelected.solution}}
+        </div>
+        <div class="incidentDesc" *ngIf="incidentSelected.solution === undefined">
+          Veuillez contacter un supérieur. Il effectuera les démarches à distance. ( numéro d'urgence : 03200 )
+        </div>
+      </div>
+    </div>
+    <div class="flexcol" *ngIf="getSelectedPage('Reporter un incident')">
+      <div class="incidentTitle">Reporter un incident</div>
+      <form [formGroup]="formGroup" class="form">
+        <div class="item">
+          <label for="title">Titre</label>
+          <select class="default" type="text" formControlName="title">
+            <option *ngFor="let type of listIncidents" value={{type.title}}>{{type.title}}</option>
+          </select>
+        </div>
+        <div class="item">
+          <label for="description">Description</label>
+          <textarea class="default" formControlName="description" id="description" cols="30" rows="10"></textarea>
+        </div>
+        <button (click)="declarerIncident()">Déclarer l'incident</button>
+      </form>
+    </div>
+    <div class="rightPart" *ngIf="getSelectedPage('Incidents journaliers')">
+      <div class="dailyIncident" *ngIf="dailyIncident.length>0">
+        <div class="above">
+
+          <app-incidents
+            *ngFor="let incident of dailyIncident"
+            (click)="selectDailyIncident(incident)"
+            [incident]="incident"
+            [ngClass]="{dailyActive:incident===dailyIncidentSelected}"
+          ></app-incidents>
+
+        </div>
+        <div class="under">
+          <h2>Description :</h2>
+          <p class="dailyDescription" *ngIf="dailyIncidentSelected.id == 0">
+            Sélectionner un incident pour afficher sa description
+          </p>
+          <p class="dailyDescription" *ngIf="dailyIncidentSelected.id != 0 && dailyIncidentSelected.description!=null">
+              {{dailyIncidentSelected.description}}
+          </p>
+
+          <p class="dailyDescription" *ngIf="dailyIncidentSelected.id != 0 && dailyIncidentSelected.description==null">
+            Pas des descriptions fournie avec cet incident
+          </p>
+        </div>
+      </div>
+
+      <div class="noDailyIncident" *ngIf="dailyIncident.length==0">
+        <h3>Aucuns incidents n'a eu lieu aujourd'hui ! </h3>
+        <button
+        (click)="setSelectedPage('Reporter un incident')"
+        *ngIf="dailyIncident.length==0">
+          Déclarer un incident
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-display-error ></app-display-error>

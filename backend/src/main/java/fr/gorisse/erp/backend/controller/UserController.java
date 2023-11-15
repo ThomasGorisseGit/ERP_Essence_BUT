@@ -15,6 +15,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class UserController implements DefaultController<User> {
     @Autowired
     private UserCheckingService userService;

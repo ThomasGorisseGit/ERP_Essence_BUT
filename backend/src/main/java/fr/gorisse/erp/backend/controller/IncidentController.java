@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/incident")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class IncidentController implements DefaultController<Incident> {
 
     @Autowired
@@ -41,5 +44,9 @@ public class IncidentController implements DefaultController<Incident> {
         return this.incidentService.getEntityById(incident_id);
     }
 
+    @GetMapping("/findByDate/{date}")
+    public List<Incident> findByDate(@PathVariable("date") Date date){
+        return this.incidentService.findByDate(date);
+    }
 
 }
