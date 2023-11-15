@@ -4,12 +4,16 @@
   </div>
   <div class="right">
     <div class="topRight">
-      <div class="incidentMainContainer">
+      <div *ngIf="listIncidents.length>0" class="incidentMainContainer">
         <app-incidents
          *ngFor="let incident of listIncidents"
          [incident]="incident"
          (click)="gotoIncident(incident)"
          ></app-incidents>
+      </div>
+      <div *ngIf="listIncidents.length==0" class="incidentMainContainer">
+        <h2 class="noIncident">Aucuns incidents n'a été déclaré aujourd'hui</h2>
+        <button class="default" (click)="gotoIncident(null)">Déclarer un incident</button>
       </div>
     </div>
     <div class="bottomRight">

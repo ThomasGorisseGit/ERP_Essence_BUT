@@ -30,6 +30,11 @@ export class IncidentPageComponent {
   constructor(private incidentService:IncidentService,private route:ActivatedRoute) {
     this.findByDate();
 
+    this.route.queryParams.subscribe((data)=>{
+      if(data["page"] !== undefined){
+        this.selectedPage = data["page"];
+      }
+    })
 
   }
 

@@ -151,3 +151,11 @@ form.default {
   display: flex;
   flex-direction: column;
 }
+button.default{
+  border: none;
+  background-color: var(--green512);
+  padding: 1em;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.3em;
+}

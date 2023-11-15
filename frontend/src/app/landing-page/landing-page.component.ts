@@ -22,13 +22,20 @@ export class LandingPageComponent {
       }
     })
   }
-  gotoIncident(incident:Incident){
+  gotoIncident(incident:Incident | null){
+    if(incident!= null){
 
-   this.router.navigate(["/incidents"],{ queryParams:
-    {
-      "incident_id":incident.id,
+      this.router.navigate(["/incidents"],{ queryParams:
+        {
+          "incident_id":incident.id,
+        }
+      })
     }
-  })
+    else{
+      this.router.navigate(["/incidents"],{queryParams:{
+        "page":"Reporter un incident"
+      }})
+    }
   }
 
 
