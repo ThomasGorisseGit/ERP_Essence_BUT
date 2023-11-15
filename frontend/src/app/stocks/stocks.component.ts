@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Reappro } from '../reappro';
 import { Router } from '@angular/router';
-import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-stocks',
