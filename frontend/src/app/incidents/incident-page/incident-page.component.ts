@@ -13,7 +13,11 @@ import { DisplayErrorComponent } from 'src/app/_error/display-error/display-erro
 export class IncidentPageComponent {
   listIncidents: Incident[] = INCIDENTS;
   incidentSelected: Incident = INCIDENTS[0];
+  dailyIncident: Incident[] = [];
+  dailyIncidentSelected: Incident = this.setDefaultIncident()
+
   selectedPage ="FAQ des incidents";
+
   formGroup = new FormGroup({
     title:new FormControl(),
     description:new FormControl(),
@@ -22,7 +26,9 @@ export class IncidentPageComponent {
   @ViewChild(DisplayErrorComponent)
   displayError!: DisplayErrorComponent;
 
-  constructor(private incidentService:IncidentService) {  }
+  constructor(private incidentService:IncidentService) {
+    this.findByDate();
+  }
 
   getSelectedPage(page:string){
     return this.selectedPage==page;
@@ -61,10 +67,26 @@ export class IncidentPageComponent {
   }
   findByDate(){
     this.incidentService.findByDate(new Date().toISOString().split("T")[0]).subscribe({
-      next: (data)=>{
-        console.log(data);
-
+      next: (data: Incident[])=>{
+        this.dailyIncident=data;
       }
     });
   }
+  private setDefaultIncident():Incident{
+    return {
+      id: 0,
+      title: '',
+      date: '',
+      image: ''
+    }
+  }
+  selectDailyIncident(incident:Incident){
+    if(incident.id == this.dailyIncidentSelected.id){
+      this.dailyIncidentSelected = this.setDefaultIncident();
+    }else{
+      this.dailyIncidentSelected = incident;
+    }
+
+  }
+
 }

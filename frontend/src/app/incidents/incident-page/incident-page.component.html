@@ -37,7 +37,40 @@
       </form>
     </div>
     <div class="rightPart" *ngIf="getSelectedPage('Incidents journaliers')">
-      <button (click)="findByDate()">clickme</button>
+      <div class="dailyIncident" *ngIf="dailyIncident.length>0">
+        <div class="above">
+
+          <app-incidents
+            *ngFor="let incident of dailyIncident"
+            (click)="selectDailyIncident(incident)"
+            [incident]="incident"
+            [ngClass]="{dailyActive:incident===dailyIncidentSelected}"
+          ></app-incidents>
+
+        </div>
+        <div class="under">
+          <h2>Description :</h2>
+          <p class="dailyDescription" *ngIf="dailyIncidentSelected.id == 0">
+            Sélectionner un incident pour afficher sa description
+          </p>
+          <p class="dailyDescription" *ngIf="dailyIncidentSelected.id != 0 && dailyIncidentSelected.description!=null">
+              {{dailyIncidentSelected.description}}
+          </p>
+
+          <p class="dailyDescription" *ngIf="dailyIncidentSelected.id != 0 && dailyIncidentSelected.description==null">
+            Pas des descriptions fournie avec cet incident
+          </p>
+        </div>
+      </div>
+
+      <div class="noDailyIncident" *ngIf="dailyIncident.length==0">
+        <h3>Aucuns incidents n'a eu lieu aujourd'hui ! </h3>
+        <button
+        (click)="setSelectedPage('Reporter un incident')"
+        *ngIf="dailyIncident.length==0">
+          Déclarer un incident
+        </button>
+      </div>
     </div>
   </div>
 </div>
