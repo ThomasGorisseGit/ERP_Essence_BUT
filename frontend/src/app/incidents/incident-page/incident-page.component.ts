@@ -1,9 +1,10 @@
 import { IncidentService } from './../../_services/incident.service';
 import { Incident } from './../../_interfaces/incident';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { INCIDENTS } from 'src/app/_const/const';
 import { DisplayErrorComponent } from 'src/app/_error/display-error/display-error.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-incident-page',
@@ -11,11 +12,11 @@ import { DisplayErrorComponent } from 'src/app/_error/display-error/display-erro
   styleUrls: ['./incident-page.component.css']
 })
 export class IncidentPageComponent {
+
   listIncidents: Incident[] = INCIDENTS;
   incidentSelected: Incident = INCIDENTS[0];
   dailyIncident: Incident[] = [];
   dailyIncidentSelected: Incident = this.setDefaultIncident()
-
   selectedPage ="FAQ des incidents";
 
   formGroup = new FormGroup({
@@ -26,8 +27,10 @@ export class IncidentPageComponent {
   @ViewChild(DisplayErrorComponent)
   displayError!: DisplayErrorComponent;
 
-  constructor(private incidentService:IncidentService) {
+  constructor(private incidentService:IncidentService,private route:ActivatedRoute) {
     this.findByDate();
+
+
   }
 
   getSelectedPage(page:string){
@@ -69,6 +72,7 @@ export class IncidentPageComponent {
     this.incidentService.findByDate(new Date().toISOString().split("T")[0]).subscribe({
       next: (data: Incident[])=>{
         this.dailyIncident=data;
+        this.getRouteIncident();
       }
     });
   }
@@ -88,5 +92,21 @@ export class IncidentPageComponent {
     }
 
   }
+  private getRouteIncident(){
+    if(this.route.snapshot.queryParams["incident_id"])
+        {
+          this.route.queryParams.subscribe((params)=>{
+             this.dailyIncident.forEach(element => {
+              if(element.id==params["incident_id"]) {
+                this.dailyIncidentSelected = element;
+                return;
+              }
 
+             });
+
+
+            this.selectedPage = "Incidents journaliers";
+          })
+        }
+  }
 }

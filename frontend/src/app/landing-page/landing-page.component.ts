@@ -1,6 +1,9 @@
+import { IncidentService } from './../_services/incident.service';
 import { Component } from '@angular/core';
 import { Incident } from '../_interfaces/incident';
 import { INCIDENTS } from '../_const/const';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,8 +12,24 @@ import { INCIDENTS } from '../_const/const';
 })
 export class LandingPageComponent {
   listIncidents: Incident[] = INCIDENTS;
-  constructor() { }
+  constructor(private incidentService:IncidentService,private router:Router) {
+    this.incidentService.findByDate(new Date().toISOString().split('T')[0]).subscribe({
+      next: (data:Incident[])=>{
+        this.listIncidents = data;
+      },
+      error: (e:HttpErrorResponse)=> {
+        console.log(e);
+      }
+    })
+  }
+  gotoIncident(incident:Incident){
 
+   this.router.navigate(["/incidents"],{ queryParams:
+    {
+      "incident_id":incident.id,
+    }
+  })
+  }
 
 
 }
