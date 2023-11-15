@@ -13,14 +13,10 @@ import { Router } from '@angular/router';
 export class LandingPageComponent {
   listIncidents: Incident[] = INCIDENTS;
   constructor(private incidentService:IncidentService,private router:Router) {
-    this.incidentService.findByDate(new Date().toISOString().split('T')[0]).subscribe({
-      next: (data:Incident[])=>{
-        this.listIncidents = data;
-      },
-      error: (e:HttpErrorResponse)=> {
-        console.log(e);
-      }
-    })
+    if(this.listIncidents === INCIDENTS){
+      this.fetchIncidents();
+    }
+
   }
   gotoIncident(incident:Incident | null){
     if(incident!= null){
@@ -36,6 +32,16 @@ export class LandingPageComponent {
         "page":"Reporter un incident"
       }})
     }
+  }
+  private fetchIncidents(){
+    this.incidentService.findByDate(new Date().toISOString().split('T')[0]).subscribe({
+      next: (data:Incident[])=>{
+        this.listIncidents = data;
+      },
+      error: (e:HttpErrorResponse)=> {
+        console.log(e);
+      }
+    })
   }
 
 

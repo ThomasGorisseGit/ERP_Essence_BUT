@@ -6,6 +6,7 @@ import { INCIDENTS } from 'src/app/_const/const';
 import { DisplayErrorComponent } from 'src/app/_popup/display-error/display-error.component';
 import { ActivatedRoute } from '@angular/router';
 import { DisplayPopupComponent } from 'src/app/_popup/display-popup/display-popup.component';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-incident-page',
@@ -37,6 +38,9 @@ export class IncidentPageComponent {
     this.route.queryParams.subscribe((data)=>{
       if(data["page"] !== undefined){
         this.selectedPage = data["page"]
+      }
+      if(data["incident_title"] !== undefined){
+        this.incidentSelected = this.searchByAttribute(data["incident_title"],this.listIncidents,"title");
       }
     })
 
@@ -106,17 +110,18 @@ export class IncidentPageComponent {
     if(this.route.snapshot.queryParams["incident_id"])
         {
           this.route.queryParams.subscribe((params)=>{
-             this.dailyIncident.forEach(element => {
-              if(element.id==params["incident_id"]) {
-                this.dailyIncidentSelected = element;
-                return;
-              }
-
-             });
-
-
+            this.dailyIncidentSelected = this.searchByAttribute(params["incident_id"],this.dailyIncident,"id")
             this.selectedPage = "Incidents journaliers";
           })
         }
+  }
+  private searchByAttribute(value:string,list:Incident[],attribute:keyof Incident) : Incident{
+    var incident = this.setDefaultIncident();
+    list.forEach(element => {
+      if(element[attribute] == value) {
+        incident = element;
+      }
+    })
+    return incident;
   }
 }

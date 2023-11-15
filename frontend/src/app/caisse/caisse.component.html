@@ -6,7 +6,7 @@
   <div class="middle">
     <div class="middleLeft">
       <div class="incidentMainContainer">
-        <app-incidents *ngFor="let incident of listIncidents" [incident]="incident"></app-incidents>
+        <app-incidents (click)="gotoIncident(incident)" *ngFor="let incident of listIncidents" [incident]="incident"></app-incidents>
       </div>
       <form>
         <div class="formGroup">

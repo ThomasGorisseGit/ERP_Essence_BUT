@@ -6,7 +6,8 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHeaders,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpResponse
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
@@ -27,14 +28,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${token.bearer}`
         }
       });
-      return next.handle(modifiedReq).pipe(
-        catchError((error:HttpErrorResponse)=>{
-          this.authService.logout();
-          this.router.navigateByUrl("/login");
-          throw Error("Token Expired")
-
-        })
-      );
+      return next.handle(modifiedReq)
     }else{
       return next.handle(request);
     }

@@ -70,15 +70,12 @@ ul {
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
-.navRouter div:hover {
-  transform: translateX(5%);
-}
-.navRouter div.choosed:hover {
-  transform: none;
-}
+
 .choosed {
   background-color: white;
   color: var(--green512);
   font-weight: bold;
   border-radius: 0 10px 10px 0;
+  transform: translate(10px);
+
 }

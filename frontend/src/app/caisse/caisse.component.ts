@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Incident } from '../_interfaces/incident';
 import { Cart } from '../cart';
 import { ProductService } from '../service/product.service';
+import { INCIDENTS } from '../_const/const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-caisse',
@@ -9,12 +11,15 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./caisse.component.css'],
 })
 export class CaisseComponent {
-  listIncidents: Incident[] = [];
+
+  listIncidents: Incident[] = [INCIDENTS[4],INCIDENTS[5],INCIDENTS[7],INCIDENTS[0]] ;
   inputValue: string = '';
   cart: Cart = { listProduct: [], total: 0 };
+
   loading: boolean = false;
   validate: boolean = false;
-  constructor(private productService: ProductService) { }
+
+  constructor(private productService: ProductService,private router:Router) { }
   ngOnInit(): void {
 
     // shuffle the list of incidents
@@ -162,5 +167,11 @@ export class CaisseComponent {
       return cpt == this.cart.listProduct.length;
     }
     return false;
+  }
+  gotoIncident(incident:Incident){
+    this.router.navigate(["/incidents"],{queryParams:{
+      "incident_title":incident.title,
+      "page":"FAQ des incidents"
+    }})
   }
 }
