@@ -73,7 +73,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   width: 75vw;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 #question-group {

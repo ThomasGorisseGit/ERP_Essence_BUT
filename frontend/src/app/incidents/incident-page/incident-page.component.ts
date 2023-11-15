@@ -3,8 +3,9 @@ import { Incident } from './../../_interfaces/incident';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, Input, ViewChild } from '@angular/core';
 import { INCIDENTS } from 'src/app/_const/const';
-import { DisplayErrorComponent } from 'src/app/_error/display-error/display-error.component';
+import { DisplayErrorComponent } from 'src/app/_popup/display-error/display-error.component';
 import { ActivatedRoute } from '@angular/router';
+import { DisplayPopupComponent } from 'src/app/_popup/display-popup/display-popup.component';
 
 @Component({
   selector: 'app-incident-page',
@@ -26,13 +27,16 @@ export class IncidentPageComponent {
 
   @ViewChild(DisplayErrorComponent)
   displayError!: DisplayErrorComponent;
+  @ViewChild(DisplayPopupComponent)
+  displayPopup!: DisplayPopupComponent;
+
 
   constructor(private incidentService:IncidentService,private route:ActivatedRoute) {
     this.findByDate();
 
     this.route.queryParams.subscribe((data)=>{
       if(data["page"] !== undefined){
-        this.selectedPage = data["page"];
+        this.selectedPage = data["page"]
       }
     })
 
@@ -66,7 +70,8 @@ export class IncidentPageComponent {
     }
     this.incidentService.addIncident(incident).subscribe({
       complete:()=>{
-        location.reload();
+        this.displayPopup.text="Incident ajouté";
+        this.displayPopup.image = "./assets/done.png"
       },
       error:(err)=>{
         this.displayError.error="Impossible d'ajouter l'incident, une erreur est survenue lors de l'insertion"

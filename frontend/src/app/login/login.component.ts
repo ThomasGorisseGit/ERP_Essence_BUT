@@ -5,7 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ConnectionService } from '../_services/connection.service';
 import { User } from '../_interfaces/user';
 import { HttpErrorResponse } from '@angular/common/http';
-import { DisplayErrorComponent } from '../_error/display-error/display-error.component';
+import { DisplayErrorComponent } from '../_popup/display-error/display-error.component';
 import { Router } from '@angular/router';
 
 @Component({

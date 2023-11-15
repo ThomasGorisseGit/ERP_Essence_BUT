@@ -1,0 +1,12 @@
+<div *ngIf="text!=null?startTimer():false" class="background">
+  <div (click)="forceErrorStop()" class="popup">
+    <div class="sub-title">
+      512_Popup
+    </div>
+    <div class="popupContent">
+      <img src={{this.image}} alt="error">
+      {{text}}
+    </div>
+  </div>
+
+</div>
