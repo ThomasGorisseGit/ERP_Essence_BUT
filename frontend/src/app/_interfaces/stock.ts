@@ -1,5 +1,8 @@
+import { Product } from "./product";
+
 export interface Stock {
   id:number;
   quantity:number;
-  date:Date;
+  date:string;
+  product:Product
 }

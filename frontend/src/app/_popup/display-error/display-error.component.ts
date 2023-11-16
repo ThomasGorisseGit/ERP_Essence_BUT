@@ -8,6 +8,8 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 export class DisplayErrorComponent{
 
   @Input()error!: string | null;
+  @Input()message!: string | null;
+
 
   constructor(){
   }

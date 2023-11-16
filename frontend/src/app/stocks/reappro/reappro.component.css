@@ -2,17 +2,16 @@ li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 49px;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
-.date {
-  flex: 1;
-}
+.date ,
 .fournisseur,
-.produit,
 .etat {
   flex: 2;
+}
+.produit{
+  flex: 4;
 }
 .pumpState {
   display: flex;

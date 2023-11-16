@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Delivery } from 'src/app/_interfaces/delivery';
 import { Reappro } from 'src/app/reappro';
 
 @Component({
@@ -8,7 +9,7 @@ import { Reappro } from 'src/app/reappro';
 })
 export class ReapproComponent {
   @Input()
-  reappro!: Reappro;
+  reappro!: Delivery;
 
   constructor() { }
 }

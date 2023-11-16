@@ -1,3 +1,4 @@
+import { Provider } from "./provider";
 import { Stock } from "./stock";
 
 export interface Product {
@@ -6,4 +7,5 @@ export interface Product {
   description?: string;
   price: number;
   stock:Stock;
+  provider:Provider
 }

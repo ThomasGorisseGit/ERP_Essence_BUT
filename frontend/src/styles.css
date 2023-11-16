@@ -162,3 +162,14 @@ button.default{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+input.none{
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  height: auto;
+  border: none;
+  font-size:unset;
+  padding-left: 0;
+  width: 100%;
+}
+

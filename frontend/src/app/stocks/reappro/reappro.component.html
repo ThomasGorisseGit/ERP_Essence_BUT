@@ -1,23 +1,22 @@
 <li>
-  <div class="date">{{this.reappro.date.slice(5)}}</div>
-  <div class="fournisseur">{{this.reappro.fournisseur}}</div>
-  <div class="produit">{{this.reappro.produit}}</div>
+  <div class="date">{{this.reappro.date}}</div>
+  <div class="fournisseur">{{this.reappro.stock.product.provider.firstName}}</div>
+  <div class="produit">{{this.reappro.stock.product.name}}</div>
   <div class="etat">
-    <div class="pumpState" *ngIf="this.reappro.etat=='canceled'">
+    <div class="pumpState" *ngIf="this.reappro.state=='Annulé'">
       <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="10" cy="10.5" r="10" fill="#FF3D00" />
       </svg>Annulé
     </div>
-    <div class="pumpState" *ngIf="this.reappro.etat=='done'">
+    <div class="pumpState" *ngIf="this.reappro.state=='Livré'">
       <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="10" cy="10.5" r="10" fill="#00E676" />
       </svg>Livré
     </div>
-    <div class="pumpState" *ngIf="this.reappro.etat=='inProgress'">
+    <div class="pumpState" *ngIf="this.reappro.state=='En cours'">
       <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="10" cy="10.5" r="10" fill="#FFC700" />
       </svg>En cours
     </div>
   </div>
-  <div [class]="this.reappro.etat=='inProgress'?'':'grey'" class="annuler">Annuler</div>
 </li>

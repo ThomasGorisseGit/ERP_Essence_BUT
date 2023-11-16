@@ -66,11 +66,11 @@ export class CaisseComponent {
   validateProduit() {
     // check if the id product of input is present in the list of products
     var trouve = null;
-    for (var i = 0; i < this.productService.listProduct.length; i++) {
+    for (var i = 0; i < this.productService.listProduct!.length; i++) {
       if (
-        this.productService.listProduct[i].id==parseInt(this.inputValue)
+        this.productService.listProduct![i].id==parseInt(this.inputValue)
       ) {
-        trouve = this.productService.listProduct[i];
+        trouve = this.productService.listProduct![i];
         break;
       }
     }

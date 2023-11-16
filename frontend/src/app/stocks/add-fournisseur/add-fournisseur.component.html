@@ -24,17 +24,19 @@
           <input class="none" matInput formControlName="siret"
                  type="text"
                  required
-                 placeholder="14 caractères">
+                 placeholder="14 Chiffres">
     </mat-form-field>
   </div>
 
   <div class="formGroup">
     <mat-form-field appearance="fill">
       <mat-label>Produits proposés</mat-label>
-      <mat-select formControlName="productProposed" multiple>
+      <mat-select formControlName="productProposed" multiple required>
         <mat-option *ngFor="let product of productProposedList" [value]="product">{{product.name}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <button (click)="submit()">Valider</button>
 </form>
+<app-display-error ></app-display-error>
+<app-display-popup ></app-display-popup>

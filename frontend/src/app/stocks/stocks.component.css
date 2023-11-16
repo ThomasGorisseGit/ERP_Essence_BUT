@@ -21,13 +21,15 @@ li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 49px;
   font-size: 1.5em;
+  margin:0;
   font-weight: bold;
-  padding-bottom: 1em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
   border-bottom: 2px solid #e5e5e5;
 }
 ul {
+  overflow: auto;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -39,16 +41,16 @@ ul {
   display: flex;
   flex-direction: column;
   padding: 0em 1em;
-  justify-content: space-around;
+  gap: 20px;
 }
 
-.date {
-  flex: 1;
-}
+.date,
 .fournisseur,
-.produit,
 .etat {
   flex: 2;
+}
+.produit{
+  flex: 4;
 }
 .annuler {
   background: #ff3d00;
