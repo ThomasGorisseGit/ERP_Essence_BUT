@@ -96,11 +96,11 @@
           </div>
           <div class="productsContainer">
             <div class="product" *ngFor="let item of cart.listProduct">
-              <div class="idProduct">{{item.produit.idProduit}}</div>
-              <div class="nameProduct">{{item.produit.nom}}</div>
-              <div class="priceProduct">{{item.produit.prix}}€</div>
-              <div class="quantityProduct">{{item.quantity}}</div>
-              <div (click)="deleteProduct(item.produit.idProduit)"><svg width="29" height="32" viewBox="0 0 29 32"
+              <div class="idProduct">{{item.produit.id}}</div>
+              <div class="nameProduct">{{item.produit.name}}</div>
+              <div class="priceProduct">{{item.produit.price}}€</div>
+              <div class="quantityProduct">{{item.produit.stock.quantity}}</div>
+              <div (click)="deleteProduct(item.produit.id)"><svg width="29" height="32" viewBox="0 0 29 32"
                   fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M27.9716 5.91422C25.5792 5.67647 23.1867 5.49815 20.7794 5.36441V5.34955L20.4525 3.41777C20.2296 2.05066 19.9027 0 16.4255 0H12.5322C9.06982 0 8.74291 1.9615 8.50515 3.40291L8.19309 5.30497C6.81112 5.39413 5.42916 5.48329 4.04719 5.61703L1.01578 5.91422C0.391669 5.97366 -0.0541262 6.52348 0.00531317 7.13273C0.0647526 7.74199 0.599707 8.18778 1.22382 8.12834L4.25523 7.83115C12.0418 7.05843 19.8878 7.35563 27.7636 8.1432H27.8824C28.4471 8.1432 28.9375 7.71227 28.9969 7.13273C29.0415 6.52348 28.5957 5.97366 27.9716 5.91422Z"

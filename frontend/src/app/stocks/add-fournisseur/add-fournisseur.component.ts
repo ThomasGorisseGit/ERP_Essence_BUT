@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Product } from 'src/app/_interfaces/product';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
   selector: 'app-add-fournisseur',
@@ -11,9 +13,21 @@ export class AddFournisseurComponent {
     firstName:new FormControl(),
     lastName : new FormControl(),
     siret : new FormControl(),
-
+    productProposed: new FormControl()
   })
-  productProposedList: string[] = ['Produit 1', 'Produit 2', 'Produit 3'];
-  productProposed: FormControl = new FormControl('');
-  constructor() { }
+  productProposedList: Product[] = [];
+
+
+  constructor(private productService:ProductService) {
+    this.productService.getProductAvailableForProvider().subscribe({
+      next:(data:Product[])=>{
+        this.productProposedList = data.reverse();
+      }
+    })
+   }
+
+   submit(){
+    console.log(this.formGroup.value);
+
+   }
 }

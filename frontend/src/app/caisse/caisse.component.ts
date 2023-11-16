@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Incident } from '../_interfaces/incident';
 import { Cart } from '../cart';
-import { ProductService } from '../service/product.service';
 import { INCIDENTS } from '../_const/const';
 import { Router } from '@angular/router';
+import { ProductService } from '../_services/product.service';
+import { Product } from '../_interfaces/product';
 
 @Component({
   selector: 'app-caisse',
@@ -67,8 +68,7 @@ export class CaisseComponent {
     var trouve = null;
     for (var i = 0; i < this.productService.listProduct.length; i++) {
       if (
-        this.productService.listProduct[i].idProduit ==
-        parseInt(this.inputValue)
+        this.productService.listProduct[i].id==parseInt(this.inputValue)
       ) {
         trouve = this.productService.listProduct[i];
         break;
@@ -78,7 +78,7 @@ export class CaisseComponent {
       // add the product to the cart if it is not already present
       var trouve2 = -1;
       for (var i = 0; i < this.cart.listProduct.length; i++) {
-        if (this.cart.listProduct[i].produit.idProduit == trouve.idProduit) {
+        if (this.cart.listProduct[i].produit.id == trouve.id) {
           trouve2 = i;
           console.log('produit déjà présent');
 
@@ -96,7 +96,7 @@ export class CaisseComponent {
       }
       // update total
       this.cart.total = this.cart.listProduct.reduce(
-        (total, item) => total + item.produit.prix * item.quantity,
+        (total, item) => total + item.produit.price * item.quantity,
         0
       );
       this.cart.total = Math.round(this.cart.total * 100) / 100;
@@ -107,7 +107,7 @@ export class CaisseComponent {
   deleteProduct(id: number) {
     var trouve = -1;
     for (var i = 0; i < this.cart.listProduct.length; i++) {
-      if (this.cart.listProduct[i].produit.idProduit == id) {
+      if (this.cart.listProduct[i].produit.id == id) {
         trouve = i;
         break;
       }
@@ -122,7 +122,7 @@ export class CaisseComponent {
         this.cart.listProduct.splice(trouve, 1);
       }
       this.cart.total = this.cart.listProduct.reduce(
-        (total, item) => total + item.produit.prix * item.quantity,
+        (total, item) => total + item.produit.price * item.quantity,
         0
       );
       this.cart.total = Math.round(this.cart.total * 100) / 100;
@@ -158,7 +158,7 @@ export class CaisseComponent {
     var cpt = 0;
     var trouve = false;
     for (var i = 0; i < this.cart.listProduct.length; i++) {
-      if (this.cart.listProduct[i].produit.nom == "Essence" || this.cart.listProduct[i].produit.nom == "Hydrocarbure" || this.cart.listProduct[i].produit.nom == "Gasoil" || this.cart.listProduct[i].produit.nom == "Batterie") {
+      if (this.cart.listProduct[i].produit.name == "Essence" || this.cart.listProduct[i].produit.name == "Hydrocarbure" || this.cart.listProduct[i].produit.name == "Gasoil" || this.cart.listProduct[i].produit.name == "Batterie") {
         cpt++;
         trouve = true;
       }
