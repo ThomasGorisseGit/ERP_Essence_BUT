@@ -1,13 +1,33 @@
-<form>
+<form [formGroup]="formGroup">
   <h3>Nouveau fournisseur</h3>
   <div class="formGroup">
-    <label for="name">Nom du fournisseur</label>
-    <input type="text" name="name" id="name">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+          <input class="none" matInput formControlName="firstName"
+                 type="text"
+                 required
+                 placeholder="">
+    </mat-form-field>
   </div>
   <div class="formGroup">
-    <label for="siret">Numéro de SIRET</label>
-    <input type="text" name="siret" id="siret">
+    <mat-form-field appearance="fill">
+      <mat-label>Prénom</mat-label>
+          <input class="none" matInput formControlName="lastName"
+                 type="text"
+                 required
+                 placeholder="">
+    </mat-form-field>
   </div>
+  <div class="formGroup">
+    <mat-form-field appearance="fill">
+      <mat-label>Siret</mat-label>
+          <input class="none" matInput formControlName="siret"
+                 type="text"
+                 required
+                 placeholder="">
+    </mat-form-field>
+  </div>
+
   <div class="formGroup">
     <mat-form-field appearance="fill">
       <mat-label>Produits proposés</mat-label>

@@ -1,3 +1,4 @@
+import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -51,7 +52,8 @@ import { DisplayPopupComponent } from './_popup/display-popup/display-popup.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatInputModule
   ],
   providers: [
     HttpClient,

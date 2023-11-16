@@ -1,6 +1,6 @@
+import { Produit } from '../_interfaces/produit';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Produit } from '../produit';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,13 +11,11 @@ export class ProductService {
 
 
   constructor(private http: HttpClient) {
-    this.http.get('http://64.225.109.223/backend/api/items.php').subscribe((data: any) => {
-      this.listProduct = data;
-    });
+    this.listProduct = [];
   }
 
   getAllItems() {
-    return this.http.get('http://64.225.109.223/backend/api/items.php');
+    return []
 
   }
 }

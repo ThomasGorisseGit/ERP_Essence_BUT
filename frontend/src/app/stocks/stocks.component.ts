@@ -58,7 +58,6 @@ export class StocksComponent {
   }
 
   route(): string {
-
     return this.router.url.slice(8);
   }
 }
