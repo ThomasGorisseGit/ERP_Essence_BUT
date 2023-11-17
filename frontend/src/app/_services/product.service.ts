@@ -6,6 +6,7 @@ import { ApiURL } from '../_const/const';
 import { Produit } from '../_interfaces/produit';
 import { Provider } from '../_interfaces/provider';
 import { Delivery } from '../_interfaces/delivery';
+import { Stock } from '../_interfaces/stock';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class ProductService {
   listProduct: Product[] | null = null;
   listDelivery:Delivery[] | null = null;
   listProductWithoutProvider: Product[] | null = null;
+  listStock : Stock[] | null = null;
 
   constructor(private http:HttpClient) {
 
@@ -61,6 +63,18 @@ export class ProductService {
       })
       return request;
     });
+  }
+  getStocks(){
+    return this.http.get<Stock[]>(ApiURL+"/stock/getStocks").pipe((req)=>{
+      req.subscribe({
+        next:(data)=>{
+          if(this.listStock===null){
+            this.listStock = data;
+          }
+        }
+      })
+      return req;
+    })
   }
 
 }

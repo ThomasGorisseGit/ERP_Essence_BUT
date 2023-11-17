@@ -5,9 +5,9 @@
     <div>Prix d'achat</div>
     <div>Prix de vente</div>
   </li>
-  <li *ngFor="let product of listProduct">
-    <input type="text" value="{{product.name}}">
-    <div>{{product.stock.quantity}}</div>
-    <div>{{product.price}}</div>
+  <li *ngFor="let product of listStocks">
+    <div>{{product.product.name}} </div>
+    <div>{{product.quantity}}</div>
+    <div>{{product.date}}</div>
   </li>
 </ul>
