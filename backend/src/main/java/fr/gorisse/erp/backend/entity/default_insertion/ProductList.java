@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class Products extends ArrayList<Product> {
-    public Products(){
+public class ProductList extends ArrayList<Product> {
+    public ProductList(){
         this.add(new Product(29.99, "Un t-shirt confortable en coton", "T-shirt en coton"));
         this.add(new Product(49.99, "Un sac à dos spacieux et élégant", "Sac à dos chic"));
         this.add(new Product(9.99, "Une paire de chaussettes colorées", "Chaussettes fantaisie"));
