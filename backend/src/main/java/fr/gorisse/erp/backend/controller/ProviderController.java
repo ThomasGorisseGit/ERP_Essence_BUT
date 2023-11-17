@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(("/provider"))
+@RequestMapping("/provider")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class ProviderController implements DefaultController<Provider> {
     @Autowired
     private ProviderService providerService;

@@ -1,5 +1,6 @@
 package fr.gorisse.erp.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fr.gorisse.erp.backend.entity.model.Person;
 import fr.gorisse.erp.backend.entity.valueObject.Siret;
@@ -20,11 +21,13 @@ public class Provider extends Person {
     @GeneratedValue
     private int id;
     @OneToMany(mappedBy = "provider")
-    @JsonIgnoreProperties("provider")
+    @JsonIgnoreProperties(value="provider")
+    @JsonIgnore
     private List<Product> productList;
 
     @OneToMany(mappedBy = "provider")
     @JsonIgnoreProperties(value = {"provider","productList","orderList","clientOrder"})
+    @JsonIgnore
     private List<Fuel> fuelList;
 
     @Convert(converter = SiretConverter.class)
