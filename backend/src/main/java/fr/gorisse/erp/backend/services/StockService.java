@@ -18,9 +18,11 @@ import java.util.Random;
 public class StockService extends ServiceMethods<Stock>{
     private ProductRepository productRepository;
     private DeliveryRepository deliveryRepository;
+    private StockRepository stockRepository;
     @Autowired
     protected void setRepository(StockRepository stockRepository, ProductRepository productRepository,DeliveryRepository deliveryRepository) {
         super.repository = stockRepository;
+        this.stockRepository = stockRepository;
         this.productRepository = productRepository;
         this.deliveryRepository = deliveryRepository;
     }
@@ -106,4 +108,9 @@ public class StockService extends ServiceMethods<Stock>{
 
     }
 
+    @Override
+    public List<Stock> getAll() {
+        this.updateStocks();
+        return this.stockRepository.findStockByQuantityGreaterThan(0);
+    }
 }

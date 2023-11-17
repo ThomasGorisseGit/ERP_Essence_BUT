@@ -21,6 +21,10 @@ public class StockController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/getStocks")
+    public List<Stock> getAll(){
+        return this.stockService.getAll();
+    }
 
     @PostMapping("/edit")
     @Transactional
