@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/incident")
@@ -44,9 +47,11 @@ public class IncidentController implements DefaultController<Incident> {
         return this.incidentService.getEntityById(incident_id);
     }
 
-    @GetMapping("/findByDate/{date}")
-    public List<Incident> findByDate(@PathVariable("date") Date date){
-        return this.incidentService.findByDate(date);
+    @GetMapping("/findByDate")
+    public List<Incident> findByDate(@RequestParam String date) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+        Date localDate = formatter.parse(date);
+        return  this.incidentService.findByDate(localDate);
     }
 
 }
