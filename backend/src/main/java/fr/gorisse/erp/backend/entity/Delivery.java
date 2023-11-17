@@ -1,6 +1,8 @@
 package fr.gorisse.erp.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +28,8 @@ public class Delivery {
     private int quantity;
 
     @ManyToOne(targetEntity = Stock.class)
+    @JsonIgnoreProperties(value = "deliveryList")
+    @JsonIgnore
     private Stock stock;
 
     private String state ;
