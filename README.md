@@ -22,6 +22,12 @@ It will still use the Angular framework, but its backend will be developed using
 
 The purpose of this project is to gain experience and understand how data exchanges work between SpringBoot and SQL.
 
+## Difficulties Encountered
+During the realization of this project, I worked on an application implementing the foundations of an entity-service architecture using Spring. I believe it might have been easier to create global services capable of handling entire features. For instance, instead of creating a service to create an order and another service to add an item to an order, it would have been more efficient to combine these features into the same service. This way, I wouldn't automatically set up a service for each entity.
+
+Additionally, I faced challenges when implementing the user authentication system. It would have been beneficial to tackle the authentication feature first to gain a clear and comprehensive understanding of the subject. Learning the intricacies of Spring authentication while simultaneously integrating it into the application proved to be challenging.
+
+
 
 ## Français
 
