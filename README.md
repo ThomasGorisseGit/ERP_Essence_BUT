@@ -49,5 +49,13 @@ L'application SpringBoot (Java) intérogerra une base de donnée SQL.
 
 Ce projet a pour but de me faire gagner en expérience et de comprendre le fonctionnement les échanges de données entre SpringBoot et SQL.
 
+## Difficultés rencontrées 
+
+Lors de la réalisation de ce projet, j'ai travail sur un application mettant en oeuvre les fondements d'une architecture de type entité - service grâce à spring.
+Je pense qu'il aurait été plus facile de réaliser des services globaux capable de prendre en charge toute une feature. Par exemple il n'aurait pas fallu faire un service pour créer une commande et un service pour ajouter un article a une commande, mais bien réunir les deux features dans le même service.
+Ainsi je ne mettrai pas automatiquement en place un service pour chaque Entité.
+
+Également, j'ai rencontré des difficultées lors de l'implementation du système de connexion d'un utilisateur, il aurait fallu prendre en charge la feature en premier afin d'avoir un point de vue global et clair sur le sujet. Il était difficile d'apprendre le fonctionnement d'une connexion sur Spring tout en mettant en place le système pour qu'il soit compatible avec l'application.
+
 
 
