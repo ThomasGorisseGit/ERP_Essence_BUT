@@ -24,7 +24,7 @@ public class Product {
     private String name;
 
     @ManyToOne(targetEntity = Provider.class)
-    @JsonIgnoreProperties({"productList","product"})
+    @JsonIgnoreProperties(value = {"productList","product"})
     @JsonIgnore
     private Provider provider;
 
@@ -33,7 +33,7 @@ public class Product {
     private Stock stock;
 
     @OneToMany(mappedBy = "product")
-    @JsonIgnoreProperties("product")
+    @JsonIgnoreProperties(value = "product")
     @JsonIgnore
     private List<OrderList> orderLists;
 

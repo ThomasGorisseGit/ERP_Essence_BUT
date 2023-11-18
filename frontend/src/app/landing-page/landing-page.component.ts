@@ -13,6 +13,27 @@ import { Router } from '@angular/router';
 export class LandingPageComponent {
   listIncidents: Incident[] = INCIDENTS;
   constructor(private incidentService:IncidentService,private router:Router) {
+    if(this.listIncidents === INCIDENTS){
+      this.fetchIncidents();
+    }
+
+  }
+  gotoIncident(incident:Incident | null){
+    if(incident!= null){
+
+      this.router.navigate(["/incidents"],{ queryParams:
+        {
+          "incident_id":incident.id,
+        }
+      })
+    }
+    else{
+      this.router.navigate(["/incidents"],{queryParams:{
+        "page":"Reporter un incident"
+      }})
+    }
+  }
+  private fetchIncidents(){
     this.incidentService.findByDate(new Date().toISOString().split('T')[0]).subscribe({
       next: (data:Incident[])=>{
         this.listIncidents = data;
@@ -21,14 +42,6 @@ export class LandingPageComponent {
         console.log(e);
       }
     })
-  }
-  gotoIncident(incident:Incident){
-
-   this.router.navigate(["/incidents"],{ queryParams:
-    {
-      "incident_id":incident.id,
-    }
-  })
   }
 
 

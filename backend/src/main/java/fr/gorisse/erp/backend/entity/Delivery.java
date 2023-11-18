@@ -8,38 +8,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Stock {
+public class Delivery {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne(mappedBy = "stock")
-    @JsonIgnoreProperties(value = "stock",allowSetters = true)
-    private Product product;
-
-    private long quantity;
-
     @JsonFormat(pattern = "dd/MM/yyyy")
-    @UpdateTimestamp
+    @Temporal(TemporalType.DATE)
     private Date date;
 
-    @OneToMany(mappedBy = "stock")
-    @JsonIgnoreProperties("stock")
+    private int quantity;
+
+    @ManyToOne(targetEntity = Stock.class)
+    @JsonIgnoreProperties(value = "deliveryList")
     @JsonIgnore
-    private List<Delivery> deliveryList;
+    private Stock stock;
 
-    public Stock(int quantity){
-        this.quantity = quantity;
-    }
-
+    private String state ;
 }

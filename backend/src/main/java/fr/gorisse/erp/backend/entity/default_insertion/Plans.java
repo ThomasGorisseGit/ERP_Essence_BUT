@@ -14,7 +14,6 @@ public class Plans extends ArrayList<Subscription> {
         this.add(new Subscription("Beginner plan", SubscriptionPrice.create(29.99), Discount.create(10)));
         this.add(new Subscription("Medium plan", SubscriptionPrice.create(39.99), Discount.create(20)));
         this.add(new Subscription("Professional plan", SubscriptionPrice.create(49.99), Discount.create(30)));
-
         this.add(new Subscription("Business plan", SubscriptionPrice.create(54.99), Discount.create(50)));
     }
 }

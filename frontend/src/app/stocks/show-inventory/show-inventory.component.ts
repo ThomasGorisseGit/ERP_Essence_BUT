@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Produit } from 'src/app/produit';
-import { ProductService } from 'src/app/service/product.service';
+import { Product } from 'src/app/_interfaces/product';
+import { Produit } from 'src/app/_interfaces/produit';
+import { Stock } from 'src/app/_interfaces/stock';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
   selector: 'app-show-inventory',
@@ -8,17 +10,24 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./show-inventory.component.css']
 })
 export class ShowInventoryComponent {
-  listProduct: Produit[] = [];
-
+  listProduct: Product[] = [];
+  public listStocks:Stock[] = [];
   constructor(private productService: ProductService) {
-    this.productService.getAllItems().subscribe((data: any) => {
-      this.listProduct = data;
-      console.log(this.listProduct);
-      // for each item in the list, add a new property called "prixVente" and set it to the prix *  random number between 0.9 and 1.1 and round it to 2 decimal places
-      for (let i = 0; i < this.listProduct.length; i++) {
-        this.listProduct[i].prixVente = parseFloat((this.listProduct[i].prix * (Math.random() * 0.2 + 1)).toFixed(2));
-      }
-    });
+    console.log("here");
 
+    if(productService.listStock === null){
+      this.productService.getStocks().subscribe({
+        next : (data)=>{
+          console.log(data);
+
+          this.listStocks = data;
+        }
+      })
+    }else{
+      this.listStocks = this.productService.listStock as Stock[];
+    }
   }
+
+
+
 }

@@ -1,20 +1,42 @@
-<form>
+<form [formGroup]="formGroup">
   <h3>Nouveau fournisseur</h3>
   <div class="formGroup">
-    <label for="name">Nom du fournisseur</label>
-    <input type="text" name="name" id="name">
-  </div>
-  <div class="formGroup">
-    <label for="siret">Numéro de SIRET</label>
-    <input type="text" name="siret" id="siret">
+    <mat-form-field appearance="fill">
+      <mat-label>Prénom</mat-label>
+          <input class="none" matInput formControlName="firstName"
+                 type="text"
+                 required
+                 placeholder="">
+    </mat-form-field>
   </div>
   <div class="formGroup">
     <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+          <input class="none" matInput formControlName="lastName"
+                 type="text"
+                 required
+                 placeholder="">
+    </mat-form-field>
+  </div>
+  <div class="formGroup">
+    <mat-form-field appearance="fill">
+      <mat-label>Siret</mat-label>
+          <input class="none" matInput formControlName="siret"
+                 type="text"
+                 required
+                 placeholder="14 Chiffres">
+    </mat-form-field>
+  </div>
+
+  <div class="formGroup">
+    <mat-form-field appearance="fill">
       <mat-label>Produits proposés</mat-label>
-      <mat-select [formControl]="productProposed" multiple>
-        <mat-option *ngFor="let product of productProposedList" [value]="product">{{product}}</mat-option>
+      <mat-select formControlName="productProposed" multiple required>
+        <mat-option *ngFor="let product of productProposedList" [value]="product">{{product.name}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <button>Valider</button>
+  <button (click)="submit()">Valider</button>
 </form>
+<app-display-error ></app-display-error>
+<app-display-popup ></app-display-popup>

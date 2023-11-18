@@ -1,3 +1,4 @@
+import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -21,8 +22,9 @@ import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { HeaderComponent } from './header/header.component';
-import { DisplayErrorComponent } from './_error/display-error/display-error.component';
+import { DisplayErrorComponent } from './_popup/display-error/display-error.component';
 import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
+import { DisplayPopupComponent } from './_popup/display-popup/display-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
     ShowInventoryComponent,
     HeaderComponent,
     DisplayErrorComponent,
+    DisplayPopupComponent,
   ],
   imports: [
     MatSelectModule,
@@ -49,7 +52,8 @@ import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatInputModule
   ],
   providers: [
     HttpClient,

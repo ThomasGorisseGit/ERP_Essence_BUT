@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, ViewChild } from '@angular/core';
 import { Incident } from '../_interfaces/incident';
 import { ApiURL } from '../_const/const';
-import { DisplayErrorComponent } from '../_error/display-error/display-error.component';
+import { DisplayErrorComponent } from '../_popup/display-error/display-error.component';
 import { Observable } from 'rxjs';
 
 @Injectable({

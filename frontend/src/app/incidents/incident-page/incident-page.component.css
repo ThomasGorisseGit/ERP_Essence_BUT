@@ -84,18 +84,15 @@ app-incidents.dailyActive{
   z-index: 10000;
 }
 .selected{
-  background-color: white;
-  box-shadow: var(--defaultBoxShadow);
-  border-radius: var(--defaultBorderRadius) 0% 0% var(--defaultBorderRadius);
+  color: var(--green512);
+  font-weight: bold;
+
   transition: 0.3s;
-  transform: translate(10px);
+  transform: translate(-10px);
 
 }
 
-.menuNav:hover{
-  transform: translate(10px);
 
-}
 .menuNav{
   transition: 0.3s;
 }

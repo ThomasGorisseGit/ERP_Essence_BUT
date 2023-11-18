@@ -1,6 +1,7 @@
 package fr.gorisse.erp.backend.controller;
 
 import fr.gorisse.erp.backend.entity.Product;
+import fr.gorisse.erp.backend.entity.Provider;
 import fr.gorisse.erp.backend.services.ProductService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class ProductController implements DefaultController<Product>{
 
     @Autowired
@@ -35,9 +38,7 @@ public class ProductController implements DefaultController<Product>{
     @Transactional
     public void deleteById(@PathVariable("id") int product_id){
         this.productService.deleteById(product_id);
-
     }
-
     @GetMapping("/getProducts")
     public List<Product> getAll(){
         return this.productService.getAll();
@@ -50,6 +51,16 @@ public class ProductController implements DefaultController<Product>{
     @GetMapping("/getNumberOfProducts")
     public int getNumberOfProducts(){
         return this.productService.getNumberOfEntity();
+    }
+
+    @GetMapping("/findByProviderIsNull")
+    public List<Product> findByProviderIsNull(){
+        return this.productService.findByProviderIsNull();
+    }
+
+    @GetMapping("/getProvider/{id}")
+    public Provider findProviderByProductId(@PathVariable("id")int providerId){
+        return this.productService.findProviderByProductId(providerId);
     }
 
 }

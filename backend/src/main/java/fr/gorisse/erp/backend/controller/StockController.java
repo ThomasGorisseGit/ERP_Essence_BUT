@@ -1,5 +1,6 @@
 package fr.gorisse.erp.backend.controller;
 
+import fr.gorisse.erp.backend.entity.Delivery;
 import fr.gorisse.erp.backend.entity.Product;
 import fr.gorisse.erp.backend.entity.Stock;
 import fr.gorisse.erp.backend.services.ProductService;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/stock")
+@CrossOrigin(origins = "http://localhost:4200")
 public class StockController {
     @Autowired
     private StockService stockService;
@@ -19,6 +21,10 @@ public class StockController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/getStocks")
+    public List<Stock> getAll(){
+        return this.stockService.getAll();
+    }
 
     @PostMapping("/edit")
     @Transactional
@@ -52,6 +58,17 @@ public class StockController {
     @Transactional
     public Stock addByProductId(@PathVariable("product_id") int product_id,@PathVariable("qte") int qte) {
         return this.stockService.addStock(qte, this.productService.getEntityById(product_id));
+    }
+
+    @PostMapping("/addDelivery/{product_id}/{qte}")
+    @Transactional
+    public Delivery addDelivery(@PathVariable("product_id") int product_id, @PathVariable("qte") int quantity){
+        return this.stockService.addDelivery(product_id,quantity);
+    }
+
+    @GetMapping("/getDeliveries")
+    public List<Delivery> getDeliveries(){
+        return this.stockService.getAllDeliveries();
     }
 
 }
