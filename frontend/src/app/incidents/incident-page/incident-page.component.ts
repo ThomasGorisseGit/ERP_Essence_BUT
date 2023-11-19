@@ -75,7 +75,9 @@ export class IncidentPageComponent {
     this.incidentService.addIncident(incident).subscribe({
       complete:()=>{
         this.displayPopup.text="Incident ajouté";
+        this.displayPopup.reload = true;
         this.displayPopup.image = "./assets/done.png"
+        
       },
       error:(err)=>{
         this.displayError.error="Impossible d'ajouter l'incident, une erreur est survenue lors de l'insertion"
