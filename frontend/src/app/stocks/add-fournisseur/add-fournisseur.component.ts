@@ -48,6 +48,7 @@ export class AddFournisseurComponent {
       siret: this.formGroup.value.siret,
       productList: this.formGroup.value.productProposed
     }
+
     if(provider.siret == null || provider.firstName == null || provider.lastName == null || provider.productList.length==0)
     {
       this.displayError.error="Veuillez remplir tous les champs"
@@ -56,8 +57,8 @@ export class AddFournisseurComponent {
         next:(data)=>{
           this.displayPopup.text="Fournisseur ajouté";
           this.displayPopup.image = "./assets/done.png"
-          this.displayPopup.reload = true;
-          this.formGroup.reset()
+          // this.displayPopup.reload = true;
+          // this.formGroup.reset()
         },
         error:(err)=>{
           if(err.error.status == 409){

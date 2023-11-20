@@ -14,14 +14,14 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "productList")
 @Entity
 public class Provider extends Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @OneToMany(mappedBy = "provider")
-    @JsonIgnoreProperties(value="provider")
+    @JsonIgnoreProperties(value = {"provider","orderList","clientOrder"})
     @JsonIgnore
     private List<Product> productList;
 

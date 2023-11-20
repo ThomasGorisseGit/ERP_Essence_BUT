@@ -28,6 +28,7 @@ public class ProviderService extends ServiceMethods<Provider>{
             for(Product p : provider.getProductList()){
                 p.setProvider(provider);
             }
+            System.out.println(provider.getProductList());
             this.productRepository.saveAll(provider.getProductList());
         }
         return provider;

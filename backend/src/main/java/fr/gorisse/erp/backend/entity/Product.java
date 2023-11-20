@@ -13,19 +13,17 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "provider")
 @Entity
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private double price;
     private String description;
     private String name;
 
     @ManyToOne(targetEntity = Provider.class)
-    @JsonIgnoreProperties(value = {"productList","product"})
-    @JsonIgnore
     private Provider provider;
 
     @OneToOne(cascade = CascadeType.ALL)
