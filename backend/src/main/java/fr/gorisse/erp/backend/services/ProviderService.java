@@ -23,13 +23,10 @@ public class ProviderService extends ServiceMethods<Provider>{
     @Override
     public Provider create(Provider provider){
         provider = super.create(provider);
-
-        if(provider.getProductList() != null && !provider.getProductList().isEmpty()){
-            for(Product p : provider.getProductList()){
-                p.setProvider(provider);
-            }
-            System.out.println(provider.getProductList());
-            this.productRepository.saveAll(provider.getProductList());
+        for (Product p: provider.getProductList()) {
+            p= this.productRepository.getReferenceById(p.getId());
+            p.setProvider(provider);
+            this.productRepository.save(p);
         }
         return provider;
     }

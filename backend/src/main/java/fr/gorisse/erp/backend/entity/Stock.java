@@ -35,7 +35,6 @@ public class Stock {
 
     @OneToMany(mappedBy = "stock")
     @JsonIgnoreProperties("stock")
-    @JsonIgnore
     private List<Delivery> deliveryList;
 
     public Stock(int quantity){
