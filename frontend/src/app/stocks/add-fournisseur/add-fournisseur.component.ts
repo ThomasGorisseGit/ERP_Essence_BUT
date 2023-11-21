@@ -48,6 +48,7 @@ export class AddFournisseurComponent {
       siret: this.formGroup.value.siret,
       productList: this.formGroup.value.productProposed
     }
+
     if(provider.siret == null || provider.firstName == null || provider.lastName == null || provider.productList.length==0)
     {
       this.displayError.error="Veuillez remplir tous les champs"

@@ -84,6 +84,7 @@ public class StockService extends ServiceMethods<Stock>{
     }
 
     public List<Delivery> getAllDeliveries(){
+        this.updateStocks();
         return this.deliveryRepository.findAllByOrderByDateDesc();
     }
     public void updateStocks(){

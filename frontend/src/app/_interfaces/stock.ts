@@ -1,3 +1,4 @@
+import { Delivery } from "./delivery";
 import { Product } from "./product";
 
 export interface Stock {
@@ -5,4 +6,5 @@ export interface Stock {
   quantity:number;
   date:string;
   product:Product
+  delivery:Delivery[]
 }

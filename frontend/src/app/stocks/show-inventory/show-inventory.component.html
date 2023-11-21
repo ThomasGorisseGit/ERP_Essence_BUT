@@ -5,10 +5,10 @@
     <div>Date</div>
     <div>Prix</div>
   </li>
-  <li *ngFor="let product of listStocks">
-    <div>{{product.product.name}} </div>
-    <div>{{product.quantity}}</div>
-    <div>{{product.date}}</div>
-    <div>{{product.product.price}}</div>
+  <li *ngFor="let product of listProductWithStocks">
+    <div>{{product.name}} </div>
+    <div>{{product.stock.quantity}}</div>
+    <div>{{product.stock.date}}</div>
+    <div>{{product.price}}</div>
   </li>
 </ul>

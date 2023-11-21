@@ -58,4 +58,9 @@ public class ProviderController implements DefaultController<Provider> {
     {
         this.providerService.deleteById(provider_id);
     }
+
+    @GetMapping("/getProviderFullInformations")
+    public List<Provider> getProviderFullInformations(){
+        return this.providerService.getProviderFullInformations();
+    }
 }

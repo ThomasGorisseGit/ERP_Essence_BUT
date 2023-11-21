@@ -29,7 +29,6 @@ public class Delivery {
 
     @ManyToOne(targetEntity = Stock.class)
     @JsonIgnoreProperties(value = "deliveryList")
-    @JsonIgnore
     private Stock stock;
 
     private String state ;

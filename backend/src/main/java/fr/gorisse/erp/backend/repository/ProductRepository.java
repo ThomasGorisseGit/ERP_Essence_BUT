@@ -9,4 +9,7 @@ public interface ProductRepository extends DefaultRepository<Product> {
     List<Product> findByProviderIsNull();
     List<Product> findByProviderIsNotNull();
 
+    List<Product> findByProviderIsNotNullAndStockIsNotNullAndStock_DeliveryListIsNotNull();
+
+    List<Product> findByStockIsNotNullAndStock_QuantityIsGreaterThan(long quantity);
 }

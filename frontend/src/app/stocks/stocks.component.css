@@ -74,7 +74,6 @@ ul {
 }
 
 .choosed {
-  background-color: white;
   color: var(--green512);
   font-weight: bold;
   border-radius: 0 10px 10px 0;

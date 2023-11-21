@@ -1,6 +1,5 @@
 package fr.gorisse.erp.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,19 +12,18 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "provider")
 @Entity
+@JsonIgnoreProperties(value = {"orderLists","provider"})
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private double price;
     private String description;
     private String name;
 
     @ManyToOne(targetEntity = Provider.class)
-    @JsonIgnoreProperties(value = {"productList","product"})
-    @JsonIgnore
     private Provider provider;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -33,8 +31,6 @@ public class Product {
     private Stock stock;
 
     @OneToMany(mappedBy = "product")
-    @JsonIgnoreProperties(value = "product")
-    @JsonIgnore
     private List<OrderList> orderLists;
 
     public Product (double price, String description,String name){

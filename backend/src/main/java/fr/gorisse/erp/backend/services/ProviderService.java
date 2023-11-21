@@ -23,12 +23,10 @@ public class ProviderService extends ServiceMethods<Provider>{
     @Override
     public Provider create(Provider provider){
         provider = super.create(provider);
-
-        if(provider.getProductList() != null && !provider.getProductList().isEmpty()){
-            for(Product p : provider.getProductList()){
-                p.setProvider(provider);
-            }
-            this.productRepository.saveAll(provider.getProductList());
+        for (Product p: provider.getProductList()) {
+            p= this.productRepository.getReferenceById(p.getId());
+            p.setProvider(provider);
+            this.productRepository.save(p);
         }
         return provider;
     }
@@ -38,5 +36,8 @@ public class ProviderService extends ServiceMethods<Provider>{
     }
     public List<Product> getProductListByID(int id){
         return this.productRepository.findByProviderId(id);
+    }
+    public List<Provider> getProviderFullInformations(){
+        return this.providerRepository.findByProductListIsNotNullAndProductListNotEmptyAndProductList_StockIsNotNullAndProductList_Stock_DeliveryListIsNotNullAndProductList_Stock_DeliveryListIsNotEmpty();
     }
 }
