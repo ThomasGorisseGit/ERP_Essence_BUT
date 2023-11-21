@@ -57,8 +57,8 @@ export class AddFournisseurComponent {
         next:(data)=>{
           this.displayPopup.text="Fournisseur ajouté";
           this.displayPopup.image = "./assets/done.png"
-          // this.displayPopup.reload = true;
-          // this.formGroup.reset()
+          this.displayPopup.reload = true;
+          this.formGroup.reset()
         },
         error:(err)=>{
           if(err.error.status == 409){

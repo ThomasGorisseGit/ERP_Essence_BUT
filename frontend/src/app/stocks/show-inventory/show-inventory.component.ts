@@ -1,3 +1,4 @@
+import { Provider } from './../../_interfaces/provider';
 import { Component } from '@angular/core';
 import { Product } from 'src/app/_interfaces/product';
 import { Produit } from 'src/app/_interfaces/produit';
@@ -10,21 +11,16 @@ import { ProductService } from 'src/app/_services/product.service';
   styleUrls: ['./show-inventory.component.css']
 })
 export class ShowInventoryComponent {
-  listProduct: Product[] = [];
-  public listStocks:Stock[] = [];
+  listProductWithStocks:Product[] = []
   constructor(private productService: ProductService) {
-    console.log("here");
-
-    if(productService.listStock === null){
-      this.productService.getStocks().subscribe({
-        next : (data)=>{
-          console.log(data);
-
-          this.listStocks = data;
+    if(productService.listProductWithStocks === null ){
+      this.productService.ProductContainsAll().subscribe({
+        next:(data)=>{
+          this.listProductWithStocks = data;
         }
       })
     }else{
-      this.listStocks = this.productService.listStock as Stock[];
+      this.listProductWithStocks = this.productService.listProductWithStocks as Product[];
     }
   }
 
