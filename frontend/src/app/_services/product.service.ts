@@ -17,6 +17,7 @@ export class ProductService {
   listProductWithoutProvider: Product[] | null = null;
   listStock : Stock[] | null = null;
   listProductWithStocks: Product[] | null = null;
+  listProviderFullInformations: Provider[] | null = null;
 
   constructor(private http:HttpClient) {
 
@@ -59,10 +60,22 @@ export class ProductService {
       request.subscribe({
         next: (data)=>{
           this.listDelivery = data;
+          console.log(this.listDelivery);
+
         }
       })
       return request;
     });
+  }
+  getProviderFullInformations(){
+    return this.http.get<Provider[]>(ApiURL+"/provider/getProviderFullInformations").pipe((req)=>{
+      req.subscribe({
+        next:(data)=>{
+          this.listProviderFullInformations = data;
+        }
+      })
+      return req;
+    })
   }
   getStocks(){
     return this.http.get<Stock[]>(ApiURL+"/stock/getStocks").pipe((req)=>{
