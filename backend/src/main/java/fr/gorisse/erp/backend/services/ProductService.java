@@ -51,4 +51,11 @@ public class ProductService extends ServiceMethods<Product> {
     public List<Product> getAll(){
         return this.productRepository.findByProviderIsNotNull();
     }
+    public List<Product> getProductWhereDeliveryListIsNotNull(){
+        return this.productRepository.findByProviderIsNotNullAndStockIsNotNullAndStock_DeliveryListIsNotNull();
+    }
+
+    public List<Product> getProductsWithStocks() {
+        return this.productRepository.findByStockIsNotNullAndStock_QuantityIsGreaterThan(0);
+    }
 }

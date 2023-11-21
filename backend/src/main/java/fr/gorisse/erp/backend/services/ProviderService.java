@@ -37,4 +37,7 @@ public class ProviderService extends ServiceMethods<Provider>{
     public List<Product> getProductListByID(int id){
         return this.productRepository.findByProviderId(id);
     }
+    public List<Provider> getProviderFullInformations(){
+        return this.providerRepository.findByProductListIsNotNullAndProductListNotEmptyAndProductList_StockIsNotNullAndProductList_Stock_DeliveryListIsNotNull();
+    }
 }

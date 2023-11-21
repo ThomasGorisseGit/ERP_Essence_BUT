@@ -62,5 +62,12 @@ public class ProductController implements DefaultController<Product>{
     public Provider findProviderByProductId(@PathVariable("id")int providerId){
         return this.productService.findProviderByProductId(providerId);
     }
-
+    @GetMapping("/ProductContainsAll")
+    public List<Product> getProductWhereDeliveryListIsNotNull(){
+        return this.productService.getProductWhereDeliveryListIsNotNull();
+    }
+    @GetMapping("/ProductWithStocks")
+    public List<Product> productWithStocks(){
+        return this.productService.getProductsWithStocks();
+    }
 }
