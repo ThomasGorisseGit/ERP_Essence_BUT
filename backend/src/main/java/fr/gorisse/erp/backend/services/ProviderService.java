@@ -38,6 +38,6 @@ public class ProviderService extends ServiceMethods<Provider>{
         return this.productRepository.findByProviderId(id);
     }
     public List<Provider> getProviderFullInformations(){
-        return this.providerRepository.findByProductListIsNotNullAndProductListNotEmptyAndProductList_StockIsNotNullAndProductList_Stock_DeliveryListIsNotNull();
+        return this.providerRepository.findByProductListIsNotNullAndProductListNotEmptyAndProductList_StockIsNotNullAndProductList_Stock_DeliveryListIsNotNullAndProductList_Stock_DeliveryListIsNotEmpty();
     }
 }
