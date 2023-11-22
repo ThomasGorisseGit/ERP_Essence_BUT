@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { ApiURL } from '../_const/const';
 import { Product } from '../_interfaces/product';
 import { Observable } from 'rxjs';
+import { Fuel } from '../_interfaces/fuel';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,12 @@ export class ProviderService {
   }
   getProductList(providerId:string){
     return this.http.get<Product[]>(ApiURL+"/provider/getProductList/"+providerId)
+  }
+
+  getFuelList(){
+    return this.http.get<Fuel[]>(ApiURL+"/fuel/getFuels");
+  }
+  addFuelQte(id:number,quantity:number){
+    return this.http.post<Fuel>(ApiURL+"/fuel/addQte/"+id,quantity)
   }
 }

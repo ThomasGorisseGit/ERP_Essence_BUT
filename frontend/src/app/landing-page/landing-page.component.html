@@ -24,33 +24,35 @@
         <button class="greenButton"><img src="../../assets/horaires.png" alt="horaires"> Horaires et conso</button>
         <button class="greenButton"><img src="../../assets/compta.png" alt="comptabilité"> Comptabilité</button>
       </div>
-      <form id="commandForm">
+      <form [formGroup]="formGroup" id="commandForm">
         <h3>Nouveau Réapprovisionnement</h3>
 
         <div class="formGroup">
           <label for="productAsked">Fournisseur</label>
-          <select name="productAsked" id="productAsked">
-            <option *ngFor="let provider of listProviderFuel" value="">{{provider.firstName}} {{provider.lastName}}</option>
-
+          <select formControlName="provider" id="productAsked">
+            <option *ngFor="let provider of listProviderFuel" value={{provider.id}}>{{provider.firstName}} {{provider.lastName}}</option>
           </select>
         </div>
         <div class="formGroup">
-          <label for="fournisseur">Énergie</label>
-          <select name="fournisseur" id="fournisseur">
-
+          <label for="fuel">Énergie</label>
+          <select formControlName="fuel" name="fuel" id="fuel" >
+            <option value=0 hidden></option>
+            <option *ngFor="let fuel of listFuel" value={{fuel.id}}>{{fuel.typeOfFuel}}</option>
           </select>
         </div>
         <div class="formGroup">
           <label for="quantity">Quantity</label>
-          <input type="number" name="quantity" id="quantity">
+          <input formControlName="quantity" type="number" name="quantity" id="quantity">
         </div>
         <div class="formGroup">
           <label for="montant">Montant</label>
-          <input type="number" name="montant" id="montant">
+          <label for="montant">{{this.getTotal()}}</label>
         </div>
-        <button>Valider</button>
+        <button (click)="submit()">Valider</button>
 
       </form>
     </div>
   </div>
 </div>
+<app-display-error></app-display-error>
+<app-display-popup></app-display-popup>
