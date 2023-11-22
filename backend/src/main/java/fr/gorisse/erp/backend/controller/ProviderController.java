@@ -11,8 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/provider")
-@CrossOrigin(origins = "http://localhost:4200")
-
+@CrossOrigin(origins = {"http://localhost:4200", "http://209.38.204.153:8080","https://209.38.204.153:8080", "http://209.38.204.153","https://209.38.204.153:80","http://thomasgorisse.com","https://thomasgorisse.com"})
 public class ProviderController implements DefaultController<Provider> {
     @Autowired
     private ProviderService providerService;
