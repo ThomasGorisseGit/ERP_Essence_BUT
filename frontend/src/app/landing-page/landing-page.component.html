@@ -28,23 +28,16 @@
         <h3>Nouveau Réapprovisionnement</h3>
 
         <div class="formGroup">
-          <label for="productAsked">Produit demandé</label>
+          <label for="productAsked">Fournisseur</label>
           <select name="productAsked" id="productAsked">
-            <option value="BioEthanol">BioEthanol</option>
-            <option value="Gazole">Gazole</option>
-            <option value="E85">E85</option>
-            <option value="SP95">SP95</option>
-            <option value="jambon">jambon</option>
+            <option *ngFor="let provider of listProviderFuel" value="">{{provider.firstName}} {{provider.lastName}}</option>
+
           </select>
         </div>
         <div class="formGroup">
-          <label for="fournisseur">Fournisseur</label>
+          <label for="fournisseur">Énergie</label>
           <select name="fournisseur" id="fournisseur">
-            <option value="BioEthanol">BioEthanol</option>
-            <option value="Gazole">Gazole</option>
-            <option value="E85">E85</option>
-            <option value="SP95">SP95</option>
-            <option value="jambon">jambon</option>
+
           </select>
         </div>
         <div class="formGroup">

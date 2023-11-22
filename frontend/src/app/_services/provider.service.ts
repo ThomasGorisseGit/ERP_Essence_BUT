@@ -3,23 +3,39 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiURL } from '../_const/const';
 import { Product } from '../_interfaces/product';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProviderService {
-  listProvider:Provider[] | null = null;
+  listProviderProduct:Provider[] | null = null;
+  listProviderFuel:Provider[] | null = null;
 
   constructor(private http:HttpClient) {
-    this.getProviderList()
+    this.getProvidersProductList()
+    this.getProviderFuel();
    }
-   getProviderList(){
-    return this.http.get<Provider[]>(ApiURL+"/provider/getProviders").pipe((val)=>{
+
+   getProviderFuel():Observable<Provider[]>{
+    return this.http.get<Provider[]>(ApiURL + "/provider/getProvidersFuelList").pipe((request) => {
+      request.subscribe({
+        next: (data: Provider[]) => {
+          this.listProviderFuel = data as Provider[];
+        }
+      });
+      return request;
+    }) as Observable<Provider[]>;
+  }
+
+
+  getProvidersProductList(){
+    return this.http.get<Provider[]>(ApiURL+"/provider/getProvidersProductList").pipe((val)=>{
       val.subscribe({
         next:(val)=>{
 
-          if(this.listProvider===null){
-            this.listProvider = val;
+          if(this.listProviderProduct===null){
+            this.listProviderProduct = val;
           }
         }
       });

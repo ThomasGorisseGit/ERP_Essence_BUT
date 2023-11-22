@@ -4,6 +4,8 @@ import { Incident } from '../_interfaces/incident';
 import { INCIDENTS } from '../_const/const';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ProviderService } from '../_services/provider.service';
+import { Provider } from '../_interfaces/provider';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,11 +13,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent {
-  listIncidents: Incident[] = INCIDENTS;
-  constructor(private incidentService:IncidentService,private router:Router) {
-    if(this.listIncidents === INCIDENTS){
+  listIncidents: Incident[] = [];
+  protected listProviderFuel:Provider[] = [];
+  constructor(private incidentService:IncidentService,private router:Router,private providerService:ProviderService) {
+
+    if(this.listIncidents.length===0){
       this.fetchIncidents();
     }
+    if(this.providerService.listProviderFuel === null){
+      this.providerService.getProviderFuel().subscribe({
+        next:(data:Provider[])=>{
+          this.listProviderFuel = data as Provider[];
+        }
+      })
+    }
+    else{
+      this.listProviderFuel = this.providerService.listProviderFuel;
+    }
+
+
 
   }
   gotoIncident(incident:Incident | null){

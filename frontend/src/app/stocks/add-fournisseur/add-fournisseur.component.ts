@@ -46,7 +46,8 @@ export class AddFournisseurComponent {
       firstName: this.formGroup.value.firstName,
       lastName: this.formGroup.value.lastName,
       siret: this.formGroup.value.siret,
-      productList: this.formGroup.value.productProposed
+      productList: this.formGroup.value.productProposed,
+      fuelList: []
     }
 
     if(provider.siret == null || provider.firstName == null || provider.lastName == null || provider.productList.length==0)
