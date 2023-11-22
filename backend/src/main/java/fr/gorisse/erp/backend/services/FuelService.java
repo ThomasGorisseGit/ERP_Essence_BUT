@@ -32,8 +32,8 @@ public class FuelService extends ServiceMethods<Fuel>{
         List<Fuel> fuelLIst = super.getAll();
         for(Fuel f : fuelLIst){
             Random r = new Random();
-            int rdm = r.nextInt(100);
-            if(rdm <30 && f.getQuantity()>rdm){
+            int rdm = r.nextInt(150);
+            if(rdm <10 && f.getQuantity()>rdm){
                 f.setQuantity(f.getQuantity()-rdm);
             }
         }
