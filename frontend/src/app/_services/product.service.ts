@@ -18,29 +18,18 @@ export class ProductService {
   listStock : Stock[] | null = null;
   listProductWithStocks: Product[] | null = null;
   listProviderFullInformations: Provider[] | null = null;
-  listProviderFuel:Provider[] | null = null;
   constructor(private http:HttpClient) {
 
     this.getProductList();
     this.getDelivries();
     this.getProductAvailableForProvider();
     this.ProductContainsAll();
-    this.getProviderFuel();
 
   }
   getProvider(product:number):Observable<Provider>{
     return this.http.get<Provider>(ApiURL+"/product/getProvider/"+product) as Observable<Provider>;
   }
-  getProviderFuel():Observable<Provider>{
-    return this.http.get<Provider[]>(ApiURL + "/provider/getProvidersFuelList/").pipe((request) => {
-      request.subscribe({
-        next: (data: Provider[]) => {
-          this.listProviderFuel = data as Provider[];
-        }
-      });
-      return request;
-    }) as unknown as Observable<Provider>;
-  }
+
   getProductList(){
       return this.http.get<Product[]>(ApiURL+"/product/getProducts").pipe((val)=>{
         val.subscribe({

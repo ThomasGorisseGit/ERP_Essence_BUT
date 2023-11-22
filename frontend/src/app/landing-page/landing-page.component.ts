@@ -115,6 +115,8 @@ export class LandingPageComponent {
       next:(data:Fuel)=>{
         this.displayPopup.text="Approvisionnement des stocks";
         this.displayPopup.image = "./assets/done.png"
+        this.displayPopup.reload = true;
+
       },
       error:(err:HttpErrorResponse)=> {
         this.displayError.error="Une erreur est survenue lors de l'insertion"

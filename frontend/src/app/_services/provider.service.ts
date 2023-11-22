@@ -12,10 +12,12 @@ import { Fuel } from '../_interfaces/fuel';
 export class ProviderService {
   listProviderProduct:Provider[] | null = null;
   listProviderFuel:Provider[] | null = null;
+  listFuel : Fuel[] | null=null;
 
   constructor(private http:HttpClient) {
     this.getProvidersProductList()
     this.getProviderFuel();
+    this.getFuelList();
    }
 
    getProviderFuel():Observable<Provider[]>{
@@ -52,9 +54,18 @@ export class ProviderService {
   }
 
   getFuelList(){
-    return this.http.get<Fuel[]>(ApiURL+"/fuel/getFuels");
+    return this.http.get<Fuel[]>(ApiURL+"/fuel/getFuels").pipe(req=>{
+      req.subscribe({
+        next:(data)=>{
+          this.listFuel = data;
+
+        }
+      })
+      return req;
+    });
   }
   addFuelQte(id:number,quantity:number){
     return this.http.post<Fuel>(ApiURL+"/fuel/addQte/"+id,quantity)
   }
+
 }

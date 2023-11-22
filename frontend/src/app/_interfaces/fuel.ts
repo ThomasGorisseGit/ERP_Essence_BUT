@@ -4,4 +4,5 @@ export interface Fuel {
   price:number;
   last_update_date:string;
   provider_id:number;
+  quantity:number;
 }

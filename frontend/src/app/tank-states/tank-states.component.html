@@ -2,33 +2,11 @@
 
   <h1 class="titleTankLevel">Niveau des cuves</h1>
   <div class="tankStates">
-    <div class="tankLevels">
-      <div class="level">
-        <div class="actualLevel"></div>
+    <div class="tankLevels" *ngFor="let fuel of listFuel">
+      <div class="level" >
+        <div class="actualLevel" [style.height.%]="calculateHeight(fuel.quantity)"></div>
       </div>
-      <div class="name">Cuve n°1</div>
-      <div class="typeEnergy">BioEthanol</div>
-    </div>
-    <div class="tankLevels">
-      <div class="level">
-        <div class="actualLevel"></div>
-      </div>
-      <div class="name">Cuve n°2</div>
-      <div class="typeEnergy">BioEthanol</div>
-    </div>
-    <div class="tankLevels">
-      <div class="level">
-        <div class="actualLevel"></div>
-      </div>
-      <div class="name">Cuve n°3</div>
-      <div class="typeEnergy">BioEthanol</div>
-    </div>
-    <div class="tankLevels">
-      <div class="level">
-        <div class="actualLevel"></div>
-      </div>
-      <div class="name">Cuve n°4</div>
-      <div class="typeEnergy">BioEthanol</div>
+      <div class="name">{{ fuel.typeOfFuel }}</div>
     </div>
   </div>
 </div>
