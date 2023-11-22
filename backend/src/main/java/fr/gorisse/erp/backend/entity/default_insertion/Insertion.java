@@ -1,6 +1,7 @@
 package fr.gorisse.erp.backend.entity.default_insertion;
 
 import fr.gorisse.erp.backend.services.ProductService;
+import fr.gorisse.erp.backend.services.ProviderService;
 import fr.gorisse.erp.backend.services.StockService;
 import fr.gorisse.erp.backend.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,14 @@ import org.springframework.stereotype.Component;
 public class Insertion implements ApplicationRunner {
     private final SubscriptionService subscriptionService;
     private final ProductService productService;
-
     private final StockService stockService;
+    private final ProviderService providerService;
     @Autowired
-    public Insertion(SubscriptionService subscriptionService, ProductService productService, StockService stockService) {
+    public Insertion(SubscriptionService subscriptionService, ProductService productService, StockService stockService,ProviderService providerService) {
         this.subscriptionService = subscriptionService;
         this.productService = productService;
         this.stockService = stockService;
+        this.providerService = providerService;
     }
     @Override
     public void run(ApplicationArguments args) {
@@ -32,6 +34,11 @@ public class Insertion implements ApplicationRunner {
            this.productService.createAll(new ProductList());
         }
         this.stockService.updateStocks();
+
+        if(this.providerService.getNumberOfFuelProvider()==0){
+            this.providerService.createAll(new DefaultProviderList());
+        }
+
     }
 
 
