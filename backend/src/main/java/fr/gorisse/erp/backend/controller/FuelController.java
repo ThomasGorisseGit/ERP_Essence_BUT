@@ -44,4 +44,11 @@ public class FuelController implements DefaultController<Fuel> {
     public void delete(@RequestBody Fuel fuel){
         this.fuelService.delete(fuel);
     }
+
+
+    @PostMapping("/addQte/{id}")
+    @Transactional
+    public Fuel addQte(@RequestBody int quantity, @PathVariable("id")int id){
+        return this.fuelService.addQte(quantity,id);
+    }
 }
