@@ -53,6 +53,11 @@ export class CaisseComponent {
     if (value == '') {
       this.inputValue = this.inputValue.slice(0, -1);
     }
+    if(value =='-/-')
+    {
+      this.inputValue = '';
+      value = ''
+    }
     this.inputValue += value;
   }
 
@@ -95,6 +100,9 @@ export class CaisseComponent {
   }
 
   deleteProduct(id: number) {
+    let index = this.cart.listProduct.findIndex(elem=>elem.product.id === id)
+    this.cart.listProduct.splice(index,1)
+
     /*var trouve = -1;
     for (var i = 0; i < this.cart.listProduct.length; i++) {
       if (this.cart.listProduct[i].produit.id == id) {

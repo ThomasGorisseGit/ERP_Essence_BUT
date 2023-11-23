@@ -297,7 +297,7 @@ input[type="number"] {
 }
 
 .productsContainer {
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1em;
