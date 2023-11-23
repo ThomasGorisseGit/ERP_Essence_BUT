@@ -26,6 +26,8 @@ import { HeaderComponent } from './header/header.component';
 import { DisplayErrorComponent } from './_popup/display-error/display-error.component';
 import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
 import { DisplayPopupComponent } from './_popup/display-popup/display-popup.component';
+import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
+import { ReportComponent } from './incidents/report/report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,8 @@ import { DisplayPopupComponent } from './_popup/display-popup/display-popup.comp
     HeaderComponent,
     DisplayErrorComponent,
     DisplayPopupComponent,
+    ComptabiliteComponent,
+    ReportComponent,
   ],
   imports: [
     MatSelectModule,

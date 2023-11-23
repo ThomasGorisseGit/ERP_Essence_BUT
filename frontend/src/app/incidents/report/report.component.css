@@ -1,0 +1,17 @@
+
+.incidentTitle {
+  font-size: 2em;
+  font-style: italic;
+}
+label{
+  font-size: 2em;
+}
+.item{
+  width: 60%;
+}
+textarea.default{
+  height: 300px;
+}
+.form{
+  box-shadow: unset;
+}
