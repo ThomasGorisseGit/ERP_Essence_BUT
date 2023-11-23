@@ -20,7 +20,12 @@
         </div>
       </div>
     </div>
-      <app-report class="flexcol" *ngIf="getSelectedPage('Reporter un incident')" [listIncidents]="this.listIncidents"></app-report>
+    <div *ngIf="getSelectedPage('Reporter un incident')" class="flexcol">
+
+      <div  class="incidentTitle">Reporter un incident</div>
+
+      <app-report class="flexcol" [listIncidents]="this.listIncidents"></app-report>
+    </div>
     <div class="rightPart" *ngIf="getSelectedPage('Incidents journaliers')">
       <div class="dailyIncident" *ngIf="dailyIncident.length>0">
         <div class="above">

@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
-import { Incident } from '../_interfaces/incident';
-import { Cart } from '../cart';
+import { Incident } from './../_interfaces/incident';
+import { Component, ViewChild } from '@angular/core';
+import { Cart } from '../_interfaces/cart';
 import { INCIDENTS } from '../_const/const';
 import { Router } from '@angular/router';
 import { ProductService } from '../_services/product.service';
 import { Product } from '../_interfaces/product';
+import { DisplayErrorComponent } from '../_popup/display-error/display-error.component';
+import { DisplayPopupComponent } from '../_popup/display-popup/display-popup.component';
 
 @Component({
   selector: 'app-caisse',
@@ -14,23 +16,38 @@ import { Product } from '../_interfaces/product';
 export class CaisseComponent {
 
   listIncidents: Incident[] = [INCIDENTS[4],INCIDENTS[5],INCIDENTS[7],INCIDENTS[0]] ;
+  IncidentToReport : Incident[] = INCIDENTS;
+
+  listProduct : Product[] = [];
   inputValue: string = '';
-  cart: Cart = { listProduct: [], total: 0 };
+
+  cart:Cart ={
+    listProduct: [],
+    total: 0
+  };
 
   loading: boolean = false;
   validate: boolean = false;
 
-  constructor(private productService: ProductService,private router:Router) { }
-  ngOnInit(): void {
+  @ViewChild(DisplayErrorComponent)
+  displayError!: DisplayErrorComponent;
+  @ViewChild(DisplayPopupComponent)
+  displayPopup!: DisplayPopupComponent;
 
-    // shuffle the list of incidents
-    for (var i = this.listIncidents.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = this.listIncidents[i];
-      this.listIncidents[i] = this.listIncidents[j];
-      this.listIncidents[j] = temp;
+  constructor(private productService: ProductService,private router:Router) {
+    if(this.productService.listProductWithStocks === null) {
+      this.productService.ProductContainsAll().subscribe({
+        next:(data)=>{
+          this.listProduct = data;
+
+        }
+      })
+    }
+    else{
+      this.listProduct= this.productService.listProductWithStocks;
     }
   }
+
 
   onButtonClicked(value: string) {
     if (value == '') {
@@ -38,74 +55,47 @@ export class CaisseComponent {
     }
     this.inputValue += value;
   }
-  checkboxClicked(event: any) {
-    var checkboxes = document.getElementsByName('checkbox');
-    var checked = false;
-    for (var i = 0; i < checkboxes.length; i++) {
-      if ((checkboxes[i] as HTMLInputElement).checked) {
-        if (
-          (checkboxes[i] as HTMLInputElement) ==
-          event.target.previousElementSibling
-        ) {
-          event.target.previousElementSibling.checked = false;
-          return;
-        }
-        checked = true;
-        event.preventDefault();
-        return;
-      }
-    }
-    if (!checked) {
-      event.target.previousElementSibling.checked = true;
-      event.preventDefault();
-    } else {
-      event.preventDefault();
-    }
-  }
+
 
   validateProduit() {
     // check if the id product of input is present in the list of products
-    var trouve = null;
-    for (var i = 0; i < this.productService.listProduct!.length; i++) {
-      if (
-        this.productService.listProduct![i].id==parseInt(this.inputValue)
-      ) {
-        trouve = this.productService.listProduct![i];
-        break;
-      }
-    }
-    if (trouve) {
-      // add the product to the cart if it is not already present
-      var trouve2 = -1;
-      for (var i = 0; i < this.cart.listProduct.length; i++) {
-        if (this.cart.listProduct[i].produit.id == trouve.id) {
-          trouve2 = i;
-          console.log('produit déjà présent');
+    if(parseInt(this.inputValue)>this.listProduct.length || parseInt(this.inputValue) == 0 || this.inputValue==''){
+      console.log("ERROR");
+      this.displayError.error = "Impossible d'ajouter le produit";
+      this.displayError.message = "Le produit n'existe pas ou n'est pas disponible";
 
-          break;
+    }
+    else{
+      console.log(this.inputValue);
+
+      var item = {
+        product:this.listProduct[parseInt(this.inputValue)-1],
+        quantity : 1
+      }
+      let index = this.cart.listProduct.findIndex(elem=>elem.product.id === item.product.id)
+      if(index != -1 && this.getProductQuantity(this.cart.listProduct[index].product.id) as number> this.cart.listProduct[index].quantity+1){
+      this.cart.listProduct[index].quantity++;
+      }else if(index != -1 && this.getProductQuantity(this.cart.listProduct[index].product.id) as number <= this.cart.listProduct[index].quantity+1)
+      {
+        this.displayError.error = "Impossible d'ajouter le produit";
+        this.displayError.message = "Le stock de produit n'est pas suffisant";
+      }
+      else{
+        this.cart!.listProduct.push(
+          item
+          )
         }
-      }
-      console.log(trouve2);
 
-      if (trouve2 == -1) {
-        this.cart.listProduct.push({ produit: trouve, quantity: 1 });
-      } else {
-        console.log('donc on incrémente');
 
-        this.cart.listProduct[trouve2].quantity++;
-      }
-      // update total
-      this.cart.total = this.cart.listProduct.reduce(
-        (total, item) => total + item.produit.price * item.quantity,
-        0
-      );
-      this.cart.total = Math.round(this.cart.total * 100) / 100;
     }
-    this.inputValue = '';
+  }
+
+  getProductQuantity(productId:number):number{
+    return this.listProduct.find(prod=>prod.id==productId)?.stock?.quantity as number;
   }
 
   deleteProduct(id: number) {
-    var trouve = -1;
+    /*var trouve = -1;
     for (var i = 0; i < this.cart.listProduct.length; i++) {
       if (this.cart.listProduct[i].produit.id == id) {
         trouve = i;
@@ -126,16 +116,17 @@ export class CaisseComponent {
         0
       );
       this.cart.total = Math.round(this.cart.total * 100) / 100;
-    }
+    }*/
   }
   validatePaiement() {
-    console.log('paiement validé');
+    /*console.log('paiement validé');
     if (this.cart.total == 0) {
       return;
     }
     this.showPopup();
     this.cart.listProduct = [];
     this.cart.total = 0;
+    */
   }
 
   showPopup(): void {
@@ -150,24 +141,11 @@ export class CaisseComponent {
     }, Math.floor(Math.random() * 2000) + 1000);
   }
   viderPanier() {
-    this.cart.listProduct = [];
-    this.cart.total = 0;
+    this.cart!.listProduct = [];
+    this.cart!.total = 0;
   }
 
-  essenceInCart(): boolean {
-    var cpt = 0;
-    var trouve = false;
-    for (var i = 0; i < this.cart.listProduct.length; i++) {
-      if (this.cart.listProduct[i].produit.name == "Essence" || this.cart.listProduct[i].produit.name == "Hydrocarbure" || this.cart.listProduct[i].produit.name == "Gasoil" || this.cart.listProduct[i].produit.name == "Batterie") {
-        cpt++;
-        trouve = true;
-      }
-    }
-    if (trouve) {
-      return cpt == this.cart.listProduct.length;
-    }
-    return false;
-  }
+
   gotoIncident(incident:Incident){
     this.router.navigate(["/incidents"],{queryParams:{
       "incident_title":incident.title,

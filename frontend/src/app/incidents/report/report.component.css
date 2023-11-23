@@ -4,14 +4,27 @@
   font-style: italic;
 }
 label{
-  font-size: 2em;
+  font-size: 1.6em;
 }
 .item{
-  width: 60%;
+  width: 100%;
 }
 textarea.default{
-  height: 300px;
+  height: 80%;
 }
+
 .form{
   box-shadow: unset;
+  width: 100%;
+}
+select{
+  height: 60%;
+}
+button{
+  margin: 0;
+
+}
+
+form{
+  height: 100%;
 }

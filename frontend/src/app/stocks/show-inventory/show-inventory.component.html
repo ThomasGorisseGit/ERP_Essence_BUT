@@ -7,8 +7,8 @@
   </li>
   <li *ngFor="let product of listProductWithStocks">
     <div>{{product.name}} </div>
-    <div>{{product.stock.quantity}}</div>
-    <div>{{product.stock.date}}</div>
+    <div>{{product.stock!.quantity}}</div>
+    <div>{{product.stock!.date}}</div>
     <div>{{product.price}}</div>
   </li>
 </ul>

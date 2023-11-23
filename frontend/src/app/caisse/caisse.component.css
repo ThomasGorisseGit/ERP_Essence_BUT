@@ -11,7 +11,7 @@
 .mainContainer {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 76vh;
   justify-content: center;
 }
 .middle {
@@ -40,6 +40,7 @@
   /* width: 15vw; */
   /* padding-right: 1em; */
   justify-content: space-evenly;
+  height: 50%;
 }
 
 form {
@@ -223,8 +224,8 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* Firefox */
 input[type="number"] {
+  appearance:unset;
   -moz-appearance: textfield;
 }
 .padNumeric input {
@@ -536,10 +537,16 @@ input[type="number"] {
   animation: colored-circle 0.6s ease-in-out 0.7s backwards;
 }
 
-button#redBg {
-  background-color: #f83f3f;
+button.redBg {
+  background-color: #f83f3f !important;
 }
 
 button:disabled {
-  background-color: var(--grey512) !important;
+  background-color: var(--grey512) ;
+}
+app-report{
+  height: 80%;
+  width: 90%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
