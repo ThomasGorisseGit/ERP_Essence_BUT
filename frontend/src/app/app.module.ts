@@ -28,6 +28,8 @@ import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
 import { DisplayPopupComponent } from './_popup/display-popup/display-popup.component';
 import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 import { ReportComponent } from './incidents/report/report.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { CreateClientComponent } from './subscription/create-client/create-client.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,8 @@ import { ReportComponent } from './incidents/report/report.component';
     DisplayPopupComponent,
     ComptabiliteComponent,
     ReportComponent,
+    SubscriptionComponent,
+    CreateClientComponent
   ],
   imports: [
     MatSelectModule,
@@ -63,7 +67,7 @@ import { ReportComponent } from './incidents/report/report.component';
   providers: [
     HttpClient,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true },
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+   // {provide: LocationStrategy, useClass: HashLocationStrategy}
 
 
   ],

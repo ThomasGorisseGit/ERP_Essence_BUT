@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup" >
+  <div class="creation-form">
+    <div class="left">
+      <h3>Identité</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input class="none" matInput type="text" formControlName="lastName" >
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Prénom</mat-label>
+        <input class="none" matInput type="text" formControlName="firstName" >
+      </mat-form-field>
+    </div>
+    <div class="right">
+      <h3>Coordonnées</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Phone number</mat-label>
+        <input class="none" matInput type="text" formControlName="phoneNumber" >
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Adresse email</mat-label>
+        <input class="none" matInput type="text" formControlName="emailAddress" >
+      </mat-form-field>
+    </div>
+  </div>
+    <button (click)="createClient()">Créer </button>
+</form>
