@@ -9,6 +9,8 @@ import { Fuel } from '../_interfaces/fuel';
 })
 export class TankStatesComponent  {
   protected listFuel :Fuel[] = []
+  showTooltip:string | null = null;
+
   constructor(private providerService:ProviderService) {
     if(providerService.listFuel === null){
       this.providerService.getFuelList().subscribe({

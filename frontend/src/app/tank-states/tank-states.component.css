@@ -53,3 +53,10 @@
   height: 20%;
   text-align: center;
 }
+.tooltip {
+  position: absolute;
+  background-color: #ebebeb;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 1;
+}
