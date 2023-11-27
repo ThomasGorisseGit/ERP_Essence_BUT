@@ -30,6 +30,10 @@ import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 import { ReportComponent } from './incidents/report/report.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { CreateClientComponent } from './subscription/create-client/create-client.component';
+import { ConnectClientComponent } from './subscription/connect-client/connect-client.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +56,8 @@ import { CreateClientComponent } from './subscription/create-client/create-clien
     ComptabiliteComponent,
     ReportComponent,
     SubscriptionComponent,
-    CreateClientComponent
+    CreateClientComponent,
+    ConnectClientComponent
   ],
   imports: [
     MatSelectModule,
@@ -63,6 +68,8 @@ import { CreateClientComponent } from './subscription/create-client/create-clien
     HttpClientModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     HttpClient,
