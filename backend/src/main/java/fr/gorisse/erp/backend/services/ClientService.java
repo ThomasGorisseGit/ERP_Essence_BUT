@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService extends ServiceMethods<Client> {
     private SubscriptionService subscriptionService;
+    private ClientOrderService clientOrderService;
 
     @Autowired
-    protected void setRepository(ClientRepository clientRepository, SubscriptionService subscriptionService) {
+    protected void setRepository(ClientRepository clientRepository, SubscriptionService subscriptionService,ClientOrderService clientOrderService) {
         super.repository = clientRepository;
         this.subscriptionService = subscriptionService;
+        this.clientOrderService = clientOrderService;
     }
 
     @Override
@@ -56,5 +58,16 @@ public class ClientService extends ServiceMethods<Client> {
         currentClient.setSubscription(subscription);
         return currentClient;
 
+    }
+
+
+    @Override
+    public Client deleteById(int client_id){
+        Client client = super.getEntityById(client_id);
+        for(var order: client.getClientOrders()){
+            clientOrderService.delete(order);
+        }
+
+        return super.deleteById(client_id);
     }
 }

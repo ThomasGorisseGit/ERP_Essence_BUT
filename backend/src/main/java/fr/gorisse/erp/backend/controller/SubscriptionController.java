@@ -19,7 +19,6 @@ public class SubscriptionController implements DefaultController<Subscription> {
     @PostMapping("/add")
     @Transactional
     public Subscription create(@RequestBody Subscription subscription){
-        System.out.println(subscription);
         return this.subscriptionService.create(subscription);
     }
 
