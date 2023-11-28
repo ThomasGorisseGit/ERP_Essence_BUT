@@ -28,7 +28,7 @@ export class ConnectClientComponent {
   client_id : FormControl = new FormControl();
   currentClient :Client | null = null;
 
-
+  selectPlan:boolean = false;
   @ViewChild(DisplayErrorComponent)
   displayError!:DisplayErrorComponent
 

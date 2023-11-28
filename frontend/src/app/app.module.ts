@@ -33,6 +33,7 @@ import { CreateClientComponent } from './subscription/create-client/create-clien
 import { ConnectClientComponent } from './subscription/connect-client/connect-client.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { SubListComponent } from './subscription/sub-list/sub-list.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     ReportComponent,
     SubscriptionComponent,
     CreateClientComponent,
-    ConnectClientComponent
+    ConnectClientComponent,
+    SubListComponent
   ],
   imports: [
     MatSelectModule,

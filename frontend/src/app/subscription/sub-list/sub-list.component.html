@@ -1,0 +1,18 @@
+<div class="content">
+  <h1>Changer d'abonnement</h1>
+  <div class="layer">
+    <div *ngFor="let sub of subList" (click)="this.selectSub(sub)" [ngClass]="{selected: this.current_plan == sub}" class="square">
+      <h3>
+        {{sub.name}}
+      </h3>
+      <p>
+        Réduction : {{sub.discount.value}} %
+      </p>
+
+      <div class="price">
+        Prix : {{sub.price.price}} €
+      </div>
+    </div>
+  </div>
+  <button class="default">Changer d'abonnement</button>
+</div>

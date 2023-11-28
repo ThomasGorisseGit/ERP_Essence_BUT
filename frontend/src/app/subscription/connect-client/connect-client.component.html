@@ -18,7 +18,7 @@
       <div *ngIf="currentClient?.subscription?.name == ''">
           Ce client ne possède pas d'abonnement
       </div>
-      <button class="default littlebutton"  *ngIf="this.currentClient != null">Changer l'abonnement</button>
+      <button class="default littlebutton"  *ngIf="this.currentClient != null" (click)="selectPlan = true">Changer l'abonnement</button>
     </div>
     <div class="bubble">
       <h3>
@@ -46,3 +46,4 @@
 <app-display-popup></app-display-popup>
 <app-display-error></app-display-error>
 
+<app-sub-list *ngIf="selectPlan"></app-sub-list>

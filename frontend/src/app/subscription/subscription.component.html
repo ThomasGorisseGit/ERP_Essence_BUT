@@ -10,9 +10,8 @@
     <h2 class="option" *ngIf="option==''">Veuillez saisir une option</h2>
     <app-create-client *ngIf="option=='create'"></app-create-client>
     <app-connect-client *ngIf="option=='connect'"></app-connect-client>
-
   </div>
   <div class="bottomRight">
-  <button class="default" *ngIf="option != ''" (click)="changeOption('')">Retour</button>
+    <button class="default" *ngIf="option != ''" (click)="changeOption('')">Retour</button>
   </div>
 </div>

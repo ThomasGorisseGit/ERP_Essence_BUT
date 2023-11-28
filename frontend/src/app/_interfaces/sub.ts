@@ -1,5 +1,10 @@
 export interface Sub {
-  discount : number;
-  price : number;
+  id:number;
+  discount :{
+    value:number;
+  };
+  price : {
+    price:number
+  };
   name:string;
 }
