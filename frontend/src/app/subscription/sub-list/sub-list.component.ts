@@ -51,7 +51,6 @@ export class SubListComponent {
     if(this.current_plan === undefined){
 
       this.displayError.error = "Impossible de modifier l'abonnement";
-      this.displayError.message = "Aucuns abonnement a été sélectionné";
       //throw error
       return;
     }
@@ -64,7 +63,6 @@ export class SubListComponent {
       },
       error : (err)=>{
         this.displayError.error = "Impossible de modifier l'abonnement";
-        this.displayError.message = "une erreur est survenue lors de la modification";
       }
     })
 
