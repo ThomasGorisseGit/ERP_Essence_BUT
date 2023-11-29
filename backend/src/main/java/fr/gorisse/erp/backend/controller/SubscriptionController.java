@@ -10,6 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/subscription")
+@CrossOrigin(origins = {"http://localhost:4200", "http://209.38.204.153:8080","https://209.38.204.153:8080", "http://209.38.204.153","https://209.38.204.153:80","http://thomasgorisse.com","https://thomasgorisse.com"})
+
 public class SubscriptionController implements DefaultController<Subscription> {
     @Autowired
     private SubscriptionService subscriptionService;
@@ -17,7 +19,6 @@ public class SubscriptionController implements DefaultController<Subscription> {
     @PostMapping("/add")
     @Transactional
     public Subscription create(@RequestBody Subscription subscription){
-        System.out.println(subscription);
         return this.subscriptionService.create(subscription);
     }
 
@@ -45,10 +46,8 @@ public class SubscriptionController implements DefaultController<Subscription> {
         this.subscriptionService.deleteById(id);
     }
 
-    @Override
     @GetMapping("/getSubscriptionById/{id}")
     public Subscription getById(@PathVariable("id")int id){
-        System.out.println(id);
         return this.subscriptionService.getEntityById(id);
     }
 }

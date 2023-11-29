@@ -1,6 +1,7 @@
 import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,15 @@ import { HeaderComponent } from './header/header.component';
 import { DisplayErrorComponent } from './_popup/display-error/display-error.component';
 import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
 import { DisplayPopupComponent } from './_popup/display-popup/display-popup.component';
+import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
+import { ReportComponent } from './incidents/report/report.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { CreateClientComponent } from './subscription/create-client/create-client.component';
+import { ConnectClientComponent } from './subscription/connect-client/connect-client.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { SubListComponent } from './subscription/sub-list/sub-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +54,12 @@ import { DisplayPopupComponent } from './_popup/display-popup/display-popup.comp
     HeaderComponent,
     DisplayErrorComponent,
     DisplayPopupComponent,
+    ComptabiliteComponent,
+    ReportComponent,
+    SubscriptionComponent,
+    CreateClientComponent,
+    ConnectClientComponent,
+    SubListComponent
   ],
   imports: [
     MatSelectModule,
@@ -53,11 +69,15 @@ import { DisplayPopupComponent } from './_popup/display-popup/display-popup.comp
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     HttpClient,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true },
+   // {provide: LocationStrategy, useClass: HashLocationStrategy}
+
 
   ],
   bootstrap: [AppComponent]

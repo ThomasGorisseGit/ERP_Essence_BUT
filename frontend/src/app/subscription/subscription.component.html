@@ -1,0 +1,17 @@
+<div class="mainContent">
+
+  <div class="topnav" >
+    <button *ngIf="option==''" class="default" (click)="changeOption('create')">Créer un compte client</button>
+    <button *ngIf="option==''" class="default" (click)="changeOption('connect')">Connexion à un compte client</button>
+    <h2 *ngIf="option=='create'" class="option">Création d'un compte client</h2>
+    <h2 *ngIf="option=='connect'" class="option">Connexion à compte client</h2>
+  </div>
+  <div class="content">
+    <h2 class="option" *ngIf="option==''">Veuillez saisir une option</h2>
+    <app-create-client *ngIf="option=='create'"></app-create-client>
+    <app-connect-client *ngIf="option=='connect'"></app-connect-client>
+  </div>
+  <div class="bottomRight">
+    <button class="default" *ngIf="option != ''" (click)="changeOption('')">Retour</button>
+  </div>
+</div>

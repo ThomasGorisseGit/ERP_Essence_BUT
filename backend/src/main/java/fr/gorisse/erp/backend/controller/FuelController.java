@@ -10,6 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fuel")
+@CrossOrigin(origins = {"http://localhost:4200", "http://209.38.204.153:8080","https://209.38.204.153:8080", "http://209.38.204.153","https://209.38.204.153:80","http://thomasgorisse.com","https://thomasgorisse.com"})
+
 public class FuelController implements DefaultController<Fuel> {
 
     @Autowired
@@ -41,5 +43,12 @@ public class FuelController implements DefaultController<Fuel> {
     @Transactional
     public void delete(@RequestBody Fuel fuel){
         this.fuelService.delete(fuel);
+    }
+
+
+    @PostMapping("/addQte/{id}")
+    @Transactional
+    public Fuel addQte(@RequestBody int quantity, @PathVariable("id")int id){
+        return this.fuelService.addQte(quantity,id);
     }
 }

@@ -7,4 +7,8 @@ import java.util.List;
 public interface ProviderRepository extends DefaultRepository<Provider> {
     Provider findByProductList_Id(int productId);
     List<Provider> findByProductListIsNotNullAndProductListNotEmptyAndProductList_StockIsNotNullAndProductList_Stock_DeliveryListIsNotNullAndProductList_Stock_DeliveryListIsNotEmpty();
+    int countByFuelListIsNotNullAndFuelListIsNotEmpty();
+
+    List<Provider> findByProductListIsNotNullAndProductListIsNotEmpty();
+    List<Provider> findByFuelListIsNotNullAndFuelListIsNotEmpty();
 }

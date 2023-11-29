@@ -27,6 +27,7 @@ public class Fuel {
     private String typeOfFuel;
 
     private double quantity;
+    private double price;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     @UpdateTimestamp

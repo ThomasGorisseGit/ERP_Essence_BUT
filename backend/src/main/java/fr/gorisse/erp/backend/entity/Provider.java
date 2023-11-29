@@ -31,5 +31,9 @@ public class Provider extends Person {
         super(firstname,lastname);
         this.siret = Siret.create(siret);
     }
-
+    public Provider(String siret,String firstname,String lastname,List<Fuel>fuelList){
+        super(firstname,lastname);
+        this.siret = Siret.create(siret);
+        this.fuelList = fuelList;
+    }
 }

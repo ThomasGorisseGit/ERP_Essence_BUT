@@ -20,44 +20,39 @@
       <div class="verticalButtons">
         <button class="greenButton" routerLink="/stocks"><img src="../../assets/stocks.png" alt="stocks">
           Stocks</button>
-        <button class="greenButton"><img src="../../assets/prix.png" alt="prix"> Prix</button>
-        <button class="greenButton"><img src="../../assets/horaires.png" alt="horaires"> Horaires et conso</button>
-        <button class="greenButton"><img src="../../assets/compta.png" alt="comptabilité"> Comptabilité</button>
+        <button routerLink="/stocks/inventory" class="greenButton"><img src="../../assets/prix.png" alt="prix"> Prix</button>
+        <button routerLink="/caisse" class="greenButton"><img src="../../assets/caisse.png" alt="horaires"> Caisse</button>
+        <button routerLink="/comptabilite" class="greenButton"><img src="../../assets/compta.png" alt="comptabilité"> Comptabilité</button>
       </div>
-      <form id="commandForm">
+      <form [formGroup]="formGroup" id="commandForm">
         <h3>Nouveau Réapprovisionnement</h3>
 
         <div class="formGroup">
-          <label for="productAsked">Produit demandé</label>
-          <select name="productAsked" id="productAsked">
-            <option value="BioEthanol">BioEthanol</option>
-            <option value="Gazole">Gazole</option>
-            <option value="E85">E85</option>
-            <option value="SP95">SP95</option>
-            <option value="jambon">jambon</option>
+          <label for="productAsked">Fournisseur</label>
+          <select formControlName="provider" id="productAsked">
+            <option *ngFor="let provider of listProviderFuel" value={{provider.id}}>{{provider.firstName}} {{provider.lastName}}</option>
           </select>
         </div>
         <div class="formGroup">
-          <label for="fournisseur">Fournisseur</label>
-          <select name="fournisseur" id="fournisseur">
-            <option value="BioEthanol">BioEthanol</option>
-            <option value="Gazole">Gazole</option>
-            <option value="E85">E85</option>
-            <option value="SP95">SP95</option>
-            <option value="jambon">jambon</option>
+          <label for="fuel">Énergie</label>
+          <select formControlName="fuel" name="fuel" id="fuel" >
+            <option value=0 hidden></option>
+            <option *ngFor="let fuel of listFuel" value={{fuel.id}}>{{fuel.typeOfFuel}}</option>
           </select>
         </div>
         <div class="formGroup">
           <label for="quantity">Quantity</label>
-          <input type="number" name="quantity" id="quantity">
+          <input formControlName="quantity" type="number" name="quantity" id="quantity">
         </div>
         <div class="formGroup">
           <label for="montant">Montant</label>
-          <input type="number" name="montant" id="montant">
+          <label for="montant">{{this.getTotal()}} €</label>
         </div>
-        <button>Valider</button>
+        <button (click)="submit()">Valider</button>
 
       </form>
     </div>
   </div>
 </div>
+<app-display-error></app-display-error>
+<app-display-popup></app-display-popup>

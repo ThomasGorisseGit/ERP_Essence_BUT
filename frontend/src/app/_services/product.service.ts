@@ -18,7 +18,6 @@ export class ProductService {
   listStock : Stock[] | null = null;
   listProductWithStocks: Product[] | null = null;
   listProviderFullInformations: Provider[] | null = null;
-
   constructor(private http:HttpClient) {
 
     this.getProductList();
@@ -60,7 +59,6 @@ export class ProductService {
       request.subscribe({
         next: (data)=>{
           this.listDelivery = data;
-          console.log(this.listDelivery);
 
         }
       })

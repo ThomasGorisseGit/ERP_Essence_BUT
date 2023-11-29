@@ -1,8 +1,8 @@
 package fr.gorisse.erp.backend.entity.valueObject;
 
-import fr.gorisse.erp.backend.entity.Subscription;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.gorisse.erp.backend.exceptions.InvalidInput;
-import jakarta.persistence.Converter;
 import lombok.Value;
 
 import java.util.Arrays;
@@ -10,8 +10,8 @@ import java.util.Arrays;
 @Value
 public class SubscriptionPrice {
     double price;
-
-    private SubscriptionPrice(double price){
+    @JsonCreator
+    private SubscriptionPrice(@JsonProperty("price") double price){
         this.price = price;
     }
     public static SubscriptionPrice create(double price){

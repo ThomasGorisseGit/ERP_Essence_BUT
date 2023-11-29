@@ -1,0 +1,15 @@
+.creation-form{
+  display: flex;
+  flex-direction:row;
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.creation-form>div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 80%;
+
+}

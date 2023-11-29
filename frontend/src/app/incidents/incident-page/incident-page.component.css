@@ -173,3 +173,8 @@ p.dailyDescription{
   font-size: 1.3em;
   width: 200px;
 }
+app-report{
+  width: 40% !important;
+  border: none !important;
+  box-shadow: none !important;
+}

@@ -1,0 +1,15 @@
+<form [formGroup]="formGroup" class="form">
+  <div class="item">
+    <label for="title">Titre</label>
+    <select class="default" type="text" formControlName="title">
+      <option *ngFor="let type of listIncidents" value={{type.title}}>{{type.title}}</option>
+    </select>
+  </div>
+  <div class="item">
+    <label for="description">Description</label>
+    <textarea class="default" formControlName="description" id="description" cols="30" rows="10"></textarea>
+  </div>
+  <button (click)="declarerIncident()">Déclarer l'incident</button>
+</form>
+<app-display-error ></app-display-error>
+<app-display-popup ></app-display-popup>

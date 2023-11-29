@@ -1,0 +1,49 @@
+<div class="content">
+  <div class="layer">
+    <mat-form-field appearance="fill">
+      <mat-label>Liste de client</mat-label>
+      <mat-select [formControl]="client_id"  required>
+        <mat-option *ngFor="let client of clientList" [value]="client.id">{{client.firstName}} {{client.lastName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <div class="layer">
+    <div class="bubble">
+      <h3>Abonnement :</h3>
+      <div *ngIf="this.currentClient == null">Veuillez selectionner un client</div>
+      <div *ngIf="currentClient?.subscription?.name != ''">
+        {{currentClient?.subscription?.name}}
+      </div>
+      <div *ngIf="currentClient?.subscription?.name == ''">
+          Ce client ne possède pas d'abonnement
+      </div>
+      <button class="default littlebutton"  *ngIf="this.currentClient != null" (click)="selectPlan = true">Changer l'abonnement</button>
+    </div>
+    <div class="bubble">
+      <h3>
+        Numéro de téléphone :
+      </h3>
+      <div *ngIf="this.currentClient == null">Veuillez selectionner un client</div>
+      <div *ngIf="currentClient?.phoneNumber">
+        {{currentClient?.phoneNumber?.phoneNumber}}
+      </div>
+      <h3>
+        Adresse email :
+      </h3>
+      <div *ngIf="this.currentClient == null">Veuillez selectionner un client</div>
+      <div *ngIf="currentClient?.emailAddress">
+        {{currentClient?.emailAddress?.email}}
+      </div>
+    </div>
+    <div class="bubble delete" (click)="deleteClient()">
+      Supprimer
+    </div>
+  </div>
+</div>
+
+
+<app-display-popup></app-display-popup>
+<app-display-error></app-display-error>
+
+<app-sub-list *ngIf="selectPlan" [client]="currentClient!"></app-sub-list>

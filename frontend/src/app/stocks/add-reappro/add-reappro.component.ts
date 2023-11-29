@@ -52,14 +52,14 @@ export class AddReapproComponent {
 
 
     // For Provider :
-    if(this.providerService.listProvider === null){
-      this.providerService.getProviderList().subscribe({
+    if(this.providerService.listProviderProduct === null){
+      this.providerService.getProvidersProductList().subscribe({
         next:(data:Provider[])=>{
           this.providerList = data;
         }
       });
     }else{
-      this.providerList = this.providerService.listProvider;
+      this.providerList = this.providerService.listProviderProduct;
     }
   }
 
@@ -79,7 +79,6 @@ export class AddReapproComponent {
         if(value["product"] != null){
           this.productService.getProvider(value["product"]).subscribe({
             next: (data)=>{
-
               this.providerList = [data];
 
             }

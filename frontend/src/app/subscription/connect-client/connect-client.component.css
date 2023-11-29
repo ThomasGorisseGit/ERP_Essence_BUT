@@ -1,0 +1,54 @@
+.layer{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.bubble{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--defaultBoxShadow);
+  border-radius: var(--defaultBorderRadius);
+  width: 20%;
+  gap: 20px;
+  padding: 20px;
+}
+.content{
+  width: 80%;
+  background-color: #fff;
+  box-shadow: var(--defaultBoxShadow);
+  border-radius: var(--defaultBorderRadius);
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+}
+
+.littlebutton{
+  font-size: 1em;
+}
+.delete:hover{
+  background-color: rgb(230, 83, 83);
+  transition: 0.3s;
+}
+
+.delete{
+  font-size: 1.3em;
+  transition: 0.3s;
+}
+.pop{
+  position: absolute;
+  background-color: #fff;
+  border-radius: var(--defaultBorderRadius);
+  box-shadow: var(--defaultBoxShadow);
+  width: 60%;
+  height: 30%;
+
+}
+app-sub-list{
+  width: 100%;
+  position: absolute;
+  height: 70vh;
+  top: 30%;
+}

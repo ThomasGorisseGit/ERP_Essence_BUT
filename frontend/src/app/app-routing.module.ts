@@ -10,6 +10,8 @@ import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.c
 import { AddReapproComponent } from './stocks/add-reappro/add-reappro.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AuthService } from './_services/auth.service';
+import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 const guard = ()=>{
 
@@ -70,7 +72,15 @@ const routes: Routes = [{
     }
   ]
 
-}
+},{
+  path: 'comptabilite',
+  component: ComptabiliteComponent,
+  canActivate:[guard]
+},{
+  path: 'abonnement',
+  component: SubscriptionComponent,
+  canActivate:[guard]
+},
 
 ];
 

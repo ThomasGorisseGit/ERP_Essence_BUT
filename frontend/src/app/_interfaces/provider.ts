@@ -1,3 +1,4 @@
+import { Fuel } from "./fuel";
 import { Product } from "./product";
 
 export interface Provider {
@@ -5,5 +6,6 @@ export interface Provider {
   firstName:string;
   lastName:string;
   siret:string;
-  productList:Product[];
+  productList:Product[] ;
+  fuelList:Fuel[];
 }
