@@ -47,8 +47,8 @@
 
 }
 app-sub-list{
-  width: 80%;
+  width: 100%;
   position: absolute;
-  height: 60vh;
+  height: 70vh;
   top: 30%;
 }

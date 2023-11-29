@@ -1,7 +1,7 @@
 export interface Sub {
   id:number;
   discount :{
-    value:number;
+    value:string;
   };
   price : {
     price:number

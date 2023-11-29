@@ -1,7 +1,7 @@
 <div class="content">
   <div class="layer">
     <mat-form-field appearance="fill">
-      <mat-label>Produits proposés</mat-label>
+      <mat-label>Liste de client</mat-label>
       <mat-select [formControl]="client_id"  required>
         <mat-option *ngFor="let client of clientList" [value]="client.id">{{client.firstName}} {{client.lastName}}</mat-option>
       </mat-select>
@@ -46,4 +46,4 @@
 <app-display-popup></app-display-popup>
 <app-display-error></app-display-error>
 
-<app-sub-list *ngIf="selectPlan"></app-sub-list>
+<app-sub-list *ngIf="selectPlan" [client]="currentClient!"></app-sub-list>

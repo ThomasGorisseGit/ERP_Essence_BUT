@@ -46,4 +46,7 @@ export class ClientService {
       return req;
     })
   }
+  changeSubscription(sub:Sub,client_id:number){
+    return this.http.post<Client>(ApiURL+"/client/setSubscription/"+client_id, sub);
+  }
 }
