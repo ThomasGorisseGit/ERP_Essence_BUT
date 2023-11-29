@@ -46,10 +46,8 @@ public class SubscriptionController implements DefaultController<Subscription> {
         this.subscriptionService.deleteById(id);
     }
 
-    @Override
     @GetMapping("/getSubscriptionById/{id}")
     public Subscription getById(@PathVariable("id")int id){
-        System.out.println(id);
         return this.subscriptionService.getEntityById(id);
     }
 }

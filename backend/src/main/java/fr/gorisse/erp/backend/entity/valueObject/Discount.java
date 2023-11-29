@@ -1,17 +1,18 @@
 package fr.gorisse.erp.backend.entity.valueObject;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.gorisse.erp.backend.exceptions.InvalidInput;
 import lombok.Value;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
 @Value
 public class Discount {
     int value;
 
-    private Discount(int discount){
+    @JsonCreator
+    private Discount(@JsonProperty("value")int discount){
         this.value = discount;
     }
     public static Discount create(int discount){
