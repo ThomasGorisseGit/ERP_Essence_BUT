@@ -160,7 +160,19 @@ export class CaisseComponent {
     this.getTotal();
   }
   validatePaiement() {
+    if(this.displayTotal=='0'){
+      this.displayError.error ="Le panier est vide";
 
+      return;
+    }
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+      this.validate =true;
+      setTimeout(()=>{
+        this.validate = false;
+      },2000);
+    },2000)
   }
 
   showPopup(): void {
