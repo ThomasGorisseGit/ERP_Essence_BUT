@@ -59,7 +59,7 @@ import { SubListComponent } from './subscription/sub-list/sub-list.component';
     SubscriptionComponent,
     CreateClientComponent,
     ConnectClientComponent,
-    SubListComponent
+    SubListComponent,
   ],
   imports: [
     MatSelectModule,

@@ -336,7 +336,7 @@ input[type="number"] {
 .top {
   font-size: 1.6em;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
@@ -347,7 +347,7 @@ input[type="number"] {
   color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-style: italic;
-  font-size: 0.8em;
+  font-size: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -356,6 +356,8 @@ input[type="number"] {
   border: none;
   padding: 0.5em;
   border-radius: 10px;
+  width: 200px;
+  height: 70px;
 }
 .bottom button {
   font-size: 1.2em;
@@ -548,5 +550,34 @@ app-report{
   height: 80%;
   width: 90%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.paiement{
+  font-style: italic;
+}
+app-select-client{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+}
+.popup{
+  position: absolute;
+  height: 50%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: white;
+  z-index: 11;
+  align-items: center;
+  box-shadow: var(--defaultBoxShadow);
+  border-radius: var(--defaultBorderRadius);
+}
+.popup>img{
+  width: 30px;
+  top: 10px;
+  right: 10px;
+  position:absolute;
 
 }

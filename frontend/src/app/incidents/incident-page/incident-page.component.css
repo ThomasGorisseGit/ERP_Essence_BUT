@@ -95,6 +95,7 @@ app-incidents.dailyActive{
 
 .menuNav{
   transition: 0.3s;
+  cursor: pointer;
 }
 
 label{

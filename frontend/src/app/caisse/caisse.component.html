@@ -74,7 +74,8 @@
               </div>
             </div>
           </div>
-          <div class="totalAmount">Montant Total {{this.cart!.total}}€
+          <i *ngIf="this.currentClient?.subscription?.discount">Discount : {{this.discount}} %</i>
+          <div class="totalAmount">Montant Total {{this.displayTotal}}€
             <button (click)="viderPanier()"
                [ngClass]="{redBg: this.cart!.listProduct.length!=0}">Abandonner
             </button>
@@ -83,22 +84,11 @@
       </div>
       <div class="rightBottom">
         <div class="top">
-          <div>Paiement</div>
-          <button (click)="validatePaiement()">Espèces <img src="../../assets/cash.png" alt="cash"></button>
-          <button (click)="validatePaiement()">Carte paiement<img src="../../assets/cb.png"
-              alt="Carte Paiement"></button>
-          <button [disabled]="" (click)="validatePaiement()">Énergie <img
-              src="../../assets/nrj.png" alt="Éngergie"></button>
+          <h3 class="paiement">Paiement</h3>
+          <button (click)="validatePaiement()">Payer</button>
+          <button (click)="connect=true">Abonnement client</button>
         </div>
-        <div class="bottom">
-          <button>Scanner la carte membre</button>
-          <div class="ticket">
-            <div>Ticket de caisse</div>
-            <div class="buttons">Email</div>
-            <div class="buttons">Papier</div>
-            <div class="buttons">Non</div>
-          </div>
-        </div>
+
       </div>
     </div>
 
@@ -139,3 +129,18 @@
   </div>
 <app-display-error></app-display-error>
 <app-display-popup></app-display-popup>
+
+<div class="popup" *ngIf="connect">
+  <img (click)="connect = false" src="assets/fermer.png" alt="">
+
+  <h2>
+    Choisir le client
+  </h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Liste de client</mat-label>
+    <mat-select [formControl]="client_id"  required>
+      <mat-option *ngFor="let client of clientList" [value]="client.id">{{client.firstName}} {{client.lastName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button class = "default" (click)="chooseClient()">Enregistrer</button>
+</div>

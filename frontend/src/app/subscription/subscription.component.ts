@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SubscriptionComponent {
 
-  option:string = 'connect';
+  option:string = '';
 
   constructor(){
 

@@ -1,3 +1,4 @@
+import { ClientService } from './../_services/client.service';
 import { Incident } from './../_interfaces/incident';
 import { Component, ViewChild } from '@angular/core';
 import { Cart } from '../_interfaces/cart';
@@ -7,6 +8,8 @@ import { ProductService } from '../_services/product.service';
 import { Product } from '../_interfaces/product';
 import { DisplayErrorComponent } from '../_popup/display-error/display-error.component';
 import { DisplayPopupComponent } from '../_popup/display-popup/display-popup.component';
+import { FormControl } from '@angular/forms';
+import { Client } from '../_interfaces/client';
 
 @Component({
   selector: 'app-caisse',
@@ -18,9 +21,17 @@ export class CaisseComponent {
   listIncidents: Incident[] = [INCIDENTS[4],INCIDENTS[5],INCIDENTS[7],INCIDENTS[0]] ;
   IncidentToReport : Incident[] = INCIDENTS;
 
+  clientList : Client[] = [];
+  client_id : FormControl = new FormControl();
+  currentClient :Client | null = null;
+
+  total :number= 0;
+  displayTotal:String = "0";
+  discount : string | null='';
+
   listProduct : Product[] = [];
   inputValue: string = '';
-
+  connect :boolean = false;
   cart:Cart ={
     listProduct: [],
     total: 0
@@ -34,7 +45,9 @@ export class CaisseComponent {
   @ViewChild(DisplayPopupComponent)
   displayPopup!: DisplayPopupComponent;
 
-  constructor(private productService: ProductService,private router:Router) {
+
+
+  constructor(private productService: ProductService,private router:Router,private ClientService:ClientService) {
     if(this.productService.listProductWithStocks === null) {
       this.productService.ProductContainsAll().subscribe({
         next:(data)=>{
@@ -46,8 +59,27 @@ export class CaisseComponent {
     else{
       this.listProduct= this.productService.listProductWithStocks;
     }
+    this.handleCli();
   }
 
+  handleCli(){
+    if(this.ClientService.clientList === null){
+      this.ClientService.getClients().subscribe({
+        next:(data)=>{
+          this.clientList = data as Client[];
+        }
+      })
+    }
+    else {
+      this.clientList = this.ClientService.clientList!;
+    }
+  }
+  chooseClient(){
+    this.connect = false;
+    this.currentClient = this.clientList.find((cli)=>cli.id == this.client_id.value) as Client;
+    this.discount = this.currentClient.subscription.discount.value;
+    this.getTotal();
+  }
 
   onButtonClicked(value: string) {
     if (value == '') {
@@ -71,7 +103,6 @@ export class CaisseComponent {
 
     }
     else{
-      console.log(this.inputValue);
 
       var item = {
         product:this.listProduct[parseInt(this.inputValue)-1],
@@ -93,6 +124,30 @@ export class CaisseComponent {
 
 
     }
+    this.getTotal();
+  }
+  getTotal(){
+    this.total = 0;
+    this.displayTotal = '0';
+
+    if(this.cart.listProduct.length==0){
+      return;
+    }
+    this.cart.listProduct.forEach((product)=>{
+      this.total += product.product.price * product.quantity;
+    })
+    this.getDiscount();
+
+
+    this.displayTotal = this.total.toFixed(2);
+
+
+  }
+  getDiscount(){
+    if(this.currentClient != null){
+      this.total -=  (this.total*parseInt(this.currentClient.subscription.discount.value)) /100
+      this.discount=this.currentClient.subscription.discount.value;
+    }
   }
 
   getProductQuantity(productId:number):number{
@@ -102,39 +157,36 @@ export class CaisseComponent {
   deleteProduct(id: number) {
     let index = this.cart.listProduct.findIndex(elem=>elem.product.id === id)
     this.cart.listProduct.splice(index,1)
-
-    /*var trouve = -1;
-    for (var i = 0; i < this.cart.listProduct.length; i++) {
-      if (this.cart.listProduct[i].produit.id == id) {
-        trouve = i;
-        break;
-      }
-    }
-    if (trouve != -1) {
-      console.log('produit trouvé');
-      if (this.cart.listProduct[trouve].quantity > 1) {
-        console.log('donc on décrémente');
-        this.cart.listProduct[trouve].quantity--;
-      } else {
-
-        this.cart.listProduct.splice(trouve, 1);
-      }
-      this.cart.total = this.cart.listProduct.reduce(
-        (total, item) => total + item.produit.price * item.quantity,
-        0
-      );
-      this.cart.total = Math.round(this.cart.total * 100) / 100;
-    }*/
+    this.getTotal();
   }
   validatePaiement() {
-    /*console.log('paiement validé');
-    if (this.cart.total == 0) {
+    if(this.displayTotal=='0'){
+      this.displayError.error ="Le panier est vide";
+
       return;
     }
-    this.showPopup();
-    this.cart.listProduct = [];
-    this.cart.total = 0;
-    */
+
+    // TODO : Edit stock and clear cart
+    this.cart.listProduct.forEach((prod)=>{
+      this.productService.editStock(prod.product.id,(prod.product.stock!.quantity - prod.quantity)).subscribe({
+        next : (data)=>
+        {
+          this.deleteProduct(prod.product.id)
+          this.productService.ProductContainsAll().subscribe({next(value) {
+              console.log(value);
+
+          },})
+    }})
+    })
+
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+      this.validate =true;
+      setTimeout(()=>{
+        this.validate = false;
+      },2000);
+    },2000)
   }
 
   showPopup(): void {
@@ -150,7 +202,7 @@ export class CaisseComponent {
   }
   viderPanier() {
     this.cart!.listProduct = [];
-    this.cart!.total = 0;
+    this.getTotal();
   }
 
 
