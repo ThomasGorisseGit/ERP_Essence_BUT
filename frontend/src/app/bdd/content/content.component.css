@@ -1,0 +1,14 @@
+table{
+  width: 100%;
+  overflow: auto;
+}
+td,th{
+  text-align: center;
+}
+td{
+  font-size: 1.2em;
+}
+th{
+  font-size: 1.4em;
+  padding: 20px;
+}

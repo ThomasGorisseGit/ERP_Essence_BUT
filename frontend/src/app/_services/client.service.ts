@@ -23,14 +23,14 @@ export class ClientService {
     return this.http.post(ApiURL+"/client/add",cli) as Observable<Client>
   }
 
-  getClients(){
+  getClients() : Observable<Client[]>{
     return this.http.get(ApiURL+ "/client/getClients").pipe((req)=>{
       req.subscribe({
         next:(data)=>{
           this.clientList = data as Client[];
         }
       })
-      return req;
+      return req as Observable<Client[]>;
     })
   }
   delete(client : Client){

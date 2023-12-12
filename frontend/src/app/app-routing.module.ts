@@ -10,8 +10,8 @@ import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.c
 import { AddReapproComponent } from './stocks/add-reappro/add-reappro.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AuthService } from './_services/auth.service';
-import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { BddComponent } from './bdd/bdd.component';
 
 const guard = ()=>{
 
@@ -47,6 +47,10 @@ const routes: Routes = [{
   path: 'incidents',
   component: IncidentPageComponent,
   canActivate:[guard]
+},{
+  path: 'base-de-donnees',
+  component: BddComponent,
+  canActivate:[guard]
 },
 {
   path: 'stocks',
@@ -70,12 +74,9 @@ const routes: Routes = [{
       path: 'addReappro',
       component: AddReapproComponent
     }
+
   ]
 
-},{
-  path: 'comptabilite',
-  component: ComptabiliteComponent,
-  canActivate:[guard]
 },{
   path: 'abonnement',
   component: SubscriptionComponent,

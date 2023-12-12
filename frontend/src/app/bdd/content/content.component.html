@@ -1,0 +1,68 @@
+<table>
+  <thead *ngIf="this.productList.length>0">
+    <tr >
+      <th>Nom </th>
+      <th>Quantité</th>
+      <th>Prix</th>
+    </tr>
+  </thead>
+
+  <thead *ngIf="this.clientList.length>0">
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Plan</th>
+    </tr>
+  </thead>
+
+  <thead *ngIf="this.fuelList.length>0">
+    <tr>
+      <th>Nom</th>
+      <th>Prix</th>
+      <th>Quantité</th>
+    </tr>
+  </thead>
+
+  <thead *ngIf="this.providerList.length>0">
+    <tr>
+      <th> Nom </th>
+      <th>Prénom</th>
+      <th>Code d'identification</th>
+    </tr>
+  </thead>
+
+  <tbody *ngIf="this.productList.length>0">
+    <tr *ngFor="let product of productList">
+      <td>{{product.name}}</td>
+      <td>{{product.stock!.quantity}}</td>
+      <td>
+        {{product.price}} €
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody *ngIf="this.clientList.length>0">
+    <tr *ngFor="let client of clientList">
+      <td>{{client.lastName}}</td>
+      <td>{{client.firstName}}</td>
+      <td>{{client.subscription.name}}</td>
+    </tr>
+  </tbody>
+
+  <tbody *ngIf="this.fuelList.length>0">
+    <tr *ngFor="let fuel of fuelList">
+      <td> {{fuel.typeOfFuel}} </td>
+      <td>{{fuel.price}} €/L</td>
+      <td>{{fuel.quantity}} L</td>
+    </tr>
+  </tbody>
+
+  <tbody *ngIf="this.providerList.length>0">
+    <tr *ngFor="let provider of providerList">
+      <td>{{provider.lastName}}</td>
+      <td>{{provider.firstName}}</td>
+      <td>{{provider.id}}</td>
+    </tr>
+  </tbody>
+
+</table>

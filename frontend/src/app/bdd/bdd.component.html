@@ -1,0 +1,48 @@
+<div class="mainContainer">
+  <div class="content">
+    <div class="left">
+      <div class="box"
+      [ngClass]="{selected:getSelectedPage()==='Stocks'}"
+      (click)="setSelectedPage('Stocks')"
+
+      >
+        Stocks
+      </div>
+      <div class="box"
+        [ngClass]="{selected:getSelectedPage()==='Clients'}"
+        (click)="setSelectedPage('Clients')"
+
+      >
+        Clients
+      </div>
+      <div class="box"
+      [ngClass]="{selected:getSelectedPage()==='Essence'}"
+      (click)="setSelectedPage('Essence')"
+
+      >
+        Essence
+      </div>
+      <div class="box"
+      [ngClass]="{selected:getSelectedPage()==='Fournisseur'}"
+      (click)="setSelectedPage('Fournisseur')"
+      >
+        Fournisseur
+      </div>
+    </div>
+    <div class="right">
+      <h2 *ngIf="this.getSelectedPage() === 'Stocks' && this.listProductWithStocks.length==0">Il n'y a aucuns Produits dans la base</h2>
+      <app-content *ngIf="this.getSelectedPage() === 'Stocks' " [productList]="this.listProductWithStocks"></app-content>
+
+      <h2 *ngIf="this.getSelectedPage() === 'Clients' && this.listClient.length==0">Il n'y a aucuns Clients dans la base</h2>
+      <app-content *ngIf="this.getSelectedPage() === 'Clients' && this.listClient.length>0" [clientList]="this.listClient"></app-content>
+
+      <h2 *ngIf="this.getSelectedPage() === 'Essence' && this.listFuel.length==0">Il n'y a plus d'Essence dans la base</h2>
+      <app-content *ngIf="this.getSelectedPage() === 'Essence' && this.listFuel.length>0" [fuelList]="this.listFuel"></app-content>
+
+      <h2 *ngIf="this.getSelectedPage() === 'Fournisseur' && this.listProvider.length==0">Il n'y a pas de Fournisseur dans la base</h2>
+      <app-content *ngIf="this.getSelectedPage() === 'Fournisseur' && this.listProvider.length>0" [providerList]="this.listProvider"></app-content>
+
+
+    </div>
+  </div>
+</div>
