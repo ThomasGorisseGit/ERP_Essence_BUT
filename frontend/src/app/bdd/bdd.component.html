@@ -31,7 +31,7 @@
     </div>
     <div class="right">
       <h2>Veuillez choisir une table à afficher</h2>
-      <app-content></app-content>
+      <app-content *ngIf="this.getSelectedPage() === 'Stocks' " [productList]="this.listProductWithStocks"></app-content>
     </div>
   </div>
 </div>

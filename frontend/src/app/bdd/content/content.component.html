@@ -1,0 +1,14 @@
+<table>
+  <thead *ngIf="this.productList.length>0">
+    <tr >
+      <th>Nom </th>
+      <th>Quantité</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="this.productList.length>0">
+    <tr *ngFor="let product of productList">
+      <td>{{product.name}}</td>
+      <td>{{product.stock!.quantity}}</td>
+    </tr>
+  </tbody>
+</table>
