@@ -1,6 +1,8 @@
 import { ProductService } from 'src/app/_services/product.service';
 import { Component } from '@angular/core';
 import { Product } from '../_interfaces/product';
+import { ClientService } from '../_services/client.service';
+import { Client } from '../_interfaces/client';
 
 @Component({
   selector: 'app-bdd',
@@ -10,6 +12,8 @@ import { Product } from '../_interfaces/product';
 export class BddComponent {
   private selectedPage:string = "Stocks";
   listProductWithStocks: Product[] = []
+  listClient : Client[] = []
+
   getSelectedPage() :string{
     return this.selectedPage;
   }
@@ -18,8 +22,12 @@ export class BddComponent {
   }
 
 
-  constructor(private productService:ProductService) {
+  constructor(
+    private productService:ProductService,
+    private clientService:ClientService,
+    ) {
     this.fetchStocks();
+    this.fetchClient();
   }
 
   fetchStocks(){
@@ -31,6 +39,14 @@ export class BddComponent {
       })
     }else{
       this.listProductWithStocks = this.productService.listProductWithStocks as Product[];
+    }
+  }
+
+  fetchClient(){
+    if(this.clientService.clientList === null){
+      this.clientService.getClients().subscribe({next:(data : Client[])=>{this.listClient = data}})
+    }else{
+      this.listClient = this.clientService.clientList;
     }
   }
 }

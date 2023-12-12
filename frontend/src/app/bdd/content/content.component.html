@@ -3,12 +3,36 @@
     <tr >
       <th>Nom </th>
       <th>Quantité</th>
+      <th>Prix</th>
     </tr>
   </thead>
+
+  <thead *ngIf="this.clientList.length>0">
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Plan</th>
+    </tr>
+  </thead>
+
+
+
+
   <tbody *ngIf="this.productList.length>0">
     <tr *ngFor="let product of productList">
       <td>{{product.name}}</td>
       <td>{{product.stock!.quantity}}</td>
+      <td>
+        {{product.price}}
+      </td>
     </tr>
   </tbody>
+  <tbody *ngIf="this.clientList.length>0">
+    <tr *ngFor="let client of clientList">
+      <td>{{client.lastName}}</td>
+      <td>{{client.firstName}}</td>
+      <td>{{client.subscription.name}}</td>
+    </tr>
+  </tbody>
+
 </table>
