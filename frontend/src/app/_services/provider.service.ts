@@ -10,14 +10,18 @@ import { Fuel } from '../_interfaces/fuel';
   providedIn: 'root'
 })
 export class ProviderService {
+
   listProviderProduct:Provider[] | null = null;
   listProviderFuel:Provider[] | null = null;
   listFuel : Fuel[] | null=null;
+  listProvider:Provider[] | null = null;
+
 
   constructor(private http:HttpClient) {
     this.getProvidersProductList()
     this.getProviderFuel();
     this.getFuelList();
+    this.getProviderList();
    }
 
    getProviderFuel():Observable<Provider[]>{
@@ -66,6 +70,18 @@ export class ProviderService {
   }
   addFuelQte(id:number,quantity:number){
     return this.http.post<Fuel>(ApiURL+"/fuel/addQte/"+id,quantity)
+  }
+
+  getProviderList() : Observable<Provider[]>{
+    return this.http.get(ApiURL+"/provider/getProviders").pipe((req)=>{
+      req.subscribe({
+        next :(data )=>{
+          this.listProvider = data as Provider[];
+        }
+      })
+      return req as Observable<Provider[]>;
+    })
+
   }
 
 }

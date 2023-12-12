@@ -1,7 +1,8 @@
-import { Component, Input, Provider } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Client } from 'src/app/_interfaces/client';
 import { Fuel } from 'src/app/_interfaces/fuel';
 import { Product } from 'src/app/_interfaces/product';
+import { Provider } from 'src/app/_interfaces/provider';
 
 @Component({
   selector: 'app-content',

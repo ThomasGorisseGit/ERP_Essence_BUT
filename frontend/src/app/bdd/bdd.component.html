@@ -36,7 +36,13 @@
       <h2 *ngIf="this.getSelectedPage() === 'Clients' && this.listClient.length==0">Il n'y a aucuns Clients dans la base</h2>
       <app-content *ngIf="this.getSelectedPage() === 'Clients' && this.listClient.length>0" [clientList]="this.listClient"></app-content>
 
-      
+      <h2 *ngIf="this.getSelectedPage() === 'Essence' && this.listFuel.length==0">Il n'y a plus d'Essence dans la base</h2>
+      <app-content *ngIf="this.getSelectedPage() === 'Essence' && this.listFuel.length>0" [fuelList]="this.listFuel"></app-content>
+
+      <h2 *ngIf="this.getSelectedPage() === 'Fournisseur' && this.listProvider.length==0">Il n'y a pas de Fournisseur dans la base</h2>
+      <app-content *ngIf="this.getSelectedPage() === 'Fournisseur' && this.listProvider.length>0" [providerList]="this.listProvider"></app-content>
+
+
     </div>
   </div>
 </div>
