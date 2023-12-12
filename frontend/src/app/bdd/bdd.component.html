@@ -1,0 +1,37 @@
+<div class="mainContainer">
+  <div class="content">
+    <div class="left">
+      <div class="box"
+      [ngClass]="{selected:getSelectedPage()==='Stocks'}"
+      (click)="setSelectedPage('Stocks')"
+
+      >
+        Stocks
+      </div>
+      <div class="box"
+        [ngClass]="{selected:getSelectedPage()==='Clients'}"
+        (click)="setSelectedPage('Clients')"
+
+      >
+        Clients
+      </div>
+      <div class="box"
+      [ngClass]="{selected:getSelectedPage()==='Essence'}"
+      (click)="setSelectedPage('Essence')"
+
+      >
+        Essence
+      </div>
+      <div class="box"
+      [ngClass]="{selected:getSelectedPage()==='Fournisseur'}"
+      (click)="setSelectedPage('Fournisseur')"
+      >
+        Fournisseur
+      </div>
+    </div>
+    <div class="right">
+      <h2>Veuillez choisir une table à afficher</h2>
+      <app-content></app-content>
+    </div>
+  </div>
+</div>

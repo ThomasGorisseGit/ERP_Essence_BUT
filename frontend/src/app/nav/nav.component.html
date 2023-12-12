@@ -1,7 +1,7 @@
 <nav>
-  <h3>Base de données</h3>
+  <h3 [style.font-weight]="this.router.url=='/base-de-donnees' ? 'bold':'unset'" routerLink="/base-de-donnees">Base de données</h3>
   <h3 [style.font-weight]="this.router.url=='/abonnement' ? 'bold':'unset'" routerLink="/abonnement">Abonnement</h3>
   <h3 [style.font-weight]="this.router.url.includes('/incidents')? 'bold':'unset'" routerLink="/incidents">Incidents</h3>
-  <h3>Ressources humaines</h3>
+  <h3 [style.font-weight]="this.router.url.includes('/stocks') ? 'bold':'unset'" routerLink="/stocks">Stocks</h3>
   <h3 [style.font-weight]="this.router.url=='/caisse' ? 'bold':'unset'" routerLink="/caisse">Caisse</h3>
 </nav>

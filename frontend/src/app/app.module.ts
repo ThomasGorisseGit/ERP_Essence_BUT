@@ -26,7 +26,6 @@ import { HeaderComponent } from './header/header.component';
 import { DisplayErrorComponent } from './_popup/display-error/display-error.component';
 import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
 import { DisplayPopupComponent } from './_popup/display-popup/display-popup.component';
-import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 import { ReportComponent } from './incidents/report/report.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { CreateClientComponent } from './subscription/create-client/create-client.component';
@@ -34,6 +33,8 @@ import { ConnectClientComponent } from './subscription/connect-client/connect-cl
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SubListComponent } from './subscription/sub-list/sub-list.component';
+import { BddComponent } from './bdd/bdd.component';
+import { ContentComponent } from './bdd/content/content.component';
 
 @NgModule({
   declarations: [
@@ -54,12 +55,13 @@ import { SubListComponent } from './subscription/sub-list/sub-list.component';
     HeaderComponent,
     DisplayErrorComponent,
     DisplayPopupComponent,
-    ComptabiliteComponent,
     ReportComponent,
     SubscriptionComponent,
     CreateClientComponent,
     ConnectClientComponent,
     SubListComponent,
+    BddComponent,
+    ContentComponent,
   ],
   imports: [
     MatSelectModule,

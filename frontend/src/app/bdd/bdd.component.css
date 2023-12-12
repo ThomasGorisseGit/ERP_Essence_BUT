@@ -1,0 +1,47 @@
+.mainContainer{
+  display: flex;
+  width: 100%;
+  height: 70vh;
+  justify-content: center;
+}
+.left,.right{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+
+}
+.left{
+  width: 20%;
+  justify-content: space-evenly;
+}
+.right{
+  background-color: white;
+  height: 100%;
+  width: 80%;
+  border-radius: var(--defaultBorderRadius);
+  box-shadow: var(--defaultBoxShadow);
+}
+.content{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5%;
+  font-size: 1.6em;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.selected{
+  color: var(--green512);
+  font-weight: bolder;
+  transform: translate(-20px);
+  transition: 0.3s;
+}
