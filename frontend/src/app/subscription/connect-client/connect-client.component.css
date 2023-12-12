@@ -35,6 +35,7 @@
 }
 
 .delete{
+  cursor: pointer;
   font-size: 1.3em;
   transition: 0.3s;
 }

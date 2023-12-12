@@ -97,4 +97,8 @@ export class ProductService {
       return req;
     })
   }
+
+  editStock(product_id:number,qte:number){
+    return this.http.get(ApiURL+"/stock/edit/"+product_id+"/"+qte);
+  }
 }

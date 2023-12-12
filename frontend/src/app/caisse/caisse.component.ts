@@ -160,7 +160,33 @@ export class CaisseComponent {
     this.getTotal();
   }
   validatePaiement() {
+    if(this.displayTotal=='0'){
+      this.displayError.error ="Le panier est vide";
 
+      return;
+    }
+
+    // TODO : Edit stock and clear cart
+    this.cart.listProduct.forEach((prod)=>{
+      this.productService.editStock(prod.product.id,(prod.product.stock!.quantity - prod.quantity)).subscribe({
+        next : (data)=>
+        {
+          this.deleteProduct(prod.product.id)
+          this.productService.ProductContainsAll().subscribe({next(value) {
+              console.log(value);
+
+          },})
+    }})
+    })
+
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+      this.validate =true;
+      setTimeout(()=>{
+        this.validate = false;
+      },2000);
+    },2000)
   }
 
   showPopup(): void {

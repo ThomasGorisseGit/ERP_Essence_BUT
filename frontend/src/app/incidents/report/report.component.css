@@ -19,6 +19,7 @@ textarea.default{
 }
 select{
   height: 60%;
+  cursor: pointer;
 }
 button{
   margin: 0;
