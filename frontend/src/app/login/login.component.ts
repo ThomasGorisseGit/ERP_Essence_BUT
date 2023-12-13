@@ -27,6 +27,9 @@ export class LoginComponent {
   constructor(private connectionService:ConnectionService,private authService: AuthService,private router:Router){
 
   }
+  public createAccount(){
+      
+  }
 
   public sendConnection() {
     console.log(this.formGroup.value)

@@ -35,6 +35,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SubListComponent } from './subscription/sub-list/sub-list.component';
 import { BddComponent } from './bdd/bdd.component';
 import { ContentComponent } from './bdd/content/content.component';
+import { CreateAccountComponent } from './login/create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ContentComponent } from './bdd/content/content.component';
     SubListComponent,
     BddComponent,
     ContentComponent,
+    CreateAccountComponent,
   ],
   imports: [
     MatSelectModule,

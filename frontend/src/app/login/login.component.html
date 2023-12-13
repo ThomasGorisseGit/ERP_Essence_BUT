@@ -9,9 +9,12 @@
       <label for="password">Mot de passe</label>
       <input formControlName="password" type="password" name="password" id="password" />
     </div>
-    <button class="login buttonBase" (click)="sendConnection()">Se connecter</button>
-  </form>
+    <div class="flex">
+      <button class="login buttonBase" (click)="createAccount()">Créer un compte</button>
+      <button class="login buttonBase" (click)="sendConnection()">Se connecter</button>
+    </div>
+    </form>
 </div>
 
-
+<app-create-account></app-create-account>
 <app-display-error ></app-display-error>

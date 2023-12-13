@@ -56,3 +56,8 @@ form {
 button {
   box-shadow: var(--defaultBoxShadow);
 }
+.flex{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
