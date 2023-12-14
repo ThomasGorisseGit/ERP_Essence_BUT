@@ -30,9 +30,9 @@ public class UserCheckingService extends ServiceMethods<User> implements UserChe
     @Override
     public User create(User user){
 
-
         user.setLogin();
         user.setPassword(Password.create(this.passwordEncoder().encode(user.getPassword())));
+
         if(this.userRepository.findByLogin(user.getLogin()).isPresent()){
             throw new RuntimeException("" +
                     "\n#########################################\n" +
@@ -42,7 +42,7 @@ public class UserCheckingService extends ServiceMethods<User> implements UserChe
 
 
 
-        if(user.getStatus()==null){
+        if(user.getStatus()==null || user.getStatus().toString().isEmpty()){
             user.setStatus(Status.create("Employee"));
             user.setSalary(Status.getSalary("Employee"));
         }

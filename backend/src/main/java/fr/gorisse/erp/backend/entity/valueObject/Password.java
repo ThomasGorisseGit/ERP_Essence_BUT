@@ -12,7 +12,7 @@ public class Password  {
     }
 
     public static Password create(String password){
-        final int maxSize = 200;
+        final int maxSize = 400;
         if (password.length() > maxSize) {
             throw new InvalidInput(" Password must be less than "+maxSize+" characters ");
         }
