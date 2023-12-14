@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  createAccount : boolean = false;
 
   @ViewChild(DisplayErrorComponent) displayError!: DisplayErrorComponent;
 
@@ -27,9 +28,7 @@ export class LoginComponent {
   constructor(private connectionService:ConnectionService,private authService: AuthService,private router:Router){
 
   }
-  public createAccount(){
-      
-  }
+
 
   public sendConnection() {
     console.log(this.formGroup.value)

@@ -1,6 +1,7 @@
 <div  class="mainContainer">
   <img src="../../assets/512ERP.png" alt="512ERP" />
-  <form>
+  <form *ngIf="!createAccount">
+    <h1>Se connecter</h1>
     <div [formGroup]="formGroup" class="formGroup">
       <label for="login">Nom d'utilisateur</label>
       <input formControlName="login" type="text" name="login" id="login" />
@@ -10,11 +11,12 @@
       <input formControlName="password" type="password" name="password" id="password" />
     </div>
     <div class="flex">
-      <button class="login buttonBase" (click)="createAccount()">Créer un compte</button>
+      <button class="login buttonBase" (click)="createAccount=true">Créer un compte</button>
       <button class="login buttonBase" (click)="sendConnection()">Se connecter</button>
     </div>
     </form>
-</div>
+    <app-create-account *ngIf="createAccount"></app-create-account>
+  </div>
 
-<app-create-account></app-create-account>
+
 <app-display-error ></app-display-error>

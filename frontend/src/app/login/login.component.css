@@ -38,7 +38,7 @@ input {
   border-radius: var(--defaultBorderRadius);
   border: none;
 }
-
+app-create-account,
 form {
   display: flex;
   flex-direction: column;

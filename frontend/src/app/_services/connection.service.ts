@@ -9,6 +9,9 @@ import { User } from '../_interfaces/user';
 })
 export class ConnectionService {
   constructor(private http:HttpClient) { }
+  public createUser(user:User){
+    return this.http.post(ApiURL+"/user/create",user)
+  }
 
   public checkUserInfos(inputLogin?:string, inputPassword?:string, inputUser?:User){
 
