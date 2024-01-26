@@ -64,4 +64,13 @@ Ainsi je ne mettrai pas automatiquement en place un service pour chaque Entité.
 Également, j'ai rencontré des difficultées lors de l'implementation du système de connexion d'un utilisateur, il aurait fallu prendre en charge la feature en premier afin d'avoir un point de vue global et clair sur le sujet. Il était difficile d'apprendre le fonctionnement d'une connexion sur Spring tout en mettant en place le système pour qu'il soit compatible avec l'application.
 
 
+## Images 
+![ERP5](https://github.com/ThomasGorisseGit/ERP_Essence_BUT/assets/91067467/ae203153-bf0a-434b-9302-46948042ca9c)
+![ERP6](https://github.com/ThomasGorisseGit/ERP_Essence_BUT/assets/91067467/bb0cc7a5-ca1f-4122-822d-91ca703fa0bc)
+![ERP2](https://github.com/ThomasGorisseGit/ERP_Essence_BUT/assets/91067467/d8fbcecf-a13a-40f6-96bc-c13a284491ab)
+![ERP3](https://github.com/ThomasGorisseGit/ERP_Essence_BUT/assets/91067467/170aaec9-9d84-4630-a2a0-3170cae89429)
+![ERP](https://github.com/ThomasGorisseGit/ERP_Essence_BUT/assets/91067467/81991561-839b-4dca-9a35-057f3753b643)
+
+
+
 
